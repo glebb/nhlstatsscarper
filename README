@@ -1,0 +1,14 @@
+EA Sports Nhl 12 statistics tool
+
+Summary:
+   	-nhl12statsparse: python module to fetch and parse team & player stats from easports servers.
+   	-pyfibot_module: module for pyfibot irc bot (http://code.google.com/p/pyfibot/), 
+     which uses nhl12statsparse package
+
+Usage:
+	-install nhl12statsparse to pythonpath
+	-modify module_nhl12_stats and edit the TEAM_MEMBERS_URL to point to the members page
+	 (notice: it should be the page that is fetched by the ajax call, e.g.
+	 'http://www.easportsworld.com/en_US/clubs/partial/501A0001/181/members-list')
+	
+Run tests with specloud tests.py

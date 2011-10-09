@@ -3,7 +3,7 @@
 import unittest
 
 import fixtures
-from parse import *
+from nhl12statsparse.parse import *
 
 class FixArgsSpec(unittest.TestCase):
     def it_returns_identical_string_in_case_of_single_word(self):

@@ -3,7 +3,7 @@
 import unittest
 
 import fixtures
-from parse import *
+from nhl12statsparse.parse import *
 
 
 class PlayerStatsSpec(unittest.TestCase):

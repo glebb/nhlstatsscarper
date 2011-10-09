@@ -2,6 +2,8 @@
 
 from BeautifulSoup import BeautifulSoup
 import urllib2
+import os.path, time
+
 
 def print_html_parse_error():
     print 'Something went wrong when trying to parse html'
@@ -229,3 +231,29 @@ def stats_of_player(player):
         player.points, player.games_played, player.goals, player.assists, player.plusminus, player.penalties, \
         player.hits, player.blocked_shots, player.shots)
     return stats
+    
+def get_cached_content(team_members_url):
+    if not os.path.exists("members.html"):
+		return get_and_cache_team_members_html(team_members_url)    
+    now = time.time()
+    FIVE_MINUTES = 60*5
+    file_modified_time = os.path.getmtime('members.html')
+    
+    if (now - file_modified_time) > FIVE_MINUTES:
+		return get_and_cache_team_members_html(team_members_url)
+        
+    f = open('members.html', 'r')
+    data = f.read()
+    f.close()
+    return data
+    
+def get_and_cache_team_members_html(url):
+	html = get_content(url)
+	if html:
+		f = open('members.html', 'w')
+		f.write(html)
+		f.close()
+	return html
+
+
+    

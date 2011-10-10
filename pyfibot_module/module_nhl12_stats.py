@@ -15,13 +15,14 @@ def command_tn(bot, user, channel, args):
     return 
 
 def command_ps(bot, user, channel, args):
-    html = get_cached_content(TEAM_MEMBERS_URL)
-    parser = PlayerParser()
-    parser.parse(html)
-    player = self.parser.search(args)
-    sentence = stats_for_player(player)
-    if sentence:
-        bot.say(channel, str(sentence))
-    else:
-        bot.say(channel, 'no results')
-    return 
+    return #wip
+#     html = get_cached_content(TEAM_MEMBERS_URL)
+#     parser = PlayerParser()
+#     parser.parse(html)
+#     player = parser.search(args)
+#     sentence = stats_for_player(player) #unimplemented
+#     if sentence:
+#         bot.say(channel, str(sentence))
+#     else:
+#         bot.say(channel, 'no results')
+#     return 

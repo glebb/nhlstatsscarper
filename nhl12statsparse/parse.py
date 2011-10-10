@@ -1,3 +1,4 @@
+'''Nhl 12 stats tool'''
 # -*- coding: utf-8 -*-
 
 from BeautifulSoup import BeautifulSoup
@@ -6,11 +7,15 @@ import os.path, time
 
 
 def print_html_parse_error():
+    '''Prints generic error message when for BeautifulSoup
+    parse problems'''
     print 'Something went wrong when trying to parse html'
     print 'The content has probably changed. Shit happens.'
     
 
 def fix_args(args):
+    '''Fix arguments provided by pyfibot, to be used
+    with TeamStatsParser'''
     splitted = args.split('|')
     if len(splitted) > 1:
         splitted.pop()
@@ -22,7 +27,9 @@ def fix_args(args):
 
     return temp
 
-def get_order_from_args(args):    
+def get_order_from_args(args):
+    '''Get the number provided by user through Pyfibot,
+    to be used with TeamStatsParses. Check after | character.'''
     try:
         index = args.find('|')
         number = int(args[index+1:])
@@ -31,15 +38,26 @@ def get_order_from_args(args):
         return 1
 
 def create_search_url(team_name):
+    '''Append team_name to Ea Sport Nhl 12 ps3 search_url'''
     fixed_name = fix_args(team_name)
-    search_url = 'http://www.easportsworld.com/en_US/clubs/nhl12/search?find[name]='
+    search_url = 'http://www.easportsworld.com/en_US/clubs/nhl12/search' + \
+        '?find[name]='
     search_url += fixed_name
-    search_url += '&find[abbreviation]=&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=PS3&find[region]=&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit'
+    search_url += '&find[abbreviation]=&find[size]=' + \
+        '&find[acceptJoinRequest]=&find[public]=&find[lang]=' + \
+        '&find[platform]=PS3&find[region]=&find[team_leagueId]=' + \
+        '&find[teamId]=&find[active]=true&do-search=submit'
     return search_url
 
 class TeamParser(object):
+    '''Uses Beautifulsoup to parse team statistics from provided html'''
     def __init__(self):
-        self._set_initial_values_to_empty()
+        self._club_record = ""
+        self._club_record_overall = ""
+        self._region = ""
+        self._ranking = ""
+        self._team_name = ""
+        self._games_played = ""
         
     def team_name(self):
         return self._team_name
@@ -60,6 +78,7 @@ class TeamParser(object):
         return self._ranking
         
     def last_game(self, html=""):
+        '''return result of the last game'''
         result = ""
         if html:
             soup = BeautifulSoup(html)
@@ -73,6 +92,8 @@ class TeamParser(object):
         return result
         
     def parse(self, html=""):
+        '''Do the parsing of html. After this method is finished
+        individual data can be fetched e.g club_record()'''
         self._set_initial_values_to_empty()
         html = BeautifulSoup(html)
         try:
@@ -81,8 +102,10 @@ class TeamParser(object):
             stat_cells = self._find_stat_table_cells(html)
             self._club_record = stat_cells[1].span.string.replace(' ', '')
             self._region = stat_cells[2].string.replace("Region: ", "")
-            self._ranking = stat_cells[4].string.replace("Overall Ranking: ", "")
-            club_stats_cells = html.find('tr', {'class' : 'even strong black'}).findAll('td')
+            self._ranking = \
+                stat_cells[4].string.replace("Overall Ranking: ", "")
+            club_stats_cells = \
+                html.find('tr', {'class' : 'even strong black'}).findAll('td')
             self._club_record_overall = club_stats_cells[3].string + '-' + \
                 club_stats_cells[4].string + '-' + club_stats_cells[5].string
             self._games_played = club_stats_cells[2].string
@@ -90,7 +113,8 @@ class TeamParser(object):
             print_html_parse_error()
             
     def _find_stat_table_cells(self, html):
-        stats_table = html.find('table', {'class' : 'plain full-width nowrap less-padding no-margin'})
+        stats_table = html.find('table', 
+            {'class' : 'plain full-width nowrap less-padding no-margin'})
         return stats_table.findAll('td')
 
         
@@ -104,13 +128,17 @@ class TeamParser(object):
     
 
 class TeamUrlFinder(object):
+    '''Finds team url from EA sports nhl 12 search results html'''
     def __init__(self, html=""):
         if html:
             self.html = BeautifulSoup(html)
         
     def get_url(self, number=1):
+        '''Get the url, param number defines which url to get,
+        in case there are more than one. Defaults always to first.'''
         try:
-            containing_table = self.html.find('table', {'class' : 'styled full-width'})
+            containing_table = self.html.find('table', 
+                {'class' : 'styled full-width'})
             links = containing_table.tbody.findAll('h4')
             postfix = links[number-1].a['href']
         except AttributeError:
@@ -123,26 +151,29 @@ class TeamUrlFinder(object):
 
 
 def get_content(url):
-    '''untested copy/paste code'''
+    '''Get html content of given url.
+    untested copy/paste code'''
     content = None
     if url:
         try:
-            h = urllib2.urlopen(url, timeout=60)
-            content = h.read()
-            h.close()
-        except IOError, e:
+            url_handle = urllib2.urlopen(url, timeout=60)
+            content = url_handle.read()
+            url_handle.close()
+        except IOError, error:
             print 'We failed to open "%s".' % url
-            if hasattr(e, 'code'):
-                print 'We failed with error code - %s.' % e.code
-            elif hasattr(e, 'reason'):
+            if hasattr(error, 'code'):
+                print 'We failed with error code - %s.' % error.code
+            elif hasattr(error, 'reason'):
                 print "The error object has the following 'reason' attribute :"
-                print e.reason
+                print error.reason
                 print "This usually means the server doesn't exist,",
                 print "is down, or we don't have an internet connection."
     return content
 
 
 def get_html(args, number):
+    '''Gets html for team, based on team_name and number. Wrapper
+    fore TeamUrlFinder + get_content'''
     search_url = create_search_url(args)
     html = get_content(search_url)
     finder = TeamUrlFinder(html)
@@ -151,6 +182,8 @@ def get_html(args, number):
     return content if content else ""
 
 def get_team_stats(team_html=""):
+    '''Wrapper for TeamParser. Produces pyfibot friendly string
+    for team stats'''
     parser = TeamParser()
     parser.parse(team_html)
     sentence = ""
@@ -164,6 +197,7 @@ def get_team_stats(team_html=""):
     return sentence.strip()
 
 class Player(object):
+    '''Holds player stats'''
     def __init__(self):
         self.name = ""
         self.ranking = ""
@@ -181,19 +215,25 @@ class Player(object):
         
 
 class PlayerParser(object):
+    '''Parses player stats from given url'''
     def __init__(self):
         self.members = None
 
     def parse(self, html=""):
+        '''actual parsing, gets all the players in html
+        as tr rows'''
+        
         html = BeautifulSoup(html)
         self.members = []
         try:
-            member_table = html.find('table', {'class' : 'styled full-width no-margin'}).tbody
+            member_table = html.find('table', 
+                {'class' : 'styled full-width no-margin'}).tbody
             self.members = member_table.findAll('tr')
         except:
             print_html_parse_error()
             
     def search(self, search_name):
+        '''get individual player stats as Player object'''
         player = None
         for member in self.members:
             tdcells = member.findAll('td')
@@ -225,35 +265,41 @@ class PlayerParser(object):
         return player
 
 def stats_of_player(player):
+    '''Formats player stats for pyfibot'''
     stats = ""
     if (player):
-        stats = "%s Pts:%s GP:%s G:%s A:%s +/-: %s PIM: %s Hits: %s BS: %s S: %s" %(player.name, \
-        player.points, player.games_played, player.goals, player.assists, player.plusminus, player.penalties, \
-        player.hits, player.blocked_shots, player.shots)
+        stats = \
+            "%s Pts:%s GP:%s G:%s A:%s +/-: %s PIM: %s Hits: %s BS: %s S: %s" \
+            % (player.name, \
+            player.points, player.games_played, player.goals, \
+            player.assists, player.plusminus, player.penalties, \
+            player.hits, player.blocked_shots, player.shots)
     return stats
     
 def get_cached_content(team_members_url):
+    '''Tries to read members.html and if succeeds returns
+    the content if it's not old. Otherwise fetches the data
+    from internet and saves it to members.html as cache.'''
     if not os.path.exists("members.html"):
-		return get_and_cache_team_members_html(team_members_url)    
+        return get_and_cache_team_members_html(team_members_url)    
     now = time.time()
-    FIVE_MINUTES = 60*5
+    five_minutes = 60*5
     file_modified_time = os.path.getmtime('members.html')
     
-    if (now - file_modified_time) > FIVE_MINUTES:
-		return get_and_cache_team_members_html(team_members_url)
+    if (now - file_modified_time) > five_minutes:
+        return get_and_cache_team_members_html(team_members_url)
         
-    f = open('members.html', 'r')
-    data = f.read()
-    f.close()
+    file_handle = open('members.html', 'r')
+    data = file_handle.read()
+    file_handle.close()
     return data
     
 def get_and_cache_team_members_html(url):
-	html = get_content(url)
-	if html:
-		f = open('members.html', 'w')
-		f.write(html)
-		f.close()
-	return html
-
-
-    
+    '''Gets html content from url and caches it to
+    members.html'''
+    html = get_content(url)
+    if html:
+        file_handle = open('members.html', 'w')
+        file_handle.write(html)
+        file_handle.close()
+    return html

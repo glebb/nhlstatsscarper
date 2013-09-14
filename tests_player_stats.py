@@ -4,18 +4,16 @@ import unittest
 
 import fixtures
 from nhlstatsparse.parse import *
-
+from nhlstatsparse.db import search_player
 
 class PlayerStatsSpec(unittest.TestCase):
     def setUp(self):
         self.parser = PlayerParser()
-        self.parser.parse(fixtures.murohoki_members)
-        self.player = self.parser.search("qolazor")
+        self.parser.parse("murohoki", fixtures.murohoki_members)
+        self.player = search_player("qolazor")
 
-    def it_should_find_stats(self):
+    def it_should_find_stats_for_player(self):
         self.assertEqual("qolazor", self.player.name)
-        #self.assertEqual("21430", self.player.ranking)
-        #self.assertEqual("7", self.player.games_played)
         self.assertEqual("9", self.player.goals)
         self.assertEqual("13", self.player.assists)
         self.assertEqual("22", self.player.points)
@@ -28,14 +26,14 @@ class PlayerStatsSpec(unittest.TestCase):
         self.assertEqual("74", self.player.shots)
         
     def it_should_handle_unknown_player(self):
-        self.player = self.parser.search("xysfsda")
+        self.player = search_player("xysfsda")
         self.assertEqual(None, self.player)
         
     def it_should_handle_bad_html(self):
         self.parser.parse("xxx")
-        self.player = self.parser.search("bodhi")
+        self.player = search_player("bodhi")
         self.assertEqual(None, self.player)
     
     def it_should_handle_umlauts(self):
-        self.player = self.parser.search("äöääöäcx.,.123")
+        self.player = search_player("äöääöäcx.,.123")
         self.assertEqual(None, self.player)

@@ -1,10 +1,19 @@
-'''Nhl 12 stats tool'''
+'''Nhl stats tool'''
 # -*- coding: utf-8 -*-
 
 from BeautifulSoup import BeautifulSoup
 import urllib2
-import os.path, time
+from nhlstatsparse.db import Team, Player
+from datetime import datetime
+from peewee import DoesNotExist
 
+SYSTEM = "PS3" #Alternatively XBX
+
+TEAM_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/NHL14" + SYSTEM + "/"
+TEAM_URL_POSTFIX = "/overview"
+
+MEMBERS_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/partial/NHL14PS3/"
+MEMBERS_URL_POSTFIX = "/members-list"
 
 def print_html_parse_error():
     '''Prints generic error message when for BeautifulSoup
@@ -16,33 +25,16 @@ def print_html_parse_error():
 def fix_args(args):
     '''Fix arguments provided by pyfibot, to be used
     with TeamStatsParser'''
-    splitted = args.split('|')
-    if len(splitted) > 1:
-        splitted.pop()
-        temp = "".join(splitted)
-        temp = temp.strip()
-    else:
-        temp = args
+    temp = args.strip()
     temp = temp.replace(' ', '+')
-
     return temp
 
-def get_order_from_args(args):
-    '''Get the number provided by user through Pyfibot,
-    to be used with TeamStatsParses. Check after | character.'''
-    try:
-        index = args.find('|')
-        number = int(args[index+1:])
-        return number
-    except ValueError:
-        return 1
-
 def create_search_url(team_name):
-    '''Append team_name to Ea Sport Nhl 12 ps3 search_url'''
-    fixed_name = fix_args(team_name)
+    '''Append team_name to Ea Sport Nhl ps3 search_url'''
+    temp = fix_args(team_name)
     search_url = 'http://www.easportsworld.com/en_US/clubs/nhl14/search' + \
         '?find[name]='
-    search_url += fixed_name
+    search_url += temp
     search_url += '&find[abbreviation]=&find[size]=' + \
         '&find[acceptJoinRequest]=&find[public]=&find[lang]=' + \
         '&find[platform]=PS3&find[region]=&find[team_leagueId]=' + \
@@ -82,8 +74,6 @@ class TeamParser(object):
             self._region = stat_cells[1].string.replace("Region: ", "")
             self._ranking = \
                 stat_cells[2].string.replace("Overall Ranking: ", "")
-            club_stats_cells = \
-                html.find('tr', {'class' : 'even strong black'}).findAll('td')
         except:
             print_html_parse_error()
             
@@ -144,15 +134,32 @@ def get_content(url):
     return content
 
 
-def get_html(args, number):
-    '''Gets html for team, based on team_name and number. Wrapper
-    fore TeamUrlFinder + get_content'''
-    search_url = create_search_url(args)
+def get_team_overview_data(team_name):
+    content = None
+    team = None
+    try:
+        team = Team.select().where(Team.name ** team_name).get()
+    except DoesNotExist:
+        pass
+    if team:
+        content = get_content(TEAM_URL_PREFIX + team.eaid + TEAM_URL_POSTFIX)
+    else:
+        team = save_new_team_to_db(team_name)
+        if team:
+            content = get_content(TEAM_URL_PREFIX + team.eaid + TEAM_URL_POSTFIX)
+    return content if content else ""
+
+def save_new_team_to_db(team_name):
+    search_url = create_search_url(team_name)
     html = get_content(search_url)
     finder = TeamUrlFinder(html)
-    team_url = finder.get_url(number)
-    content = get_content(team_url)
-    return content if content else ""
+    team_url = finder.get_url()
+    if team_url:
+        ea_id = team_url.split('/')[-2]
+        team = Team(name=team_name, platform=SYSTEM, eaid=ea_id)
+        team.save()
+        return team
+    return None
 
 def get_team_stats(team_html=""):
     '''Wrapper for TeamParser. Produces pyfibot friendly string
@@ -166,72 +173,54 @@ def get_team_stats(team_html=""):
         sentence += parser.region() + ' '
         sentence += parser.club_record() + ' | '
         sentence += 'OR: ' + parser.ranking() + ' | '
-        sentence += parser.club_record_overall()
-    return sentence.strip()
-
-class Player(object):
-    '''Holds player stats'''
-    def __init__(self):
-        self.name = ""
-        self.ranking = ""
-        self.games_played = ""
-        self.goals = ""
-        self.assists = ""
-        self.points = ""
-        self.plusminus = ""
-        self.penalties = ""
-        self.power_play_goals = ""
-        self.short_handed_goals = ""
-        self.hits = ""
-        self.blocked_shots = ""
-        self.shots = ""
-        
+    return sentence.strip()        
 
 class PlayerParser(object):
     '''Parses player stats from given url'''
     def __init__(self):
         self.members = None
+        self.tdcells = None
+        self.team = None
 
-    def parse(self, html=""):
+    def parse(self, team, html=""):
         '''actual parsing, gets all the players in html
         as tr rows'''
-        
+        self.team = team
         html = BeautifulSoup(html)
         self.members = []
         try:
             member_table = html.find('table', 
                 {'class' : 'styled full-width no-margin'}).tbody
             self.members = member_table.findAll('tr')
+            for member in self.members:
+                self.tdcells = member.findAll('td')
+                player = self._create_player()
+                player.save()
         except:
             print_html_parse_error()
             
-    def search(self, search_name):
-        '''get individual player stats as Player object'''
-        player = None
-        for member in self.members:
-            tdcells = member.findAll('td')
-            name = str(tdcells[1].div.a.string)
-            if name.lower().find(search_name.lower()) != -1:
-                player = self._create_player(tdcells)
-                break
-        return player
-
-    def _create_player(self, tdcells):
-        player = Player()
+    def _create_player(self):
         try:
-            player.name = str(tdcells[1].div.a.string)
-            #player.ranking = str(tdcells[3].string)
-            #player.games_played = str(tdcells[4].string)
-            player.goals = str(tdcells[3].string)
-            player.assists = str(tdcells[4].string)
-            player.points = str(tdcells[5].string)
-            player.plusminus = str(tdcells[6].string)
-            player.penalties = str(tdcells[7].string)
-            player.power_play_goals = str(tdcells[8].string)
-            player.short_handed_goals = str(tdcells[9].string)
-            player.hits = str(tdcells[10].string)
-            player.blocked_shots = str(tdcells[11].string)
-            player.shots = str(tdcells[12].string)
+            name = str(self.tdcells[1].div.a.string)
+            player = Player.select().where(Player.name ** name).get()
+            
+        except DoesNotExist:
+            player = Player()    
+        
+        try:
+            player.name = str(self.tdcells[1].div.a.string)
+            player.goals = str(self.tdcells[3].string)
+            player.assists = str(self.tdcells[4].string)
+            player.points = str(self.tdcells[5].string)
+            player.plusminus = str(self.tdcells[6].string)
+            player.penalties = str(self.tdcells[7].string)
+            player.power_play_goals = str(self.tdcells[8].string)
+            player.short_handed_goals = str(self.tdcells[9].string)
+            player.hits = str(self.tdcells[10].string)
+            player.blocked_shots = str(self.tdcells[11].string)
+            player.shots = str(self.tdcells[12].string)
+            player.team = self.team
+            player.modified = datetime.now()
         except:
             print_html_parse_error()
             
@@ -248,4 +237,3 @@ def stats_of_player(player):
             player.assists, player.plusminus, player.penalties, \
             player.hits, player.blocked_shots, player.shots)
     return stats
-    

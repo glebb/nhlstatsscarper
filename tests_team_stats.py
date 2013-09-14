@@ -61,7 +61,7 @@ class TeamUrlFinderSpec(unittest.TestCase):
         finder = TeamUrlFinder(fixtures.murohoki_search)
         url = finder.get_url(10)
         self.assertEqual(url, "")
-        
+            
         
     
     

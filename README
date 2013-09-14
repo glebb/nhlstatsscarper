@@ -1,8 +1,21 @@
-EA Sports Nhl statistics tool
+EA Sports Nhl statistics Scraper
+
+Currently supports PS3 teams, but Xbox 360 support can be added with little effort.
 
 Summary:
-   	-nhlstatsparse: python module to fetch and parse team & player stats from easports servers.
-   	-pyfibot_module: module for pyfibot irc bot (http://code.google.com/p/pyfibot/), 
-     which uses nhlstatsparse package
-	
+ - nhlstatsparse: python module to fetch and parse team & player stats from easports servers. (append to PYTHONPATH)
+ - pyfibot_module: module for pyfibot irc bot (http://code.google.com/p/pyfibot/), which uses nhlstatsparse package.
+
+Bot commands: 
+ - .ts <team name>: Show Team Stats for team (always fetched from server)
+ - .ps <player_name@team>: show player stats from a specific team. Within single request data is cached for 5 minutes for the whole team, making following requests from the same team faster. 
+
+Check examples about how to use this thing from tests.	
 Run tests with specloud tests.py
+
+Requirements:
+ - Peewee
+ - BeautifulSoup
+ 
+ Dev:
+ - Specloud

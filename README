@@ -1,6 +1,6 @@
 EA Sports Nhl statistics Scraper
 
-Currently supports PS3 teams, but Xbox 360 support can be added with little effort.
+Currently supports NHL 14 PS3 teams, but Xbox 360 support can be added with little effort.
 
 Summary:
  - nhlstatsparse: python module to fetch and parse team & player stats from easports servers. (append to PYTHONPATH)

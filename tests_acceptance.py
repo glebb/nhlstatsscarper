@@ -3,7 +3,7 @@
 import unittest
 
 import fixtures
-from nhl12statsparse.parse import *
+from nhlstatsparse.parse import *
 
 class AcceptanceTestsTeamStats(unittest.TestCase):
     def it_should_print_stats_for_team(self):

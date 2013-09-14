@@ -40,7 +40,7 @@ def get_order_from_args(args):
 def create_search_url(team_name):
     '''Append team_name to Ea Sport Nhl 12 ps3 search_url'''
     fixed_name = fix_args(team_name)
-    search_url = 'http://www.easportsworld.com/en_US/clubs/nhl12/search' + \
+    search_url = 'http://www.easportsworld.com/en_US/clubs/nhl14/search' + \
         '?find[name]='
     search_url += fixed_name
     search_url += '&find[abbreviation]=&find[size]=' + \
@@ -53,11 +53,9 @@ class TeamParser(object):
     '''Uses Beautifulsoup to parse team statistics from provided html'''
     def __init__(self):
         self._club_record = ""
-        self._club_record_overall = ""
         self._region = ""
         self._ranking = ""
         self._team_name = ""
-        self._games_played = ""
         
     def team_name(self):
         return self._team_name
@@ -65,32 +63,12 @@ class TeamParser(object):
     def club_record(self):
         return self._club_record
 
-    def club_record_overall(self):
-        return self._club_record_overall
-
-    def games_played(self):
-        return self._games_played
-
     def region(self):
         return self._region
         
     def ranking(self):
         return self._ranking
-        
-    def last_game(self, html=""):
-        '''return result of the last game'''
-        result = ""
-        if html:
-            soup = BeautifulSoup(html)
-            try:
-                teams = soup.findAll('a', {'class' : 'secondary'})
-                goals = soup.findAll('td', {'class': 'score strong'})
-                result = teams[0].string + '-' + teams[1].string + ' ' + \
-                    goals[0].string + '-' + goals[1].string
-            except:
-                print_html_parse_error()
-        return result
-        
+                
     def parse(self, html=""):
         '''Do the parsing of html. After this method is finished
         individual data can be fetched e.g club_record()'''
@@ -100,15 +78,12 @@ class TeamParser(object):
             team_header = html.find('div', {'class' : 'main-club-header'})
             self._team_name = team_header.h1.a.string
             stat_cells = self._find_stat_table_cells(html)
-            self._club_record = stat_cells[1].span.string.replace(' ', '')
-            self._region = stat_cells[2].string.replace("Region: ", "")
+            self._club_record = stat_cells[0].span.string.replace(' ', '')
+            self._region = stat_cells[1].string.replace("Region: ", "")
             self._ranking = \
-                stat_cells[4].string.replace("Overall Ranking: ", "")
+                stat_cells[2].string.replace("Overall Ranking: ", "")
             club_stats_cells = \
                 html.find('tr', {'class' : 'even strong black'}).findAll('td')
-            self._club_record_overall = club_stats_cells[3].string + '-' + \
-                club_stats_cells[4].string + '-' + club_stats_cells[5].string
-            self._games_played = club_stats_cells[2].string
         except:
             print_html_parse_error()
             
@@ -120,11 +95,9 @@ class TeamParser(object):
         
     def _set_initial_values_to_empty(self):
         self._club_record = ""
-        self._club_record_overall = ""
         self._region = ""
         self._ranking = ""
         self._team_name = ""
-        self._games_played = ""
     
 
 class TeamUrlFinder(object):
@@ -247,18 +220,18 @@ class PlayerParser(object):
         player = Player()
         try:
             player.name = str(tdcells[1].div.a.string)
-            player.ranking = str(tdcells[3].string)
-            player.games_played = str(tdcells[4].string)
-            player.goals = str(tdcells[5].string)
-            player.assists = str(tdcells[6].string)
-            player.points = str(tdcells[7].string)
-            player.plusminus = str(tdcells[8].string)
-            player.penalties = str(tdcells[9].string)
-            player.power_play_goals = str(tdcells[10].string)
-            player.short_handed_goals = str(tdcells[11].string)
-            player.hits = str(tdcells[12].string)
-            player.blocked_shots = str(tdcells[13].string)
-            player.shots = str(tdcells[14].string)
+            #player.ranking = str(tdcells[3].string)
+            #player.games_played = str(tdcells[4].string)
+            player.goals = str(tdcells[3].string)
+            player.assists = str(tdcells[4].string)
+            player.points = str(tdcells[5].string)
+            player.plusminus = str(tdcells[6].string)
+            player.penalties = str(tdcells[7].string)
+            player.power_play_goals = str(tdcells[8].string)
+            player.short_handed_goals = str(tdcells[9].string)
+            player.hits = str(tdcells[10].string)
+            player.blocked_shots = str(tdcells[11].string)
+            player.shots = str(tdcells[12].string)
         except:
             print_html_parse_error()
             
@@ -269,37 +242,10 @@ def stats_of_player(player):
     stats = ""
     if (player):
         stats = \
-            "%s Pts:%s GP:%s G:%s A:%s +/-: %s PIM: %s Hits: %s BS: %s S: %s" \
+            "%s G:%s A:%s +/-: %s PIM: %s Hits: %s BS: %s S: %s" \
             % (player.name, \
-            player.points, player.games_played, player.goals, \
+            player.goals, \
             player.assists, player.plusminus, player.penalties, \
             player.hits, player.blocked_shots, player.shots)
     return stats
     
-def get_cached_content(team_members_url):
-    '''Tries to read members.html and if succeeds returns
-    the content if it's not old. Otherwise fetches the data
-    from internet and saves it to members.html as cache.'''
-    if not os.path.exists("members.html"):
-        return get_and_cache_team_members_html(team_members_url)    
-    now = time.time()
-    five_minutes = 60*5
-    file_modified_time = os.path.getmtime('members.html')
-    
-    if (now - file_modified_time) > five_minutes:
-        return get_and_cache_team_members_html(team_members_url)
-        
-    file_handle = open('members.html', 'r')
-    data = file_handle.read()
-    file_handle.close()
-    return data
-    
-def get_and_cache_team_members_html(url):
-    '''Gets html content from url and caches it to
-    members.html'''
-    html = get_content(url)
-    if html:
-        file_handle = open('members.html', 'w')
-        file_handle.write(html)
-        file_handle.close()
-    return html

@@ -3,7 +3,7 @@
 import unittest
 
 import fixtures
-from nhl12statsparse.parse import *
+from nhlstatsparse.parse import *
 
 class FixArgsSpec(unittest.TestCase):
     def it_returns_identical_string_in_case_of_single_word(self):
@@ -54,21 +54,21 @@ class GetOrderFromArgsSpec(unittest.TestCase):
 class CreateSearchUrlSpec(unittest.TestCase):
     def it_creates_search_url_for_team_name(self):
         val = create_search_url("murohoki")
-        self.assertEqual(val, 'http://www.easportsworld.com/en_US/clubs/nhl12/search?find[name]=murohoki&find[abbreviation]=&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=PS3&find[region]=&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit')
+        self.assertEqual(val, 'http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]=murohoki&find[abbreviation]=&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=PS3&find[region]=&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit')
         
     def it_works_with_empty_param(self):
         val = create_search_url("")
-        self.assertEqual(val, 'http://www.easportsworld.com/en_US/clubs/nhl12/search?find[name]=&find[abbreviation]=&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=PS3&find[region]=&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit')
+        self.assertEqual(val, 'http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]=&find[abbreviation]=&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=PS3&find[region]=&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit')
 
     def it_fixes_arguments(self):
         val = create_search_url("hc kisaveikot |3 zxcxz")
-        self.assertEqual(val, 'http://www.easportsworld.com/en_US/clubs/nhl12/search?find[name]=hc+kisaveikot&find[abbreviation]=&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=PS3&find[region]=&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit')
+        self.assertEqual(val, 'http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]=hc+kisaveikot&find[abbreviation]=&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=PS3&find[region]=&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit')
 
 class BotFunctionsMemberStatsSpec(unittest.TestCase):
     def test_stats_of_player_shows_stats(self):
         parser = PlayerParser()
         parser.parse(fixtures.murohoki_members)
-        player = parser.search("bodhi")
+        player = parser.search("qolazor")
         stats = stats_of_player(player)
-        self.assertEqual(stats, "bodhi-FIN Pts:2 GP:7 G:0 A:2 +/-: 2 PIM: 8 Hits: 17 BS: 0 S: 11")
+        self.assertEqual(stats, "qolazor G:9 A:13 +/-: -23 PIM: 72 Hits: 62 BS: 3 S: 74")
     

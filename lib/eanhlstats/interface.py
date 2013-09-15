@@ -55,7 +55,7 @@ def stats_of_team(teamdata):
 
 
 def _refresh_player_data(team):
-    data = get_content(MEMBERS_URL_PREFIX + team.eaid + MEMBERS_URL_POSTFIX)
+    data = get_content(MEMBERS_URL_PREFIX + eanhlstats.settings.SYSTEM + "/" + team.eaid + MEMBERS_URL_POSTFIX)
     players = parse_player_data(team, data)
     for player in players:
         player.save()

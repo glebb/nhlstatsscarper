@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from eanhlstats.interface import *
-from eanhlstats.settings import *
+import eanhlstats.settings
 
 def command_ts(bot, user, channel, args):
     team = get_team(args)

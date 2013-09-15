@@ -5,11 +5,13 @@ sys.path.insert(0, os.path.realpath('../lib'))
 import unittest
 
 import fixtures
+import fixtures_xbox
 from eanhlstats.html import *
 
 class TeamParserSpec(unittest.TestCase):
     def setUp(self):
         self.data = parse_team_overview_data(fixtures.murohoki_overview)
+        self.data2 = parse_team_overview_data(fixtures_xbox.xbx_overview)
 
     def it_should_find_team_name(self):
         team = self.data['team_name']
@@ -29,8 +31,23 @@ class TeamParserSpec(unittest.TestCase):
         
     def it_should_return_empty_string_without_good_data(self):
         self.data = parse_team_overview_data("")
-        
         self.assertEquals(None, self.data)
+
+    def it_should_find_xbox_team_name(self):
+        team = self.data2['team_name']
+        self.assertEqual("ICE BANDITS", team)
+
+    def it_should_find_xbox_club_record(self):
+        record = self.data2['club_record']
+        self.assertEqual("2-1-0", record)
+
+    def it_should_find_xbox_club_region(self):
+        region = self.data2['region']
+        self.assertEqual("North America East", region)
+
+    def it_should_find_xbox_overall_ranking(self):
+        ranking = self.data2['ranking']
+        self.assertEqual("11149", ranking)
             
 
 class TeamUrlFinderSpec(unittest.TestCase):

@@ -7,10 +7,12 @@ from eanhlstats.model import Team, Player, get_player_from_db, get_team_from_db
 from datetime import datetime
 import eanhlstats.settings
 
-TEAM_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/NHL14" + eanhlstats.settings.SYSTEM + "/"
+
+
+TEAM_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/NHL14"
 TEAM_URL_POSTFIX = "/overview"
 
-MEMBERS_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/partial/NHL14" + eanhlstats.settings.SYSTEM + "/"
+MEMBERS_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/partial/NHL14"
 MEMBERS_URL_POSTFIX = "/members-list"
 
 def create_search_url(team_name):
@@ -42,7 +44,7 @@ def parse_team_overview_data(html):
         data['ranking'] = \
             stat_cells[2].string.replace("Overall Ranking: ", "")
         return data
-    except AttributeError:
+    except AttributeError, e:
         print "Parsing team stats failed"
         return None
     
@@ -88,11 +90,11 @@ def get_team_overview_html(team_name):
     content = None
     team = get_team_from_db(team_name)
     if team:
-        content = get_content(TEAM_URL_PREFIX + team.eaid + TEAM_URL_POSTFIX)
+        content = get_content(TEAM_URL_PREFIX + eanhlstats.settings.SYSTEM + "/" + team.eaid + TEAM_URL_POSTFIX)
     else:
         team = save_new_team_to_db(team_name)
         if team:
-            content = get_content(TEAM_URL_PREFIX + team.eaid + TEAM_URL_POSTFIX)
+            content = get_content(TEAM_URL_PREFIX + eanhlstats.settings.SYSTEM + "/" + team.eaid + TEAM_URL_POSTFIX)
     return content
 
 def save_new_team_to_db(team_name):

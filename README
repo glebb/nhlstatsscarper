@@ -1,8 +1,8 @@
 EA Sports Nhl statistics Scraper
 
 Summary:
- - eanhlstats: python module to fetch and parse team & player stats from easports servers. (append to PYTHONPATH)
- - pyfibot_module: module for pyfibot irc bot (http://code.google.com/p/pyfibot/), which uses nhlstatsparse package.
+ - eanhlstats: python module to fetch and parse team & player stats from easports servers. (append lib to PYTHONPATH)
+ - pyfibot_module: module for pyfibot irc bot (https://github.com/lepinkainen/pyfibot), which uses nhlstatsparse package.
 
 Bot commands: 
  .ts <team name>: Show Team Stats for team (always fetched from server)

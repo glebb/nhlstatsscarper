@@ -1,4 +1,5 @@
 from peewee import SqliteDatabase, Model, CharField, DateTimeField, DoesNotExist
+import eanhlstats.settings
 
 DB = SqliteDatabase('data.db', threadlocals=True)
 
@@ -22,7 +23,8 @@ class Player(Model):
     hits = CharField()
     blocked_shots = CharField()
     shots = CharField()
-    team = CharField()
+    team_eaid = CharField()
+    platform = CharField()
     modified = DateTimeField()
     
     class Meta:
@@ -31,9 +33,24 @@ class Player(Model):
 Team.create_table(True)
 Player.create_table(True)
 
-def search_player(name):
+def get_player_from_db(player_name, team):
     try:
-        player = Player.select().where(Player.name ** name).get()
+        player = Player.select().where((Player.name ** player_name) & (Player.team_eaid ** team.eaid)
+            & (Player.platform ** eanhlstats.settings.SYSTEM)).get()
         return player
     except DoesNotExist:
         return None
+
+def get_team_from_db(team_name):
+    try:
+        team = Team.select().where((Team.name ** team_name) & (Team.platform ** eanhlstats.settings.SYSTEM)).get()    
+        return team
+    except DoesNotExist:
+        return None
+
+#def get_team_from_db_by_eaid(eaid):
+#    try:
+#        team = Team.select().where((Team.eaid ** eaid) & (Team.platform ** eanhlstats.settings.SYSTEM)).get()    
+#        return team
+#    except DoesNotExist:
+#        return None

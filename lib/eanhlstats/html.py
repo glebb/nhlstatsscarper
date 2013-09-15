@@ -3,9 +3,8 @@
 
 from BeautifulSoup import BeautifulSoup
 import urllib2
-from eanhlstats.model import *
+from eanhlstats.model import Team, Player, get_player_from_db, get_team_from_db
 from datetime import datetime
-from peewee import DoesNotExist
 import eanhlstats.settings
 
 TEAM_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/NHL14" + eanhlstats.settings.SYSTEM + "/"
@@ -157,7 +156,7 @@ def _create_player(tdcells, team):
         player.team_eaid = team.eaid
         player.platform = eanhlstats.settings.SYSTEM
         player.modified = datetime.now()
-    except AttributeError, e:
+    except AttributeError:
         print "Parsing player stats failed"
         
     return player

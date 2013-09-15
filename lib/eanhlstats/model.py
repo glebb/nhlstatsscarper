@@ -47,10 +47,3 @@ def get_team_from_db(team_name):
         return team
     except DoesNotExist:
         return None
-
-#def get_team_from_db_by_eaid(eaid):
-#    try:
-#        team = Team.select().where((Team.eaid ** eaid) & (Team.platform ** eanhlstats.settings.SYSTEM)).get()    
-#        return team
-#    except DoesNotExist:
-#        return None

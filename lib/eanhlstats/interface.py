@@ -1,6 +1,6 @@
-from eanhlstats.model import *
+'''Main interface for eanhlstata functionality'''
+from eanhlstats.model import get_team_from_db, get_player_from_db
 from eanhlstats.html import get_team_overview_html, save_new_team_to_db, get_content, parse_team_overview_data, MEMBERS_URL_PREFIX, MEMBERS_URL_POSTFIX, parse_player_data
-from peewee import DoesNotExist
 import eanhlstats.settings
 from datetime import datetime
 

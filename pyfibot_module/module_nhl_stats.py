@@ -10,7 +10,10 @@ def command_ts(bot, user, channel, args):
         if not data:
             bot.say(channel, 'Error in fetching data for: ' + args)
             return
-    bot.say(channel, stats_of_team(data))
+        bot.say(channel, stats_of_team(data))
+    else:
+        bot.say(channel, 'Team not found: ' + args)
+    
 
 def command_ps(bot, user, channel, args):
     if len(args.split('@')) == 2:
@@ -25,7 +28,9 @@ def command_ps(bot, user, channel, args):
         if not player:
             bot.say(channel, 'Player ' + player_string + ' not found from team: ' + team.name)
             return
-    bot.say(channel, stats_of_player(player))
+        bot.say(channel, stats_of_player(player))
+    else:
+        bot.say(channel, 'Team not found: ' + team_string)
     
 def command_switch(bot, user, channel, args):
     if eanhlstats.settings.SYSTEM == "PS3":
@@ -42,13 +47,6 @@ def command_top(bot, user, channel, args):
         if not players:
             bot.say(channel, 'No player data found from team: ' + team.name)
             return
-    bot.say(channel, top_players(players, 5))
-    
-def _get_team(team_name):
-    team = get_team(team_name)
-    if not team:
-        bot.say(channel, 'Team not found: ' + team_string)
-        return None
+        bot.say(channel, top_players(players, 5))
     else:
-        return team
-        
+        bot.say(channel, 'Team not found: ' + args)        

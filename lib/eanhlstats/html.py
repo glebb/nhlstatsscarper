@@ -22,7 +22,8 @@ def create_search_url(team_name):
     search_url += '&find[abbreviation]=&find[size]=' + \
         '&find[acceptJoinRequest]=&find[public]=&find[lang]=' + \
         '&find[platform]='
-    platform = "360" if eanhlstats.settings.SYSTEM == "XBX" else eanhlstats.settings.SYSTEM
+    platform = "360" if eanhlstats.settings.SYSTEM == "XBX" \
+        else eanhlstats.settings.SYSTEM
     search_url += platform
     search_url += '&find[region]=&find[team_leagueId]=' + \
         '&find[teamId]=&find[active]=true&do-search=submit'
@@ -42,7 +43,7 @@ def parse_team_overview_data(html):
         data['ranking'] = \
             stat_cells[2].string.replace("Overall Ranking: ", "")
         return data
-    except AttributeError, e:
+    except AttributeError:
         print "Parsing team stats failed"
         return None
     
@@ -85,24 +86,30 @@ def get_content(url):
 
 
 def get_team_overview_html(team_name):
-    '''Return team overview html from ea server. Stores team data to db, if not already found from there'''
+    '''Return team overview html from ea server. Stores team data to db, 
+    if not already found from there'''
     content = None
     team = get_team_from_db(team_name)
     if team:
-        content = get_content(TEAM_URL_PREFIX + eanhlstats.settings.SYSTEM + "/" + team.eaid + TEAM_URL_POSTFIX)
+        content = get_content(TEAM_URL_PREFIX + eanhlstats.settings.SYSTEM + 
+            "/" + team.eaid + TEAM_URL_POSTFIX)
     else:
         team = save_new_team_to_db(team_name)
         if team:
-            content = get_content(TEAM_URL_PREFIX + eanhlstats.settings.SYSTEM + "/" + team.eaid + TEAM_URL_POSTFIX)
+            content = get_content(TEAM_URL_PREFIX + 
+            eanhlstats.settings.SYSTEM + "/" + team.eaid + TEAM_URL_POSTFIX)
     return content
 
 def save_new_team_to_db(team_name):
+    '''Does a search query on Ea servers and stores team data (eaid)
+    to db. Returns None if team is not found.'''
     search_url = create_search_url(team_name)
     html = get_content(search_url)
     team_url = get_team_url(html)
     if team_url:
         ea_id = team_url.split('/')[-2]
-        team = Team(name=team_name, platform=eanhlstats.settings.SYSTEM, eaid=ea_id)
+        team = Team(name=team_name, platform=eanhlstats.settings.SYSTEM, 
+            eaid=ea_id)
         team.save()
         return team
     return None

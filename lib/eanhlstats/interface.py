@@ -1,6 +1,9 @@
 '''Main interface for eanhlstata functionality'''
-from eanhlstats.model import get_team_from_db, get_player_from_db, get_players_from_db, Player
-from eanhlstats.html import get_team_overview_html, save_new_team_to_db, get_content, parse_team_overview_data, MEMBERS_URL_PREFIX, MEMBERS_URL_POSTFIX, parse_player_data
+from eanhlstats.model import get_team_from_db, get_player_from_db, \
+get_players_from_db, Player
+from eanhlstats.html import get_team_overview_html, \
+save_new_team_to_db, get_content, parse_team_overview_data, \
+MEMBERS_URL_PREFIX, MEMBERS_URL_POSTFIX, parse_player_data
 import eanhlstats.settings
 from datetime import datetime
 from peewee import DoesNotExist
@@ -15,10 +18,11 @@ def get_team(team_name):
     return team
     
 def get_player(player_name, team):
-    '''Get Player data from db. Refresh if needed from EA server. Returns None if not found'''
+    '''Get Player data from db. Refresh if needed from EA server. 
+    Returns None if not found'''
     player = None
     player = get_player_from_db(player_name, team)
-    if not player or ((datetime.now() - player.modified).seconds / 60 > eanhlstats.settings.CACHE_TIME):
+    if not player or _needs_refresh(player):
         _refresh_player_data(team)
         player = get_player_from_db(player_name, team)
     return player
@@ -35,7 +39,7 @@ def stats_of_player(player):
     stats = ""
     if player:
         stats = \
-            "%s G:%s A:%s +/-: %s PIM: %s Hits: %s BS: %s S: %s" \
+            "%s G:%s A:%s +/-:%s PIM:%s Hits:%s BS:%s S:%s" \
             % (player.name, \
             player.goals, \
             player.assists, player.plusminus, player.penalties, \
@@ -55,27 +59,35 @@ def stats_of_team(teamdata):
     return stats
 
 def get_players(team):
-    '''Get all players. Refresh if needed from EA server. Returns None if not found'''
+    '''Get all players. Refresh if needed from EA server. 
+    Returns None if not found'''
     players = get_players_from_db(team)
     try:
         first = players.get()
     except DoesNotExist:
         first = None
-    if not first or ((datetime.now() - first.modified).seconds / 60 > eanhlstats.settings.CACHE_TIME):
+    if not first or _needs_refresh(first):
         _refresh_player_data(team)
         players = get_players_from_db(team)
     return players
 
-def top_players(players, max):
-    str = ""
+def top_players(players, max_amount):
+    '''Order a list of players by score and return pretty print string. 
+    max_amount specifies how many players there should be.'''
+    temp = ""
     i = 1
-    for player in players.order_by(Player.points.desc()).limit(max):
-        str += "%s.%s (%s), " % (i, player.name, player.points)
+    for player in players.order_by(Player.points.desc()).limit(max_amount):
+        temp += "%s.%s (%s), " % (i, player.name, player.points)
         i += 1
-    return str.strip()[:-1]
+    return temp.strip()[:-1]
 
 def _refresh_player_data(team):
-    data = get_content(MEMBERS_URL_PREFIX + eanhlstats.settings.SYSTEM + "/" + team.eaid + MEMBERS_URL_POSTFIX)
+    data = get_content(MEMBERS_URL_PREFIX + eanhlstats.settings.SYSTEM + 
+        "/" + team.eaid + MEMBERS_URL_POSTFIX)
     players = parse_player_data(team, data)
     for player in players:
         player.save()
+        
+def _needs_refresh(player):
+    return ((datetime.now() - player.modified).seconds / 60 > 
+        eanhlstats.settings.CACHE_TIME)

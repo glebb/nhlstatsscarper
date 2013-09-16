@@ -34,3 +34,7 @@ class PlayerStatsSpec(unittest.TestCase):
     def it_should_handle_bad_html(self):
         players = parse_player_data(self.team, "<html></html>")
         self.assertEqual(0, len(players))
+        
+    def it_should_sort_players_by_score(self):
+        players = parse_player_data(self.team, fixtures.murohoki_members)
+        

@@ -2,17 +2,18 @@ EA Sports Nhl statistics Scraper
 
 Summary:
  - eanhlstats: python module to fetch and parse team & player stats from easports servers. (append lib to PYTHONPATH)
- - pyfibot_module: module for pyfibot irc bot (https://github.com/lepinkainen/pyfibot), which uses nhlstatsparse package.
+ - pyfibot_module: module for pyfibot irc bot (https://github.com/lepinkainen/pyfibot), which uses nhlstatsparse package. Place inside modules folder of pyfibot.
 
 Bot commands: 
  .ts <team name>: Show Team Stats for team (always fetched from server)
  .ps <player_name@team>: show player stats from a specific team. Within single request data is cached for 5 minutes for the whole team, making following requests from the same team faster. 
  .switch: Switch between PS3 and Xbox 360 mode (can only fetch data from one at a time)
+ .top <team name>: Show top 5 players from team.
 
 Check examples about how to use this thing from tests.	
-Run tests with specloud tests.py
+Run tests with ./runtests.sh
 
-Define in eanhlstats.settings whether you are interested in PS3 or XBX statistics.
+Define in eanhlstats.settings whether you are interested in PS3 or XBX statistics by default. You can also change the default cache time player stats.
 
 Requirements:
  - Peewee
@@ -21,3 +22,4 @@ Requirements:
  Dev:
  - Specloud
  - Mock
+ - coverage

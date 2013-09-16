@@ -1,8 +1,9 @@
 '''Main interface for eanhlstata functionality'''
-from eanhlstats.model import get_team_from_db, get_player_from_db
+from eanhlstats.model import get_team_from_db, get_player_from_db, get_players_from_db, Player
 from eanhlstats.html import get_team_overview_html, save_new_team_to_db, get_content, parse_team_overview_data, MEMBERS_URL_PREFIX, MEMBERS_URL_POSTFIX, parse_player_data
 import eanhlstats.settings
 from datetime import datetime
+from peewee import DoesNotExist
 
 def get_team(team_name):
     '''Get Team object from db. If team does not exist in local db
@@ -46,13 +47,32 @@ def stats_of_team(teamdata):
     stats = ""
     if teamdata:
         stats = \
-            "%s %s %s | OR: %s|" \
+            "%s %s %s | OR: %s" \
             % (teamdata['team_name'], \
             teamdata['region'], \
             teamdata['club_record'], \
             teamdata['ranking'])
     return stats
 
+def get_players(team):
+    '''Get all players. Refresh if needed from EA server. Returns None if not found'''
+    players = get_players_from_db(team)
+    try:
+        first = players.get()
+    except DoesNotExist:
+        first = None
+    if not first or ((datetime.now() - first.modified).seconds / 60 > eanhlstats.settings.CACHE_TIME):
+        _refresh_player_data(team)
+        players = get_players_from_db(team)
+    return players
+
+def top_players(players, max):
+    str = ""
+    i = 1
+    for player in players.order_by(Player.points.desc()).limit(max):
+        str += "%s.%s (%s), " % (i, player.name, player.points)
+        i += 1
+    return str.strip()[:-1]
 
 def _refresh_player_data(team):
     data = get_content(MEMBERS_URL_PREFIX + eanhlstats.settings.SYSTEM + "/" + team.eaid + MEMBERS_URL_POSTFIX)

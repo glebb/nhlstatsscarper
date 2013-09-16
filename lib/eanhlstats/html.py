@@ -7,8 +7,6 @@ from eanhlstats.model import Team, Player, get_player_from_db, get_team_from_db
 from datetime import datetime
 import eanhlstats.settings
 
-
-
 TEAM_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/NHL14"
 TEAM_URL_POSTFIX = "/overview"
 
@@ -87,6 +85,7 @@ def get_content(url):
 
 
 def get_team_overview_html(team_name):
+    '''Return team overview html from ea server. Stores team data to db, if not already found from there'''
     content = None
     team = get_team_from_db(team_name)
     if team:

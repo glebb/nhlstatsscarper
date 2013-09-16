@@ -40,3 +40,14 @@ def command_switch(bot, user, channel, args):
         eanhlstats.settings.SYSTEM = "PS3"
         bot.say(channel, 'Switched nhl stats to PS3')
         
+def command_top(bot, user, channel, args):
+    team = get_team(args)
+    if not team:
+        bot.say(channel, 'Team not found: ' + args)
+        return
+    players = get_players(team)
+    if not players:
+        bot.say(channel, 'No player data found from team: ' + team.name)
+    
+    bot.say(channel, top_players(players, 5))
+    

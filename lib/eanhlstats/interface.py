@@ -1,4 +1,4 @@
-'''Main interface for eanhlstata functionality'''
+'''Main interface for eanhlstats functionality'''
 from eanhlstats.model import get_team_from_db, get_player_from_db, \
     get_players_from_db, Player
 from eanhlstats.html.team import get_team_overview_html, \

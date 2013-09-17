@@ -31,8 +31,6 @@ class InterfaceSpec(unittest.TestCase):
         self.team = Team(name="murohoki", platform="PS3", eaid="26")
         self.team.save()
         eanhlstats.html.team.get_content = fake_get_content
-        eanhlstats.interface.get_team_overview_html = fake_get_team_overview_html   
-        eanhlstats.interface.refresh_player_data = fake_refresh_player_data
         
     def tearDown(self):
         try:
@@ -42,10 +40,12 @@ class InterfaceSpec(unittest.TestCase):
             pass
 
     def it_should_print_stats_for_team(self):
+        eanhlstats.interface.get_team_overview_html = fake_get_team_overview_html   
         data = eanhlstats.interface.get_team_stats(self.team)
         self.assertEquals("murohoki Europe 24-24-7 | OR: 287", eanhlstats.interface.stats_of_team(data))
 
     def it_should_show_player_stats(self):
+        eanhlstats.interface.refresh_player_data = fake_refresh_player_data
         player = eanhlstats.interface.get_player("qolazor", self.team)
         self.assertEquals("qolazor G:9 A:13 +/-:-23 PIM:72 Hits:62 BS:3 S:74", 
             eanhlstats.interface.stats_of_player(player))
@@ -55,7 +55,9 @@ class InterfaceSpec(unittest.TestCase):
         self.assertEqual(None, sentence)
         
     def it_should_get_top_n_players_from_team(self):
-        players = eanhlstats.html.players.parse_player_data(self.team, fixtures.murohoki_members)
-        pass
+        eanhlstats.interface.refresh_player_data = fake_refresh_player_data
+        players = eanhlstats.interface.get_players(self.team)
+        self.assertEquals("1.arielii (82), 2.HOLYDIVERS (63), 3.Mr_Fagstrom (48)", 
+            eanhlstats.interface.top_players(players, 3))
         
         

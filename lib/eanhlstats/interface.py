@@ -1,9 +1,9 @@
 '''Main interface for eanhlstata functionality'''
 from eanhlstats.model import get_team_from_db, get_player_from_db, \
-get_players_from_db, Player
-from eanhlstats.html import get_team_overview_html, \
-save_new_team_to_db, get_content, parse_team_overview_data, \
-MEMBERS_URL_PREFIX, MEMBERS_URL_POSTFIX, parse_player_data
+    get_players_from_db, Player
+from eanhlstats.html.team import get_team_overview_html, \
+    save_new_team_to_db, parse_team_overview_data
+from eanhlstats.html.players import refresh_player_data
 import eanhlstats.settings
 from datetime import datetime
 from peewee import DoesNotExist
@@ -23,7 +23,7 @@ def get_player(player_name, team):
     player = None
     player = get_player_from_db(player_name, team)
     if not player or _needs_refresh(player):
-        _refresh_player_data(team)
+        refresh_player_data(team)
         player = get_player_from_db(player_name, team)
     return player
         
@@ -67,7 +67,7 @@ def get_players(team):
     except DoesNotExist:
         first = None
     if not first or _needs_refresh(first):
-        _refresh_player_data(team)
+        refresh_player_data(team)
         players = get_players_from_db(team)
     return players
 
@@ -80,13 +80,6 @@ def top_players(players, max_amount):
         temp += "%s.%s (%s), " % (i, player.name, player.points)
         i += 1
     return temp.strip()[:-1]
-
-def _refresh_player_data(team):
-    data = get_content(MEMBERS_URL_PREFIX + eanhlstats.settings.SYSTEM + 
-        "/" + team.eaid + MEMBERS_URL_POSTFIX)
-    players = parse_player_data(team, data)
-    for player in players:
-        player.save()
         
 def _needs_refresh(player):
     return ((datetime.now() - player.modified).seconds / 60 > 

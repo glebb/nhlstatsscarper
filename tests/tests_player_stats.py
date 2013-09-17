@@ -6,7 +6,7 @@ import unittest
 from mock import MagicMock
 
 import fixtures
-from eanhlstats.html import *
+from eanhlstats.html.players import *
 from eanhlstats.model import *
 
 

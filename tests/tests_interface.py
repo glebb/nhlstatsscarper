@@ -5,7 +5,7 @@ sys.path.insert(0, os.path.realpath('../lib'))
 import unittest
 from peewee import *
 import fixtures
-import eanhlstats.html
+import eanhlstats.html.players
 import eanhlstats.interface
 from eanhlstats.model import *
 
@@ -14,7 +14,7 @@ def fake_get_team_overview_html(team_name):
 
 def fake_refresh_player_data(team):
     team = Team(name="murohoki", platform="PS3", eaid="26")
-    players = eanhlstats.html.parse_player_data(team, fixtures.murohoki_members)
+    players = eanhlstats.html.players.parse_player_data(team, fixtures.murohoki_members)
     for player in players:
         player.save()
     
@@ -28,7 +28,7 @@ class InterfaceSpec(unittest.TestCase):
         self.team = Team(name="murohoki", platform="PS3", eaid="26")
         self.team.save()
         eanhlstats.interface.get_team_overview_html = fake_get_team_overview_html   
-        eanhlstats.interface._refresh_player_data = fake_refresh_player_data
+        eanhlstats.interface.refresh_player_data = fake_refresh_player_data #fake_refresh_player_data
         
     def tearDown(self):
         try:
@@ -51,7 +51,7 @@ class InterfaceSpec(unittest.TestCase):
         self.assertEqual(None, sentence)
         
     def it_should_get_top_n_players_from_team(self):
-        players = eanhlstats.html.parse_player_data(self.team, fixtures.murohoki_members)
+        players = eanhlstats.html.players.parse_player_data(self.team, fixtures.murohoki_members)
         pass
         
         

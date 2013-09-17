@@ -17,6 +17,9 @@ def fake_refresh_player_data(team):
     players = eanhlstats.html.players.parse_player_data(team, fixtures.murohoki_members)
     for player in players:
         player.save()
+        
+def fake_get_content(url):
+    return ""
     
 class InterfaceSpec(unittest.TestCase):
     def setUp(self):
@@ -27,8 +30,9 @@ class InterfaceSpec(unittest.TestCase):
             pass
         self.team = Team(name="murohoki", platform="PS3", eaid="26")
         self.team.save()
+        eanhlstats.html.team.get_content = fake_get_content
         eanhlstats.interface.get_team_overview_html = fake_get_team_overview_html   
-        eanhlstats.interface.refresh_player_data = fake_refresh_player_data #fake_refresh_player_data
+        eanhlstats.interface.refresh_player_data = fake_refresh_player_data
         
     def tearDown(self):
         try:

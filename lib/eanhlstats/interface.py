@@ -8,17 +8,8 @@ import eanhlstats.settings
 from datetime import datetime
 from peewee import DoesNotExist
 
-def get_team(team_name):
-    '''Get Team object from db. If team does not exist in local db
-    does a query to EA servers and creates a new entry. Returns None
-    in case of team does not exist or other error'''
-    team = get_team_from_db(team_name)
-    if not team:
-        team = save_new_team_to_db(team_name)
-    return team
-    
 def get_player(player_name, team):
-    '''Get Player data from db. Refresh if needed from EA server. 
+    '''Get single Player data from db. Refresh if needed from EA server. 
     Returns None if not found'''
     player = None
     player = get_player_from_db(player_name, team)
@@ -27,13 +18,6 @@ def get_player(player_name, team):
         player = get_player_from_db(player_name, team)
     return player
         
-def get_team_stats(team):
-    '''Gets team stats from EA servers.'''
-    if team:
-        html = get_team_overview_html(team.name)    
-        return parse_team_overview_data(html)
-    return None
-    
 def stats_of_player(player):
     '''Pretty print for player stats'''
     stats = ""
@@ -45,6 +29,45 @@ def stats_of_player(player):
             player.assists, player.plusminus, player.penalties, \
             player.hits, player.blocked_shots, player.shots)
     return stats
+     
+def get_players(team):
+    '''Get all players for team. Refresh if needed from EA server. 
+    Returns None if not found'''
+    players = get_players_from_db(team)
+    try:
+        first = players.get()
+    except DoesNotExist:
+        first = None
+    if not first or _needs_refresh(first):
+        refresh_player_data(team)
+        players = get_players_from_db(team)
+    return players
+
+def top_players(players, max_amount):
+    '''Order a SelectQuery of players by score and return pretty print string. 
+    max_amount specifies how many players there should be.'''
+    temp = ""
+    i = 1
+    for player in players.order_by(Player.points.desc()).limit(max_amount):
+        temp += "%s.%s (%s), " % (i, player.name, player.points)
+        i += 1
+    return temp.strip()[:-1]
+     
+def get_team(team_name):
+    '''Get Team object from db. If team does not exist in local db
+    does a query to EA servers and creates a new entry. Returns None
+    in case of team does not exist or other error'''
+    team = get_team_from_db(team_name)
+    if not team:
+        team = save_new_team_to_db(team_name)
+    return team
+              
+def get_team_stats(team):
+    '''Gets team stats from EA servers.'''
+    if team:
+        html = get_team_overview_html(team.name)    
+        return parse_team_overview_data(html)
+    return None
 
 def stats_of_team(teamdata):
     '''Pretty print for team stats'''
@@ -58,29 +81,6 @@ def stats_of_team(teamdata):
             teamdata['ranking'])
     return stats
 
-def get_players(team):
-    '''Get all players. Refresh if needed from EA server. 
-    Returns None if not found'''
-    players = get_players_from_db(team)
-    try:
-        first = players.get()
-    except DoesNotExist:
-        first = None
-    if not first or _needs_refresh(first):
-        refresh_player_data(team)
-        players = get_players_from_db(team)
-    return players
-
-def top_players(players, max_amount):
-    '''Order a list of players by score and return pretty print string. 
-    max_amount specifies how many players there should be.'''
-    temp = ""
-    i = 1
-    for player in players.order_by(Player.points.desc()).limit(max_amount):
-        temp += "%s.%s (%s), " % (i, player.name, player.points)
-        i += 1
-    return temp.strip()[:-1]
-        
 def _needs_refresh(player):
     return ((datetime.now() - player.modified).seconds / 60 > 
         eanhlstats.settings.CACHE_TIME)

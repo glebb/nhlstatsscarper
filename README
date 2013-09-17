@@ -2,7 +2,7 @@ EA Sports Nhl 14 statistics Scraper
 
 Summary:
  - eanhlstats: python module to fetch and parse team & player stats from easports servers. (append lib to PYTHONPATH)
- - pyfibot_module: module for pyfibot irc bot (https://github.com/lepinkainen/pyfibot), which uses nhlstatsparse package. Place inside modules folder of pyfibot.
+ - pyfibot_module: module for pyfibot irc bot (https://github.com/lepinkainen/pyfibot), which uses eanhlstats package. Place inside modules folder of pyfibot.
 
 Bot commands: 
  .ts <team name>: Show Team Stats for team (always fetched from server)
@@ -10,10 +10,16 @@ Bot commands:
  .switch: Switch between PS3 and Xbox 360 mode (can only fetch data from one at a time)
  .top <team name>: Show top 5 players from team.
 
-Check interfacpy.py on how to use this thing.	
-Run tests with ./runtests.sh
+Install:
+ - install & config pyfibot so it runs ok
+ - clone nhlstatsscraper repo
+ - copy or link pyfibot_module/module_nhl_stats.py to pyfibot/modules folder
+ - add nhlstatsscraper/lib to PYTHONPATH. You can modify pyfibot run.sh and add export statement as the first line: export PYTHONPATH=$PYTHONPATH:/folder/to/nhlstatsscraper/lib
+ - From eanhlstats.settings set whether you are interested in PS3 or XBX statistics by default. You can also change the default cache time for player stats (so they are not constantly fetched from servers).
 
-Define in eanhlstats.settings whether you are interested in PS3 or XBX statistics by default. You can also change the default cache time player stats.
+For using outside pyfibot context, check interface.py on how to use this thing.	
+
+Run tests with ./runtests.sh
 
 Requirements:
  - Peewee

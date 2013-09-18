@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
-
+from peewee import SqliteDatabase
 from eanhlstats.interface import *
 import eanhlstats.settings
+
+Team.create_table(True)
+Player.create_table(True)
 
 def command_ts(bot, user, channel, args):
     team = get_team(args)

@@ -33,9 +33,10 @@ class Player(Model):
     
     class Meta:
         database = DB # this model uses the people database
-        
-Team.create_table(True)
-Player.create_table(True)
+
+#Create tables        
+#Team.create_table(True)
+#Player.create_table(True)
 
 def get_player_from_db(player_name, team):
     '''Get a specific player from database, or return None.'''

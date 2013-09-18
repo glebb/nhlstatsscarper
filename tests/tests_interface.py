@@ -41,7 +41,8 @@ class InterfaceSpec(unittest.TestCase):
                 eanhlstats.interface.stats_of_player(player))
 
     def it_should_return_None_for_unknonwn_team_name(self):
-        sentence = eanhlstats.interface.get_team_stats(eanhlstats.interface.get_team("dsfdasfa23423qed"))
+        with test_database(test_db, (Team, Player)):
+            sentence = eanhlstats.interface.get_team_stats(eanhlstats.interface.get_team("dsfdasfa23423qed"))
         self.assertEqual(None, sentence)
         
     def it_should_get_top_n_players_from_team(self):

@@ -6,6 +6,8 @@ import unittest
 import fixtures_members
 from eanhlstats.html.players import *
 from eanhlstats.model import *
+from playhouse.test_utils import test_database
+test_db = SqliteDatabase(':memory:')
 
 
 class PlayerStatsSpec(unittest.TestCase):
@@ -15,7 +17,9 @@ class PlayerStatsSpec(unittest.TestCase):
         self.team = Team(name="murohoki", platform="PS3", eaid="26")
 
     def it_should_find_stats_for_player(self):
-        players = parse_player_data(self.team, fixtures_members.murohoki_members)
+        with test_database(test_db, (Team, Player)):
+            players = parse_player_data(self.team, fixtures_members.murohoki_members)
+        
         self.player = next(player for player in players if player.name == 'qolazor')
         self.assertEqual("qolazor", self.player.name)
         self.assertEqual("9", self.player.goals)

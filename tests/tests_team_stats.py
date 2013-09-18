@@ -4,17 +4,20 @@ sys.path.insert(0, os.path.realpath('../lib'))
 
 import unittest
 from mock import MagicMock
+from playhouse.test_utils import test_database
 import fixtures_teamps3
 import fixtures_teamxbox
 import fixtures_results
 import eanhlstats.html.team
 from eanhlstats.model import Team
 import eanhlstats.settings
+from peewee import SqliteDatabase
+from eanhlstats.model import *
 
 data = eanhlstats.html.team.parse_team_overview_data(fixtures_teamps3.murohoki_overview)
 data2 = eanhlstats.html.team.parse_team_overview_data(fixtures_teamxbox.xbx_overview)
 
-print 'hep'
+test_db = SqliteDatabase(':memory:')
 
 class ParseTeamOverviewSpec(unittest.TestCase):
     def setUp(self):
@@ -110,7 +113,8 @@ class GetTeamOverviewHtmlSpec(unittest.TestCase):
         fake_team.eaid = "0"
         eanhlstats.html.team.save_new_team_to_db = MagicMock(return_value=fake_team)
         eanhlstats.html.team.get_content = MagicMock(return_value=None)
-        html = eanhlstats.html.team.get_team_overview_html(team_name)
+        with test_database(test_db, (Team, Player)):
+            html = eanhlstats.html.team.get_team_overview_html(team_name)
         eanhlstats.html.team.save_new_team_to_db.assert_called_with(team_name)
             
 class GetResultsSpec(unittest.TestCase):

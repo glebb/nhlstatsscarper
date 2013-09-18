@@ -3,9 +3,7 @@ import sys, os
 sys.path.insert(0, os.path.realpath('../lib'))
 
 import unittest
-from mock import MagicMock
-
-import fixtures
+import fixtures_members
 from eanhlstats.html.players import *
 from eanhlstats.model import *
 
@@ -17,7 +15,7 @@ class PlayerStatsSpec(unittest.TestCase):
         self.team = Team(name="murohoki", platform="PS3", eaid="26")
 
     def it_should_find_stats_for_player(self):
-        players = parse_player_data(self.team, fixtures.murohoki_members)
+        players = parse_player_data(self.team, fixtures_members.murohoki_members)
         self.player = next(player for player in players if player.name == 'qolazor')
         self.assertEqual("qolazor", self.player.name)
         self.assertEqual("9", self.player.goals)
@@ -33,8 +31,4 @@ class PlayerStatsSpec(unittest.TestCase):
                 
     def it_should_handle_bad_html(self):
         players = parse_player_data(self.team, "<html></html>")
-        self.assertEqual(0, len(players))
-        
-    def it_should_sort_players_by_score(self):
-        players = parse_player_data(self.team, fixtures.murohoki_members)
-        
+        self.assertEqual(0, len(players))        

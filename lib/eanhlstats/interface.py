@@ -2,8 +2,10 @@
 from eanhlstats.model import get_team_from_db, get_player_from_db, \
     get_players_from_db, Player
 from eanhlstats.html.team import get_team_overview_html, \
-    save_new_team_to_db, parse_team_overview_data
+    save_new_team_to_db, parse_team_overview_data, get_results_url, \
+    parse_results_data
 from eanhlstats.html.players import refresh_player_data
+from eanhlstats.html.common import get_content
 import eanhlstats.settings
 from datetime import datetime
 from peewee import DoesNotExist
@@ -80,6 +82,17 @@ def stats_of_team(teamdata):
             teamdata['club_record'], \
             teamdata['ranking'])
     return stats
+
+def last_games(team, amount):
+    '''Pretty print results of last games for team'''
+    temp = ""
+    url = get_results_url(team.eaid)
+    html = get_content(url)
+    results = parse_results_data(html)
+    for result in results[0:amount]:
+        temp += result + ' | '
+    return temp.strip()[:-1].strip()
+    
 
 def _needs_refresh(player):
     return ((datetime.now() - player.modified).seconds / 60 > 

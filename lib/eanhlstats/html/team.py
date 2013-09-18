@@ -3,10 +3,7 @@
 from BeautifulSoup import BeautifulSoup
 from eanhlstats.model import Team, get_team_from_db
 import eanhlstats.settings
-from eanhlstats.html.common import get_content
-
-TEAM_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/NHL14"
-TEAM_URL_POSTFIX = "/overview"
+from eanhlstats.html.common import get_content, PARTIAL_URL_PREFIX
 
 def create_search_url(team_name):
     '''Append team_name to Ea Sport Nhl search_url'''
@@ -62,6 +59,9 @@ def get_team_url(html, number=1):
 def get_team_overview_html(team_name):
     '''Return team overview html from ea server. Stores team data to db, 
     if not already found from there'''
+    TEAM_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/NHL14"
+    TEAM_URL_POSTFIX = "/overview"
+    
     content = None
     team = get_team_from_db(team_name)
     if team:
@@ -87,6 +87,31 @@ def save_new_team_to_db(team_name):
         team.save()
         return team
     return None
+
+def get_results_url(eaid):
+    temp = PARTIAL_URL_PREFIX + eanhlstats.settings.SYSTEM + '/' + eaid + '/' + 'match-results?type=all'
+    return temp
+    
+def parse_results_data(html):
+    data = []
+    soup = BeautifulSoup(html)
+    try:
+        table = soup.find('table', {'class' : 'styled full-width'})
+        rows = table.findAll('tr', {'class' : 'black'})
+    except AttributeError:
+        return data
+    for row in rows:
+        try:
+            result = row.findAll('td')[2].div.string.replace(' ','')
+            team = row.findAll('td')[4].div.a.string
+            data.append(_won_or_lost(result) + ' ' + result + ' against ' +team)
+        except AttributeError:
+            pass
+    return data
+    
+def _won_or_lost(result):
+    home, away = result.split('-')
+    return "Won" if int(home) > int(away) else "Lost"
 
 def _replace_space_with_plus(text):
     '''Fix arguments provided by pyfibot, to be used

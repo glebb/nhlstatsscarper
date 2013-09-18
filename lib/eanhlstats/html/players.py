@@ -5,9 +5,8 @@ from BeautifulSoup import BeautifulSoup
 from eanhlstats.model import Player, get_player_from_db
 from datetime import datetime
 import eanhlstats.settings
-from eanhlstats.html.common import get_content
+from eanhlstats.html.common import get_content, PARTIAL_URL_PREFIX
 
-MEMBERS_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/partial/NHL14"
 MEMBERS_URL_POSTFIX = "/members-list"
 
 def parse_player_data(team, html):
@@ -61,7 +60,7 @@ def _create_player(tdcells, team):
     return player
     
 def refresh_player_data(team):
-    data = get_content(MEMBERS_URL_PREFIX + eanhlstats.settings.SYSTEM + 
+    data = get_content(PARTIAL_URL_PREFIX + eanhlstats.settings.SYSTEM + 
         "/" + team.eaid + MEMBERS_URL_POSTFIX)
     players = parse_player_data(team, data)
     if players:

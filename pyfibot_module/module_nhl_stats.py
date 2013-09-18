@@ -50,3 +50,15 @@ def command_top(bot, user, channel, args):
         bot.say(channel, top_players(players, 5))
     else:
         bot.say(channel, 'Team not found: ' + args)        
+
+def command_results(bot, user, channel, args):
+    team = get_team(args)
+    if team:
+        results = last_games(team, 3)
+        if not results:
+            bot.say(channel, 'No results found for team: ' + team.name)
+            return
+        bot.say(channel, results)
+    else:
+        bot.say(channel, 'Team not found: ' + args)        
+    

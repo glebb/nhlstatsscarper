@@ -15,7 +15,7 @@ def command_ts(bot, user, channel, args):
         if not data:
             bot.say(channel, 'Error in fetching data for: ' + args)
             return
-        bot.say(channel, stats_of_team(data))
+        bot.say(channel, stats_of_team(data) + ' | ' + results_url(team))
     else:
         bot.say(channel, 'Team not found: ' + args)
     
@@ -56,14 +56,21 @@ def command_top(bot, user, channel, args):
     else:
         bot.say(channel, 'Team not found: ' + args)        
 
-def command_results(bot, user, channel, args):
-    team = get_team(args)
-    if team:
-        results = last_games(team, 3)
-        if not results:
-            bot.say(channel, 'No results found for team: ' + team.name)
-            return
-        bot.say(channel, results)
-    else:
-        bot.say(channel, 'Team not found: ' + args)        
+#def command_results(bot, user, channel, args):
+#    team = get_team(args)
+#    if team:
+#        results = last_games(team, 3)
+#        if not results:
+#            bot.say(channel, 'No results found for team: ' + team.name)
+#            return
+#        bot.say(channel, results)
+#    else:
+#        bot.say(channel, 'Team not found: ' + args)        
     
+def command_find(bot, user, channel, args):
+    teams = find_teams_by_abbreviation(args, 10)
+    if teams:
+        bot.say(channel, teams)
+    else:
+        bot.say(channel, 'Teama not found with: ' + args)
+        

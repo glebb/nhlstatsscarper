@@ -66,25 +66,29 @@ class GetTeamUrlSpec(unittest.TestCase):
         pass
         
     def it_should_find_url_with_good_html(self):
-        url = eanhlstats.html.team.get_team_url(fixtures_teamps3.murohoki_search)
-        self.assertEqual(url, "http://www.easportsworld.com/en_US/clubs/NHL14PS3/26/overview")
-        
+        data = eanhlstats.html.team.get_teams_from_search_page(fixtures_teamps3.murohoki_search)
+        self.assertEqual(data[0]['url'], "http://www.easportsworld.com/en_US/clubs/NHL14PS3/26/overview")
+
+    def it_should_find_team_name(self):
+        data = eanhlstats.html.team.get_teams_from_search_page(fixtures_teamps3.murohoki_search)
+        self.assertEqual(data[0]['name'], "murohoki")
+
     def it_should_not_find_url_with_bad_html(self):
-        url = eanhlstats.html.team.get_team_url("")
+        url = eanhlstats.html.team.get_teams_from_search_page("")
         self.assertEqual(url, None)
     
     def it_should_not_find_url_with_partly_good_html(self):
-        url = eanhlstats.html.team.get_team_url('<table class="styled full-width"></table>')
+        url = eanhlstats.html.team.get_teams_from_search_page('<table class="styled full-width"></table>')
         self.assertEqual(url, None)
         
     def it_should_find_third_url_from_list_of_many_urls(self):
-        url = eanhlstats.html.team.get_team_url(fixtures_teamps3.many_search_results, 3)
-        self.assertEqual(url, "http://www.easportsworld.com/en_US/clubs/NHL14PS3/1272/overview")
-    
-    def it_should_return_None_if_requested_url_index_too_big(self):
-        url = eanhlstats.html.team.get_team_url(fixtures_teamps3.murohoki_search, 10)
-        self.assertEqual(url, None)
-            
+        data = eanhlstats.html.team.get_teams_from_search_page(fixtures_teamps3.many_search_results)
+        self.assertEqual(data[2]['url'], "http://www.easportsworld.com/en_US/clubs/NHL14PS3/1272/overview")
+
+    def it_should_find_team_name_from_list_of_many_urls(self):
+        data = eanhlstats.html.team.get_teams_from_search_page(fixtures_teamps3.many_search_results)
+        self.assertEqual(data[3]['name'], "ICEHOLES")
+                
 class CreateSearchUrlSpec(unittest.TestCase):
     def setUp(self):
         eanhlstats.settings.SYSTEM = "PS3"
@@ -95,12 +99,10 @@ class CreateSearchUrlSpec(unittest.TestCase):
         self.assertEqual(val, 'http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]=murohoki&find[abbreviation]=&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=PS3&find[region]=&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit')
 
     def it_creates_search_url_for_team_name_with_spaces(self):
-        eanhlstats.settings.SYSTEM = "PS3"
         val = eanhlstats.html.team.create_search_url("murohoki blaah")
         self.assertEqual(val, 'http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]=murohoki+blaah&find[abbreviation]=&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=PS3&find[region]=&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit')
         
     def it_works_with_empty_param(self):
-        eanhlstats.settings.SYSTEM = "PS3"
         val = eanhlstats.html.team.create_search_url("")
         self.assertEqual(val, 'http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]=&find[abbreviation]=&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=PS3&find[region]=&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit')
 
@@ -110,12 +112,14 @@ class CreateSearchUrlSpec(unittest.TestCase):
         self.assertEqual(val, 'http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]=murohoki&find[abbreviation]=&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=360&find[region]=&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit')
         
     def it_creates_search_url_for_deafult_region(self):
-        eanhlstats.settings.SYSTEM = "PS3"
         eanhlstats.settings.REGION = 3
         val = eanhlstats.html.team.create_search_url("")
         self.assertEqual(val, 'http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]=&find[abbreviation]=&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=PS3&find[region]=3&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit')
         
-    
+    def it_creates_search_url_for_abbrevation_search(self):
+        val = eanhlstats.html.team.create_search_url("mh", use_abbreviation=True)
+        self.assertEquals(val, 'http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]=&find[abbreviation]=mh&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=PS3&find[region]=&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit')
+        
 class GetTeamOverviewHtmlSpec(unittest.TestCase):
     def it_should_store_team_data_to_db(self):
         team_name = "this team does not exist already"
@@ -149,4 +153,31 @@ class GetResultsSpec(unittest.TestCase):
     def it_should_handle_bad_html(self):
         data = eanhlstats.html.team.parse_results_data("")
         self.assertEquals(0, len(data))
+    
+class FindTeamsSpec(unittest.TestCase):
+    def it_should_save_teams_to_db_when_finding_teams_by_abbreviation(self):
+        eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)
+        with test_database(test_db, (Team, Player)):
+            teams = eanhlstats.html.team.find_teams("ice")
+            self.assertEqual(10, len(teams))
+            self.assertEquals(10, Team.select().count())
+
+    def it_should_find_teams_by_abbreviation(self):
+        with test_database(test_db, (Team, Player)):
+            eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)
+            results = eanhlstats.html.team.find_teams("ice")
+            self.assertEqual(10, len(results))
+
+    def it_should_save_teams_to_db_when_finding_teams_by_abbreviation(self):
+        eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)
+        with test_database(test_db, (Team, Player)):
+            teams = eanhlstats.html.team.find_teams("ice")
+            self.assertEquals(10, Team.select().count())
+
+    def it_should_note_save_teams_to_db_twice(self):
+        eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)
+        with test_database(test_db, (Team, Player)):
+            teams = eanhlstats.html.team.find_teams("ice")
+            teams = eanhlstats.html.team.find_teams("ice")
+            self.assertEquals(10, Team.select().count())
     

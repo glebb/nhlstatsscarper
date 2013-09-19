@@ -3,7 +3,8 @@ from eanhlstats.model import get_team_from_db, get_player_from_db, \
     get_players_from_db, Player
 from eanhlstats.html.team import get_team_overview_html, \
     save_new_team_to_db, parse_team_overview_data, get_results_url, \
-    parse_results_data
+    parse_results_data, find_teams, TEAM_URL_PREFIX
+
 from eanhlstats.html.players import refresh_player_data
 from eanhlstats.html.common import get_content
 import eanhlstats.settings
@@ -92,8 +93,20 @@ def last_games(team, amount):
     for result in results[0:amount]:
         temp += result + ' | '
     return temp.strip()[:-1].strip()
-    
 
+def find_teams_by_abbreviation(abbreviation, amount):
+    '''Find teams by abbreviaton and Pretty print'''
+    teams = find_teams(abbreviation)
+    temp = ""
+    for team in teams[0:amount]:
+        temp += team['name'] + ', '
+    return temp.strip()[:-1].strip()
+
+def results_url(team):
+    return TEAM_URL_PREFIX + eanhlstats.settings.SYSTEM + '/' + team.eaid + '/match-results'
+
+    
 def _needs_refresh(player):
     return ((datetime.now() - player.modified).seconds / 60 > 
         eanhlstats.settings.CACHE_TIME)
+

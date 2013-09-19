@@ -5,13 +5,20 @@ from eanhlstats.model import Team, get_team_from_db
 import eanhlstats.settings
 from eanhlstats.html.common import get_content, PARTIAL_URL_PREFIX
 
-def create_search_url(team_name):
+TEAM_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/NHL14"
+
+
+def create_search_url(team_name, use_abbreviation=False):
     '''Append team_name to Ea Sport Nhl search_url'''
     temp = _replace_space_with_plus(team_name)
     search_url = 'http://www.easportsworld.com/en_US/clubs/nhl14/search' + \
         '?find[name]='
-    search_url += temp
-    search_url += '&find[abbreviation]=&find[size]=' + \
+    if not use_abbreviation:
+        search_url += temp
+    search_url += '&find[abbreviation]='
+    if use_abbreviation:
+        search_url += temp
+    search_url += '&find[size]=' + \
         '&find[acceptJoinRequest]=&find[public]=&find[lang]=' + \
         '&find[platform]='
     platform = "360" if eanhlstats.settings.SYSTEM == "XBX" \
@@ -42,27 +49,31 @@ def parse_team_overview_data(html):
         print "Parsing team stats failed"
         return None
     
-def get_team_url(html, number=1):
-    '''Get the url for team overview, param number defines which url to get,
-    in case there are more than one. Defaults always to first.'''
+def get_teams_from_search_page(html):
+    '''Get the url for team overview.'''
     html = BeautifulSoup(html)
+    prefix = 'http://www.easportsworld.com'
+    items = []
+    ret = {}
     try:
         containing_table = html.find('table', 
             {'class' : 'styled full-width'})
         links = containing_table.tbody.findAll('h4')
-        postfix = links[number-1].a['href']
+        for link in links:
+            item = {}
+            item['url'] = postfix = prefix + link.a['href']
+            item['name'] = link.a.string
+            items.append(item)
     except AttributeError:
         return None
     except IndexError:
         return None
 
-    prefix = 'http://www.easportsworld.com'
-    return prefix + postfix
+    return items
 
 def get_team_overview_html(team_name):
     '''Return team overview html from ea server. Stores team data to db, 
     if not already found from there'''
-    TEAM_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/NHL14"
     TEAM_URL_POSTFIX = "/overview"
     
     content = None
@@ -82,14 +93,27 @@ def save_new_team_to_db(team_name):
     to db. Returns None if team is not found.'''
     search_url = create_search_url(team_name)
     html = get_content(search_url)
-    team_url = get_team_url(html)
-    if team_url:
-        ea_id = team_url.split('/')[-2]
-        team = Team(name=team_name, platform=eanhlstats.settings.SYSTEM, 
-            eaid=ea_id)
-        team.save()
+    data = get_teams_from_search_page(html)
+    if data:
+        team_url = data[0]['url']
+        team = _save(team_url, team_name)
         return team
     return None
+
+def find_teams(abbreviation):
+    search_url = create_search_url(abbreviation, True)
+    html = get_content(search_url)
+    teams = get_teams_from_search_page(html)
+    save_teams_to_db(teams)
+    return teams
+
+def save_teams_to_db(teams):
+    for data in teams:
+        team_url = data['url']
+        team_name = data['name']
+        ea_id = _get_eaid_from_url(team_url)
+        if Team.select().where(Team.eaid == ea_id).count() == 0:
+            _save(team_url, team_name)
 
 def get_results_url(eaid):
     temp = PARTIAL_URL_PREFIX + eanhlstats.settings.SYSTEM + '/' + eaid + '/' + 'match-results?type=all'
@@ -128,3 +152,13 @@ def _find_stat_table_cells(html):
         {'class' : 'plain full-width nowrap less-padding no-margin'})
     return stats_table.findAll('td')
 
+def _save(team_url, team_name):
+    ea_id = _get_eaid_from_url(team_url)
+    team = Team(name=team_name, platform=eanhlstats.settings.SYSTEM, 
+        eaid=ea_id)
+    team.save()
+    return team
+
+def _get_eaid_from_url(url):
+    return url.split('/')[-2]
+        

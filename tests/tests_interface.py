@@ -10,6 +10,7 @@ import fixtures_teamps3
 import fixtures_members
 import fixtures_results
 import eanhlstats.html.players
+import eanhlstats.html.team
 import eanhlstats.interface
 from eanhlstats.model import *
 
@@ -60,4 +61,9 @@ class InterfaceSpec(unittest.TestCase):
         eanhlstats.interface.get_content = MagicMock(return_value=fixtures_results.murohoki_results)
         results = eanhlstats.interface.last_games(self.team, 3)
         self.assertEquals("Lost 0-3 against Deadly Phantoms HC | Lost 3-6 against Nordic Hockey Tigers | Won 4-0 against Kiitos EA", results)
-        
+
+    def it_should_find_teams_by_abbreviation(self):
+        eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)
+        with test_database(test_db, (Team, Player)):
+            teams = eanhlstats.interface.find_teams_by_abbreviation("ice", 10)
+            self.assertEquals("north american icemen, The IceBreakers, Ice Dogs, ICEHOLES, Icedroids, Natural Icers, IceAholics, Busch Ice, Snow Spiders, ICECAPS", teams)

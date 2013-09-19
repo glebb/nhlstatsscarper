@@ -86,8 +86,11 @@ class GetTeamUrlSpec(unittest.TestCase):
         self.assertEqual(url, None)
             
 class CreateSearchUrlSpec(unittest.TestCase):
-    def it_creates_search_url_for_team_name(self):
+    def setUp(self):
         eanhlstats.settings.SYSTEM = "PS3"
+        eanhlstats.settings.REGION = None
+
+    def it_creates_search_url_for_team_name(self):
         val = eanhlstats.html.team.create_search_url("murohoki")
         self.assertEqual(val, 'http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]=murohoki&find[abbreviation]=&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=PS3&find[region]=&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit')
 
@@ -105,6 +108,13 @@ class CreateSearchUrlSpec(unittest.TestCase):
         eanhlstats.settings.SYSTEM = "XBX"
         val = eanhlstats.html.team.create_search_url("murohoki")
         self.assertEqual(val, 'http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]=murohoki&find[abbreviation]=&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=360&find[region]=&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit')
+        
+    def it_creates_search_url_for_deafult_region(self):
+        eanhlstats.settings.SYSTEM = "PS3"
+        eanhlstats.settings.REGION = 3
+        val = eanhlstats.html.team.create_search_url("")
+        self.assertEqual(val, 'http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]=&find[abbreviation]=&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=PS3&find[region]=3&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit')
+        
     
 class GetTeamOverviewHtmlSpec(unittest.TestCase):
     def it_should_store_team_data_to_db(self):

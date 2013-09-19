@@ -17,7 +17,10 @@ def create_search_url(team_name):
     platform = "360" if eanhlstats.settings.SYSTEM == "XBX" \
         else eanhlstats.settings.SYSTEM
     search_url += platform
-    search_url += '&find[region]=&find[team_leagueId]=' + \
+    search_url += '&find[region]='
+    if eanhlstats.settings.REGION:
+        search_url += str(eanhlstats.settings.REGION)
+    search_url += '&find[team_leagueId]=' + \
         '&find[teamId]=&find[active]=true&do-search=submit'
     return search_url
 

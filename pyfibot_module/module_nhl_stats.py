@@ -6,6 +6,7 @@ import eanhlstats.settings
 
 Team.create_table(True)
 Player.create_table(True)
+eanhlstats.settings.REGION = 3
 
 def command_ts(bot, user, channel, args):
     team = get_team(args)

@@ -9,6 +9,7 @@ Bot commands:
  .ps <player_name@team>: show player stats from a specific team. Within single request data is cached for 5 minutes for the whole team, making following requests from the same team faster. 
  .switch: Switch between PS3 and Xbox 360 mode (can only fetch data from one at a time)
  .top <team name>: Show top 5 players from team.
+ .find <team abbreviation>: Show max 10 team names using provided abbreviation.
 
 Install:
  - install & config pyfibot so it runs ok

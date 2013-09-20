@@ -67,3 +67,9 @@ class InterfaceSpec(unittest.TestCase):
         with test_database(test_db, (Team, Player)):
             teams = eanhlstats.interface.find_teams_by_abbreviation("ice", 10)
             self.assertEquals("north american icemen, The IceBreakers, Ice Dogs, ICEHOLES, Icedroids, Natural Icers, IceAholics, Busch Ice, Snow Spiders, ICECAPS", teams)
+
+    def it_should_cope_with_no_data(self):
+        eanhlstats.html.team.get_content = MagicMock(return_value = "<html></html>")
+        with test_database(test_db, (Team, Player)):
+            teams = eanhlstats.interface.find_teams_by_abbreviation("ice", 10)
+            self.assertEquals(None, teams)

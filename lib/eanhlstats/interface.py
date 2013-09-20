@@ -98,9 +98,11 @@ def find_teams_by_abbreviation(abbreviation, amount):
     '''Find teams by abbreviaton and Pretty print'''
     teams = find_teams(abbreviation)
     temp = ""
-    for team in teams[0:amount]:
-        temp += team['name'] + ', '
-    return temp.strip()[:-1].strip()
+    if teams:
+        for team in teams[0:amount]:
+            temp += team['name'] + ', '
+        return temp.strip()[:-1].strip()
+    return None
 
 def results_url(team):
     return TEAM_URL_PREFIX + eanhlstats.settings.SYSTEM + '/' + team.eaid + '/match-results'

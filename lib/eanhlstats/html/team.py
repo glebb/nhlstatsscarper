@@ -54,7 +54,6 @@ def get_teams_from_search_page(html):
     html = BeautifulSoup(html)
     prefix = 'http://www.easportsworld.com'
     items = []
-    ret = {}
     try:
         containing_table = html.find('table', 
             {'class' : 'styled full-width'})
@@ -64,9 +63,7 @@ def get_teams_from_search_page(html):
             item['url'] = postfix = prefix + link.a['href']
             item['name'] = link.a.string
             items.append(item)
-    except AttributeError:
-        return None
-    except IndexError:
+    except (AttributeError, IndexError):
         return None
 
     return items
@@ -104,7 +101,8 @@ def find_teams(abbreviation):
     search_url = create_search_url(abbreviation, True)
     html = get_content(search_url)
     teams = get_teams_from_search_page(html)
-    save_teams_to_db(teams)
+    if teams:
+        save_teams_to_db(teams)
     return teams
 
 def save_teams_to_db(teams):

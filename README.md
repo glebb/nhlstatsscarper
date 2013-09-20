@@ -41,9 +41,8 @@
 ### Requirements ###
  *  Peewee
  *  BeautifulSoup
---- 
- *  Specloud
- *  Mock
- *  coverage
+ *  Specloud (dev)
+ *  Mock (dev)
+ *  coverage (dev)
 
 For using outside pyfibot context, check interface.py on how to use this thing.	

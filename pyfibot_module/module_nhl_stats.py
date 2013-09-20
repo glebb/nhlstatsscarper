@@ -40,13 +40,12 @@ def command_ps(bot, user, channel, args):
             bot.say(channel, 'Team not found: ' + str(team_string))
     
 def command_switch(bot, user, channel, args):
-    if args.strip() != "":
-        if eanhlstats.settings.SYSTEM == "PS3":
-            eanhlstats.settings.SYSTEM = "XBX"
-            bot.say(channel, 'Switched nhl stats to XBX')
-        else:
-            eanhlstats.settings.SYSTEM = "PS3"
-            bot.say(channel, 'Switched nhl stats to PS3')
+    if eanhlstats.settings.SYSTEM == "PS3":
+        eanhlstats.settings.SYSTEM = "XBX"
+        bot.say(channel, 'Switched nhl stats to XBX')
+    else:
+        eanhlstats.settings.SYSTEM = "PS3"
+        bot.say(channel, 'Switched nhl stats to PS3')
         
 def command_top(bot, user, channel, args):
     if args.strip() != "":

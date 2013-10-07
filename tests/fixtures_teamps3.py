@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-murohoki_overview = '''
+murohoki_standings = '''
+
 
 
 
@@ -17,16 +18,16 @@ murohoki_overview = '''
 <meta http-equiv="X-UA-Compatible" content="IE=IE8" />
 <title>
       EA SPORTS World
-        - Club Overview  </title>
+        - Club Standings  </title>
 
   <meta name="verify-v1" content="vNmJLOrm4uWai9l/gmzeloU1pl2I0W7jWYQyr6RxBtA=" />
   
-<link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easportsworld.com/static/20130906.190605/css/sw/prod/sonet-cdn-1.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easportsworld.com/static/20130906.190605/css/sw/prod/sonet-cdn-2.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easportsworld.com/static/20130920.102812/css/sw/prod/sonet-cdn-1.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easportsworld.com/static/20130920.102812/css/sw/prod/sonet-cdn-2.css" />
 <!--[if lt IE 7]>
-<link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easportsworld.com/static/20130906.190605/css/sw/easw_ie6.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easportsworld.com/static/20130920.102812/css/sw/easw_ie6.css" />
 <![endif]-->
-<script type="text/javascript" src="http://cdn.www.easportsworld.com/static/20130906.190605/js/prod/sonet.js"></script>
+<script type="text/javascript" src="http://cdn.www.easportsworld.com/static/20130920.102812/js/prod/sonet.js"></script>
 
 
 
@@ -42,12 +43,74 @@ murohoki_overview = '''
       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
 
+  <div id="easports-header" class="easports-header" style='display:none'>
+    <div class="pulldown-nav">
+    <div id="ea-nav-pulldown" class="pulldown pulldown-hidden clearfix">
 
-      <link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easports.com/static/20130910.104452/css/bundle/easportscom!media.default.css" />
+    <div class="pulldown-box login-box last">
+    <div class="loginThrottleData" style="display:none;">
+</div>
+<div id="login-container" class="login">  
+  <div class='left-area'>
+    <!--<h4 class="loginMessage"></h4> -->
+    <h4 class="loginMessage">WELCOME TO EASPORTS.com</h4>
+    <p class='welcome-message'>Enhance your play with game extensions</p>
+    <p class='welcome-message'>Showcase and share your video highlights</p>
+    <p class='welcome-message'>Create a personalized Game Face avatar</p>
+    <p class='welcome-message'>Track your progress in Stats Central</p>
+  </div>
+  <div class='right-area'>
+    <form method="post" name="header-login" class="login_form" action="https://www.easportsworld.com/en_US/login/login">      <input type="hidden" name="next" id="box_next" value="http://www.easportsworld.com/en_US/clubs/NHL14PS3/26/standings?type=overall" />      
+      <label for="email">Email:</label>
+      <div class="input-field"><input type="text" name="email" id="email" value="" class="input-text login-email pngfix" /></div>
+      <div class="clear_box"></div> 
+      
+      <label for="passwd">Password:</label>
+      <div class="input-field"><input type="password" name="passwd" id="passwd" value="" class="input-text login-password pngfix" /></div>
+      <div class="clear_box"></div>
+      
+      <div class="login-actions clearfix">
+        <div class="login-forgot">          
+          <a href="https://profile.ea.com/forgotpassword.do?ref=EASW/">Forgot email or password?</a><br/>
+        </div>
+        <div class="login-signin">   
+          <input type="button" id="header-login-button" class="sprite input-submit-button login join_btn" value="Sign In"  title="Sign In" /> 
+        </div>
+      </div>  
+    </form>
+  </div>
+</div>
+    </div>
+    <div class="close-icon-white" title="Close"></div>
+  </div>
+
+    <div id="ea-nav-pulldown-min" class="pulldown-min">
+    <div class="content not-loggedin">
+      <!--
+      <div class="pulldownBtn sprite circle-down">&nbsp;</div>
+      <span class="sprite site-name">EA SPORTS World</span>
+      <div class="sprite bar"></div>
+      <span class="tagline">Customize Your Experience</span>
+      
+      <ul>
+        <li><a rel="nofollow" class="with-bar noToggle" href="https://profile.ea.com/acctcreate.do?registrationSource=EASports-EASW&amp;ref=EASW&amp;locale=en&amp;surl=http://www.easportsworld.com/en_US/">Register</a></li>
+        <li><a href="#" class="signIn">Sign In</a></li>
+      </ul>
+      -->
+    </div>
+    <div class="sprite register-panel-short"></div>
+  </div>
+
+</div>
+
+
+  </div>
+
+      <link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easports.com/static/20130930.085601/css/bundle/easportscom!media.default.css" />
   
-      <link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easports.com/static/20130910.104452/css/../css/easports/feedback.css" />
-      <link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easports.com/static/20130910.104452/css/../css/navNavigationPlugin/EASHeader2/overlayLogin2.css" />
-      <link rel="stylesheet" type="text/css" media="screen" href="http://www.easports.com/assets/20130910.104452/plugin/navNavigationPlugin/widget/navEASHeader2.css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easports.com/static/20130930.085601/css/../css/easports/feedback.css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easports.com/static/20130930.085601/css/../css/navNavigationPlugin/EASHeader2/overlayLogin2.css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="http://www.easports.com/assets/20130930.085601/plugin/navNavigationPlugin/widget/navEASHeader2.css" />
   
 
   <!-- style tag for css overrides needed to fix up the formatting -->
@@ -139,9 +202,12 @@ murohoki_overview = '''
 
 
     
-      <li class="float-left menu-darkblue menu-join-now"><span class="menu-separation float-left"></span><a class="float-right strong" href="/en_US/profile">bodhi-FIN</a></li><li class="easports-header-message-icon float-left menu-lightblue menu-message" style='background: #4092E4 url("/static/images/sw/nav/nav_messages_icon.png") no-repeat scroll left top; background-position: 80% 60%; padding-right:15px'><a href="http://www.easports.com/player-hub/PS3/bodhi-FIN" class="float-right" shape="rect">0</a></li><li class="float-left menu-face"><a size="rect" class="float-right strong" href="/en_US/profile"><img src="http://cdn.content.easports.com/item/avatar/2.0/character/starter/export/3DAvatar_default_small.png?random=1745392557" style='width: 22px; height: 22px;" width="22px" height="22px"' alt="View bodhi-FIN's profile" title="View bodhi-FIN's profile"></a></li>
+      <li class="float-left menu-darkgrey menu-join-now">
 
-      <li class="float-left menu-darkgrey menu-sign-in">
+        <span class="menu-separation float-left"></span>
+        <a class="acctcreate" omni_topnav="CLICKED_1_JOIN" href="https://profile.ea.com/acctcreate.do?registrationSource=EASports-EASW&amp;ref=EASW&amp;surl=http%3A%2F%2Fwww.easports.com%2F" shape="rect">Join Now</a>      </li>
+
+      <li class="float-left menu-darkblue menu-sign-in">
 
         <span class="menu-separation float-left"></span>
 
@@ -177,7 +243,7 @@ murohoki_overview = '''
     <a id="overlay-login-anchor" tabindex="100" shape="rect">&nbsp;</a>
 
     <div class="login-form float-left full-height ">
-      <input type="hidden" name="failureUrl" value="http%3A%2F%2Fwww.easports.com%2Fwidgets%2Fplugin%2FnavNavigationPlugin%2FnavEASHeader2%2F1%2Finject%3Fx%3D5232d093bb9f8"><input type="hidden" name="redirectUrl" value="http%3A%2F%2Fwww.easports.com%2Fwidgets%2Fplugin%2FnavNavigationPlugin%2FnavEASHeader2%2F1%2Finject%3Fx%3D5232d093bb9f8"><input type="hidden" name="loginSource" value="overlay"><div class="login-error-msg hidden">
+      <input type="hidden" name="failureUrl" value="http%3A%2F%2Fwww.easports.com%2Fwidgets%2Fplugin%2FnavNavigationPlugin%2FnavEASHeader2%2F1%2Finject%3Fx%3D524c4a0f2e6bf"><input type="hidden" name="redirectUrl" value="http%3A%2F%2Fwww.easports.com%2Fwidgets%2Fplugin%2FnavNavigationPlugin%2FnavEASHeader2%2F1%2Finject%3Fx%3D524c4a0f2e6bf"><input type="hidden" name="loginSource" value="overlay"><div class="login-error-msg hidden">
         <p>Invalid Email or Password.</p>
       </div>
       
@@ -205,7 +271,7 @@ murohoki_overview = '''
 </div>
 </div>
 
-        <a class="" href="/en_US/login/logout?next=http%3A%2F%2Fwww.easportsworld.com%2Fen_US%2Fclubs%2FNHL14PS3%2F26%2Foverview" shape="rect">Sign Out</a>
+        <a class="sign-in-overlay-button" href="http://www.easports.com/login" shape="rect">Sign in</a>
       </li>
       </ul></div>
       </div>
@@ -441,15 +507,15 @@ murohoki_overview = '''
         class="bd main-club-body" 
         style="height: auto;">
     <div id="clubs-config-data" style="display: none;">
-  {"moduleImagePath":"http:\/\/cdn.www.easportsworld.com\/static\/20130906.190605\/images\/sw\/clubs\/","actionName":"viewOverviewNonMember","asyncErrorDialog":"Something went wrong. We're working on getting this fixed as soon as we can. You may be able to try again.","noDataDialog":"There is nothing to display.","dataMyInvitesUrl":"\/en_US\/clubs\/data\/my-invites","isAuthenticated":true,"culture":"en_US","videoPlayerConfig":{"videoPlayerPath":"http:\/\/cdn.www.easportsworld.com\/static\/20130906.190605\/flash\/sw\/videos\/mediaplayer.swf","skin":"http:\/\/cdn.www.easportsworld.com\/static\/20130906.190605\/flash\/sw\/videos\/skin.swf"},"overallClubLeaderboardUrl":"\/en_US\/clubs\/data\/overall-club-leaderboard","playerRankingsLeaderboardUrl":"\/en_US\/clubs\/data\/player-rankings-leaderboard","seasonalLeaderboardUrl":"\/en_US\/clubs\/data\/seasonal-leaderboard","gamePositionsUrl":"\/en_US\/clubs\/data\/game-positions","gameLeaguesUrl":"\/en_US\/clubs\/data\/game-leagues","platformsUrl":"\/en_US\/clubs\/data\/platforms","gameDivisionsUrl":"\/en_US\/clubs\/data\/game-divisions","gamePeriodsUrl":"\/en_US\/clubs\/data\/game-periods","defaultPlatformGuid":"PS3","overviewNewsAndEventsUrl":"\/en_US\/clubs\/partial\/NHL14PS3\/26\/overview-news-and-events","overviewRecentMatchesUrl":"\/en_US\/clubs\/partial\/NHL14PS3\/26\/overview-recent-matches","overviewTopPlayersUrl":"\/en_US\/clubs\/partial\/NHL14PS3\/26\/overview-top-players"}</div>
-    <div class="top-banner-image"><img alt="Clubs" src="http://cdn.www.easportsworld.com/static/20130906.190605/images/prod/clubs/sw/en_US/banners/NHL14PS3.png" /></div>
+  {"moduleImagePath":"http:\/\/cdn.www.easportsworld.com\/static\/20130920.102812\/images\/sw\/clubs\/","actionName":"viewStandings","asyncErrorDialog":"Something went wrong. We're working on getting this fixed as soon as we can. You may be able to try again.","noDataDialog":"There is nothing to display.","dataMyInvitesUrl":"\/en_US\/clubs\/data\/my-invites","isAuthenticated":false,"culture":"en_US"}</div>
+    <div class="top-banner-image"><img alt="Clubs" src="http://cdn.www.easportsworld.com/static/20130920.102812/images/prod/clubs/sw/en_US/banners/NHL14PS3.png" /></div>
 
 <div id="club-menu-bar">
   <ul class="culture-en_US">
     <li class="">
       <a class="home" href="/en_US/clubs">Home</a>    </li>
     <li class="">
-            <a class="fifa13" href="http://www.eafootballworld.com/en_GB/clubs/fifa13">FIFA 13</a>    </li>
+            <a class="fifa14" href="http://www.eafootballworld.com/en_GB/clubs/fifa14">FIFA 14</a>    </li>
     <li class="">
       <a class="madden14" href="http://www.easports.com/madden-nfl/onlinefranchise/franchises">MADDEN 14</a>    </li>	    
     <li class="selected">
@@ -464,7 +530,7 @@ murohoki_overview = '''
       </a>
     </li>
     <li class="">
-            <a class="fifa12" href="http://www.eafootballworld.com/en_GB/clubs/fifa12">FIFA 12</a>    </li>
+            <a class="fifa13" href="http://www.eafootballworld.com/en_GB/clubs/fifa13">FIFA 13</a>    </li>
     <li class="">
       <a class="madden13" href="http://www.easports.com/onlinefranchise11/franchises">MADDEN 13</a>    </li>
     <li class="">
@@ -478,19 +544,18 @@ murohoki_overview = '''
   <div class="float-left spinner">
   <span class="clubs-spinner-default hidden">
 
-  <img src="http://cdn.www.easportsworld.com/static/20130906.190605/images/prod/clubs/sw/common/spinner-dark.gif" alt="Spinner-dark" /></span></div>
+  <img src="http://cdn.www.easportsworld.com/static/20130920.102812/images/prod/clubs/sw/common/spinner-dark.gif" alt="Spinner-dark" /></span></div>
   <div class="float-right">
     <ul>
         	
-                    <li><a class="white-arrow" onclick="return confirm('Are you sure you want to send a join request to this Club?');" href="/en_US/clubs/NHL14PS3/26/join-club">Join Club</a></li>
-            <li class="header-action"><a class="club-button club-button-blue arrow-right-white " href="/en_US/clubs/nhl14"><span class="button-left"></span><span class="button-text">Find Clubs</span><span class="club-sprite arrow-right-white club-button-extra"></span></a></li>
+                  <li class="header-action"><a class="club-button club-button-blue arrow-right-white " href="/en_US/clubs/nhl14"><span class="button-left"></span><span class="button-text">Find Clubs</span><span class="club-sprite arrow-right-white club-button-extra"></span></a></li>
     </ul>        
   </div>
 </div>
 
 
 <div class="club-overview club-overview-top clearfix">
-  <p class="strong club-description">kuse omiin muroihis</p> 
+  <p class="strong club-description">natsitonforum</p> 
   <div class="float-left rounded-corner-10 team-logo-container team-logo-container-noskill">
     <img class="logo" src="http://cdn.content.easports.com:80/easw_club11/images/NHL14PS3/team/big/t20066.png" />
   </div>
@@ -512,12 +577,12 @@ murohoki_overview = '''
                  <div class="yui-u first current-season-club-stats-main-container">
                     <table class="plain full-width nowrap less-padding no-margin">
                       <tr class="strong">
-                                                                                                <td>Club Record: <span class="black">24 - 24 - 7</span></td>
+                                                                                                <td>Club Record: <span class="black">2 - 0 - 1</span></td>
                                                   <td>Region: Europe</td>
                                               </tr>
                       <tr>
-                                                <td>Overall Ranking: 287</td>
-                        <td>Members: 9</td>
+                                                <td>Overall Ranking: 284</td>
+                        <td>Members: 8</td>
                                                 
                       </tr>
                     </table>
@@ -572,13 +637,13 @@ murohoki_overview = '''
                  <div class="yui-u first">
                     <table class="plain full-width nowrap less-padding no-margin">
                       <tr class="strong">
-                                                                          <td>Division: <span class="black">-</span></td>                        
-                                                                        <td>Club Record: <span class="black">0 - 0 - 0</span></td>
+                                                                          <td>Division: <span class="black">Elite</span></td>                        
+                                                                        <td>Club Record: <span class="black">79 - 58 - 13</span></td>
                                                   <td>Region: Europe</td>
                                               </tr>
                       <tr>
-                                                <td>Division Ranking: <span class="black">0</span></td>
-                                                <td>Overall Ranking: 287</td>
+                                                <td>Division Ranking: <span class="black">278</span></td>
+                                                <td>Overall Ranking: 284</td>
                                                 
                         <td>&nbsp;</td>                        
                       </tr>
@@ -632,8 +697,8 @@ murohoki_overview = '''
 
 <div id="main-club-navigation" class="culture-en_US">
   <ul class="tabbed-menu">
-    <li class=selected><a href="/en_US/clubs/NHL14PS3/26/overview">Overview<span></span></a></li>
-    <li ><a href="/en_US/clubs/NHL14PS3/26/standings">Standings<span></span></a></li>
+    <li ><a href="/en_US/clubs/NHL14PS3/26/overview">Overview<span></span></a></li>
+    <li class=selected><a href="/en_US/clubs/NHL14PS3/26/standings">Standings<span></span></a></li>
     <li ><a href="/en_US/clubs/NHL14PS3/26/match-results">Results<span></span></a></li>
     <li ><a href="/en_US/clubs/NHL14PS3/26/members">Members<span></span></a></li>
     
@@ -645,378 +710,604 @@ murohoki_overview = '''
       </ul>
 </div>
 
+<div class="club-main-content club-standings">
 
-<div class="club-main-content club-overview">
-  
-  <div class="yui-g">
-  	<div class="yui-g first">
-  		<div class="yui-u first">
-  		  
-    		<div class="widget-panel full-and-half-height">
-          <div class="widget-panel-head">
-            <div class="bg-sprite widget-header-left"></div>
-            <div class="bg-sprite widget-header-middle">
-              <h3>News and Events</h3>
-              <div class="spinner-container">
-  <span class="news-and-events-spinner hidden">
-
-  <img src="http://cdn.www.easportsworld.com/static/20130906.190605/images/prod/clubs/sw/common/spinner.gif" alt="Spinner" /></span></div>
-            </div>
-            <div class="bg-sprite widget-header-right"></div>
-          </div>  		  
-          <div class="widget-panel-body">
-            <div class="widget-panel-content scrolling news-and-events-content"></div>        
-          </div>
+    <div class="widget-panel">
+      <div class="widget-panel-head">
+        <div class="bg-sprite widget-header-left"></div>
+        <div class="bg-sprite widget-header-middle">
+          <h3>Standings</h3>
         </div>
-        
-  		</div>
-  		<div class="yui-u">
-        <div class="widget-panel half-height">
-          <div class="widget-panel-head">
-            <div class="bg-sprite widget-header-left"></div>
-            <div class="bg-sprite widget-header-middle">
-              <h3>Season Status</h3>
-            </div>
-            <div class="bg-sprite widget-header-right"></div>
-          </div>
-          <div class="widget-panel-body">
-             <div class="widget-panel-content strong season-info">
-               <p><span class="black">September: Regular Season</span></p>
-               <p> <span class="black"></span></p>
-               <p>Time Left In Regular Season: <span class="black">17 Days 21hours</span></p>
-             </div>   
-          </div>
+        <div class="bg-sprite widget-header-right"></div>
+      </div>
+      <div class="widget-panel-body">
+      
+        <div class="widget-panel-content">
+          <div class="float-left">
+                        <label for="standings-options">View</label>            
+            <select name="standings-options" id="standings-options" onChange="window.location = '/en_US/clubs/NHL14PS3/26/standings?type=' + this.options[this.selectedIndex].value;"><option value="seasonal">Seasonal</option>
+<option value="overall" selected="selected">Overall</option>
+</select>            Standings            
+          </div>              
         </div>
-        <div class="widget-panel full-height">
-          <div class="widget-panel-head">
-            <div class="bg-sprite widget-header-left"></div>
-            <div class="bg-sprite widget-header-middle">
-              <h3><a class="secondary" href="/en_US/clubs/NHL14PS3/26/members">Top Players</a></h3>
-              <div class="spinner-container">
-  <span class="top-players-spinner hidden">
-
-  <img src="http://cdn.www.easportsworld.com/static/20130906.190605/images/prod/clubs/sw/common/spinner.gif" alt="Spinner" /></span></div>							
-            </div>
-            <div class="bg-sprite widget-header-right"></div>
-          </div>
-          <div class="widget-panel-body">
-          	 <div class="widget-panel-content scrolling top-players-content"></div>           
-          </div>
-        </div>
-
-  		</div>  	
-  	</div>
-  	<div class="yui-g">
-  		<div class="yui-u first">
-  		          <div class="widget-panel full-and-half-height">
-          <div class="widget-panel-head">
-            <div class="bg-sprite widget-header-left"></div>
-            <div class="bg-sprite widget-header-middle">
-              <h3><a class="secondary" href="/en_US/clubs/NHL14PS3/26/awards-and-records">Recent Trophies</a></h3>
-            </div>
-            <div class="bg-sprite widget-header-right"></div>
-          </div>
-          <div class="widget-panel-body">
-            <div class="widget-panel-content">
-              <ul class="no-list no-margin">
               
-                <li>
-                  <div class="medium">
-                    Overall Progress: 
-                    <span class="black">
-                      13 of 45 (29%)
-                    </span>
-                  </div>
-                  
-<div class="clubs-progress-bar rounded-corner-5"><div class="clubs-progress-bar-indicator rounded-corner-5" style="width: 29%"></div></div>                </li>
-                
-                                  								         
-                                    <li>
-                    <div class="clearfix">
-                      <table class="plain less-padding no-margin full-width">
-                        <tr>
-                          <td width="40" class="align-center"><img alt="Win 10 games" width="35" height="35" src="http://cdn.content.easports.com:80/easw_club11/images/NHL14PS3/trophy/12_small_awarded.png" /></td>
-                          <td>
-                          <div class="strong small">
-
-                            Win 10 games
-                            
-                          </div>
-
-                          <div class="small">
-
-                            September 12, 2013 8:44 PM
-                          </div>														
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </li>
-                                    <li>
-                    <div class="clearfix">
-                      <table class="plain less-padding no-margin full-width">
-                        <tr>
-                          <td width="40" class="align-center"><img alt="Score 100 goals" width="35" height="35" src="http://cdn.content.easports.com:80/easw_club11/images/NHL14PS3/trophy/19_small_awarded.png" /></td>
-                          <td>
-                          <div class="strong small">
-
-                            Score 100 goals
-                            
-                          </div>
-
-                          <div class="small">
-
-                            September 12, 2013 8:44 PM
-                          </div>														
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </li>
-                                    <li>
-                    <div class="clearfix">
-                      <table class="plain less-padding no-margin full-width">
-                        <tr>
-                          <td width="40" class="align-center"><img alt="Get a One-Timer Goal" width="35" height="35" src="http://cdn.content.easports.com:80/easw_club11/images/NHL14PS3/trophy/32_small_awarded.png" /></td>
-                          <td>
-                          <div class="strong small">
-
-                            Get a One-Timer Goal
-                            
-                          </div>
-
-                          <div class="small">
-
-                            September 12, 2013 8:44 PM
-                          </div>														
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </li>
-                                    <li>
-                    <div class="clearfix">
-                      <table class="plain less-padding no-margin full-width">
-                        <tr>
-                          <td width="40" class="align-center"><img alt="Block 25 Shots" width="35" height="35" src="http://cdn.content.easports.com:80/easw_club11/images/NHL14PS3/trophy/41_small_awarded.png" /></td>
-                          <td>
-                          <div class="strong small">
-
-                            Block 25 Shots
-                            
-                          </div>
-
-                          <div class="small">
-
-                            September 12, 2013 8:44 PM
-                          </div>														
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </li>
-                                                
-              </ul>
-            </div>
-          </div>
-        </div>
-  		</div>  		<div class="yui-u">
-  		  
-  		  <div class="widget-panel half-height">
-          <div class="widget-panel-head">
-            <div class="bg-sprite widget-header-left"></div>
-            <div class="bg-sprite widget-header-middle">
-              <h3><a class="secondary" href="/en_US/clubs/NHL14PS3/26/match-results">Last Game</a></h3>
-              <div class="spinner-container">
-  <span class="recent-matches-spinner hidden">
-
-  <img src="http://cdn.www.easportsworld.com/static/20130906.190605/images/prod/clubs/sw/common/spinner.gif" alt="Spinner" /></span></div>
-            </div>
-            <div class="bg-sprite widget-header-right"></div>
-          </div>
-          <div class="widget-panel-body">        
-            <div class="widget-panel-content no-padding recent-matches-content"></div>
-          </div>
-        </div>
-        
-        <div class="widget-panel half-height">
-          <div class="widget-panel-head">
-            <div class="bg-sprite widget-header-left"></div>
-            <div class="bg-sprite widget-header-middle">
-              <h3>Club Settings</h3>
-            </div>
-            <div class="bg-sprite widget-header-right"></div>
-          </div>
-          <div class="widget-panel-body">        
-            <div class="widget-panel-content">
-              <table class="plain no-margin less-padding">
+        <div class="widget-panel-content">
+                  <div class="scrolling">
+                      <table class="styled full-width">
+              <thead>
                 <tr>
-                  <td width="50%">Language:</td>
-                  <td class="black">Finnish</td>
-                </tr>
-                <tr>
-                  <td width="50%">Join Requests:</td>
-                  <td class="black">Yes</td>
-                </tr>
-                <tr>
-                  <td width="50%">Public:</td>
-                  <td class="black">No</td>
-                </tr>              
-              </table>
-            </div>
-          </div>                     			
-        </div>
-          <div class="widget-panel half-height">
-          <div class="widget-panel-head">
-            <div class="bg-sprite widget-header-left"></div>
-            <div class="bg-sprite widget-header-middle">
-              <h3><a class="secondary" href="/en_US/clubs/NHL14PS3/26/members">Club Contacts</a></h3>
-            </div>
-            <div class="bg-sprite widget-header-right"></div>
-          </div>
-          <div class="widget-panel-body">   
-            <div class="widget-panel-content">          
-                            <table class="plain no-margin full-width overview-table strong small">
-                                    <tr>
-                    <td width="70%"><a title="View HOLYDIVERS's profile" href="http://www.easports.com/player-hub/PS3/HOLYDIVERS">HOLYDIVERS</a></td>
-                    <td class="info-column black">Owner</td>
-                  </tr>
-                                    <tr>
-                    <td width="70%"><a title="View Noddactius's profile" href="http://www.easports.com/player-hub/PS3/Noddactius">Noddactius</a></td>
-                    <td class="info-column black">GM</td>
-                  </tr>
-                                    <tr>
-                    <td width="70%"><a title="View qolazor's profile" href="http://www.easports.com/player-hub/PS3/qolazor">qolazor</a></td>
-                    <td class="info-column black">GM</td>
-                  </tr>
-                                    <tr>
-                    <td width="70%"><a title="View Mr_Fagstrom's profile" href="http://www.easports.com/player-hub/PS3/Mr_Fagstrom">Mr_Fagstrom</a></td>
-                    <td class="info-column black">GM</td>
-                  </tr>
+                                                    <th title="Leaderboard Ranking" class="nowrap">Rank</th>
+                                                    <th title="Club Name" class="nowrap">Club Name</th>
+                                                    <th title="Skill Level" class="nowrap">Lvl</th>
+                                                    <th title="Games Played" class="nowrap">GP</th>
+                                                    <th title="Wins" class="nowrap">W</th>
+                                                    <th title="Losses" class="nowrap">L</th>
+                                                    <th title="Overtime Losses" class="nowrap">OTL</th>
+                                                    <th title="Total Goals For" class="nowrap">GF</th>
+                                                    <th title="Total Goals Against" class="nowrap">GA</th>
+                                                    <th title="Goal Difference" class="nowrap">Diff</th>
+                                                    <th title="Average Goals For" class="nowrap">AGF</th>
+                                                    <th title="Average Goals Against" class="nowrap">AGA</th>
+                                </tr>
+              </thead>
+              <tbody>
+                                                  <tr>
                                                   
-                </table>
-             
-            </div>            
-          </div>
-        </div>            
-  		</div>
-  	</div>
-  </div>
-  
-</div>
-
-<!-- end container and add footer -->
-</div>
-<div class="ft"> </div>
-
-<br />
-<div class="main-club-body">
-<div class="stats-widget-container">
-  <div class="widget-panel">
-    <div class="widget-panel-head">
-      <div class="bg-sprite widget-header-left"></div>
-      <div class="bg-sprite widget-header-middle">
-        <h3>Seasonal Leaderboard</h3>
+                    <td title="Leaderboard Ranking" class="nowrap">274</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/2931/overview">EZMONEY</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">101</td>
+                                                  
+                    <td title="Wins" class="nowrap">63</td>
+                                                  
+                    <td title="Losses" class="nowrap">30</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">8</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">325</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">254</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">71</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">3.22</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.51</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">276</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/400/overview">BLAZIN JAYZ</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">222</td>
+                                                  
+                    <td title="Wins" class="nowrap">118</td>
+                                                  
+                    <td title="Losses" class="nowrap">78</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">26</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">535</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">483</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">52</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.41</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.18</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">276</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/177/overview">Merica</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">94</td>
+                                                  
+                    <td title="Wins" class="nowrap">61</td>
+                                                  
+                    <td title="Losses" class="nowrap">27</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">6</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">241</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">175</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">66</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.56</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.86</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">278</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/5383/overview">Angry Matures</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">153</td>
+                                                  
+                    <td title="Wins" class="nowrap">93</td>
+                                                  
+                    <td title="Losses" class="nowrap">52</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">8</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">469</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">403</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">66</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">3.07</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.63</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">278</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/49/overview">White Sharks</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">181</td>
+                                                  
+                    <td title="Wins" class="nowrap">88</td>
+                                                  
+                    <td title="Losses" class="nowrap">80</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">13</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">460</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">517</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">-57</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.54</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.86</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">280</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/447/overview">Scared Hitless</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">192</td>
+                                                  
+                    <td title="Wins" class="nowrap">99</td>
+                                                  
+                    <td title="Losses" class="nowrap">70</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">23</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">376</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">393</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">-17</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">1.96</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.05</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">281</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/5697/overview">Murderous</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">173</td>
+                                                  
+                    <td title="Wins" class="nowrap">98</td>
+                                                  
+                    <td title="Losses" class="nowrap">62</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">13</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">440</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">381</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">59</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.54</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.20</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">282</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/6887/overview">Ilmaisen Viinan Bileet</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">132</td>
+                                                  
+                    <td title="Wins" class="nowrap">75</td>
+                                                  
+                    <td title="Losses" class="nowrap">47</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">10</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">326</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">282</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">44</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.47</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.14</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">283</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/13959/overview">Baby 519ers</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">76</td>
+                                                  
+                    <td title="Wins" class="nowrap">57</td>
+                                                  
+                    <td title="Losses" class="nowrap">16</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">3</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">201</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">94</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">107</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.64</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.24</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">284</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/11671/overview">Illuminate</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">91</td>
+                                                  
+                    <td title="Wins" class="nowrap">62</td>
+                                                  
+                    <td title="Losses" class="nowrap">23</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">6</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">236</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">165</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">71</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.59</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.81</td>
+                    
+                  </tr>          
+                                                  <tr class="own-club strong" style="background-color: #eefbff;">
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">284</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/26/overview">murohoki</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">153</td>
+                                                  
+                    <td title="Wins" class="nowrap">81</td>
+                                                  
+                    <td title="Losses" class="nowrap">58</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">14</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">363</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">356</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">7</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.37</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.33</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">286</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/7836/overview">POOOPY PANTS</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">179</td>
+                                                  
+                    <td title="Wins" class="nowrap">104</td>
+                                                  
+                    <td title="Losses" class="nowrap">59</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">16</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">395</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">340</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">55</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.21</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.90</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">287</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/6942/overview">x NhL ALLsTaRs x</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">94</td>
+                                                  
+                    <td title="Wins" class="nowrap">65</td>
+                                                  
+                    <td title="Losses" class="nowrap">22</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">7</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">349</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">225</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">124</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">3.71</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.39</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">287</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/37/overview">KNALD ABERNE</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">244</td>
+                                                  
+                    <td title="Wins" class="nowrap">120</td>
+                                                  
+                    <td title="Losses" class="nowrap">97</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">27</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">497</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">511</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">-14</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.04</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.09</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">289</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/427/overview">Give and Go</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">198</td>
+                                                  
+                    <td title="Wins" class="nowrap">108</td>
+                                                  
+                    <td title="Losses" class="nowrap">72</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">18</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">391</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">381</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">10</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">1.97</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.92</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">290</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/1867/overview">LES ANTI GLEETCHEUX</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">144</td>
+                                                  
+                    <td title="Wins" class="nowrap">80</td>
+                                                  
+                    <td title="Losses" class="nowrap">50</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">14</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">381</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">343</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">38</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.65</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.38</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">291</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/1404/overview">Republic of Dictators</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">316</td>
+                                                  
+                    <td title="Wins" class="nowrap">148</td>
+                                                  
+                    <td title="Losses" class="nowrap">145</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">23</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">675</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">783</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">-108</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.14</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.48</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">292</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/13807/overview">Nhl Empire</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">75</td>
+                                                  
+                    <td title="Wins" class="nowrap">52</td>
+                                                  
+                    <td title="Losses" class="nowrap">16</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">7</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">207</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">126</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">81</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.76</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.68</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">293</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/2954/overview">Shut Up Cat</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">68</td>
+                                                  
+                    <td title="Wins" class="nowrap">48</td>
+                                                  
+                    <td title="Losses" class="nowrap">18</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">2</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">225</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">137</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">88</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">3.31</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.01</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">293</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14PS3/2253/overview">NOREASTER CARTEL</a></td>
+                                                  
+                    <td title="Skill Level" class="nowrap">47</td>
+                                                  
+                    <td title="Games Played" class="nowrap">134</td>
+                                                  
+                    <td title="Wins" class="nowrap">75</td>
+                                                  
+                    <td title="Losses" class="nowrap">41</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">18</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">308</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">299</td>
+                                                  
+                    <td title="Goal Difference" class="nowrap">9</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.30</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.23</td>
+                    
+                  </tr>          
+                              </tbody>
+            </table>   
+          </div>  
+                
+        </div>             
       </div>
-      <div class="bg-sprite widget-header-right"></div>
     </div>
-    <div class="widget-panel-body">
-      <div class="widget-panel-content stats-widget-platform-container">
-        <img src="http://cdn.www.easportsworld.com/static/20130906.190605/images/prod/clubs/ps3.gif" alt="Ps3" />                
-      </div>       
-      <div class="widget-panel-content">
-
-         
-      <div class="stats-widget-body">
-        <ol>
-                    <li><a href="/en_US/clubs/NHL14PS3/425/overview">Mac n Cheese Pretzels</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/1162/overview">G L A D II A T O R S</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/570/overview">Mopeds N S1utz</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/14/overview">Infinity</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/1/overview">Blood Sweat and Tears</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/2104/overview">Fake Club</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/1953/overview">HeRoeS1nTrAiNinG</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/337/overview">The Broad Street Bullies</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/79/overview">Halifax Hustle</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/91/overview">The Dream Team</a></li>
-                  </ol>
-      </div>
-      <div class="stats-widget-action">  
-        <div class="float-right"><a class="club-button club-button-white plus-blue stats-popup-button" rel="seasonalLeaderboard" href="http://www.easportsworld.com/en_US/clubs/partial/NHL14PS3/seasonal-leaderboard"><span class="button-left"></span><span class="button-text">More</span><span class="club-sprite plus-blue club-button-extra"></span></a></div>
-      </div>
-              
-        
-      </div>
-    </div>    
-  </div>
-</div>
-<div class="stats-widget-container">
-  <div class="widget-panel">
-    <div class="widget-panel-head">
-      <div class="bg-sprite widget-header-left"></div>
-      <div class="bg-sprite widget-header-middle">
-        <h3>Club Leaderboard</h3>
-      </div>
-      <div class="bg-sprite widget-header-right"></div>
-    </div>
-    <div class="widget-panel-body">
-      <div class="widget-panel-content stats-widget-platform-container">
-        <img src="http://cdn.www.easportsworld.com/static/20130906.190605/images/prod/clubs/ps3.gif" alt="Ps3" />      </div>       
-      <div class="widget-panel-content">
-
-         
-      <div class="stats-widget-body">
-        <ol>
-                    <li><a href="/en_US/clubs/NHL14PS3/425/overview">Mac n Cheese Pretzels</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/1162/overview">G L A D II A T O R S</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/570/overview">Mopeds N S1utz</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/14/overview">Infinity</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/1/overview">Blood Sweat and Tears</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/2104/overview">Fake Club</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/1953/overview">HeRoeS1nTrAiNinG</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/337/overview">The Broad Street Bullies</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/79/overview">Halifax Hustle</a></li>
-                    <li><a href="/en_US/clubs/NHL14PS3/91/overview">The Dream Team</a></li>
-                  </ol>
-      </div>
-      <div class="stats-widget-action">  
-        <div class="float-right"><a class="club-button club-button-white plus-blue stats-popup-button" rel="overallClubLeaderboard" href="http://www.easportsworld.com/en_US/clubs/partial/NHL14PS3/overall-club-leaderboard"><span class="button-left"></span><span class="button-text">More</span><span class="club-sprite plus-blue club-button-extra"></span></a></div>
-      </div>
-              
-        
-      </div>
-    </div>    
-  </div>
+      
 </div>
 
-<div class="stats-widget-container tall">
-  <div class="widget-panel">
-    <div class="widget-panel-head">
-      <div class="bg-sprite widget-header-left"></div>
-      <div class="bg-sprite widget-header-middle">
-        <h3>Club Videos</h3>
-      </div>
-      <div class="bg-sprite widget-header-right"></div>
-    </div>
-    <div class="widget-panel-body">
-      <div class="widget-panel-content">
-
-              <div class="stats-widget-no-data">
-          <div class="inner-box">
-            There are currently no member videos to display          </div>
-        </div>
-              
-        
-      </div>
-    </div>    
-  </div>
-</div></div>
-            </div>
+<!-- each page will end with this -->
+</div><div class="ft">&nbsp;</div> </div>            </div>
         </div>
       </div>
         
       <div class='eas-fix'>
-              <link rel="stylesheet" type="text/css" media="screen" href="http://www.easports.com/assets/20130910.104452/plugin/navNavigationPlugin/widget/navEASFooter2.css" />
+              <link rel="stylesheet" type="text/css" media="screen" href="http://www.easports.com/assets/20130930.085601/plugin/navNavigationPlugin/widget/navEASFooter2.css" />
     
   <!-- style tag for css overrides needed to fix up the formatting -->
   <style>
@@ -1076,9 +1367,9 @@ var s_imageDisableFlag=0;
 </script>
 <script type="text/javascript" src="http://resources.ea.com/omniture/s_code_remote_v02.js"></script>
 <script language="javascript">
-s_ea.pageName="NA:US:SPORTS:EAC:MKT:NONE:EASW:NONE:CLUBS:VIEWOVERVIEWNONMEMBER";
+s_ea.pageName="NA:US:SPORTS:EAC:MKT:NONE:EASW:NONE:CLUBS:VIEWSTANDINGS";
 s_ea.channel="NONE";
-s_ea.prop1=s_ea.setUserState("2268165680");
+s_ea.prop1=s_ea.setUserState("No ID");
 s_ea.prop2="NONE";
 s_ea.prop3="SPORTS";
 s_ea.prop4="NONE";
@@ -1086,14 +1377,14 @@ s_ea.prop5="EASW";
 s_ea.prop6="";
 s_ea.prop7="EAC";
 s_ea.prop9="MKT";
-s_ea.prop10="CLUBS:VIEWOVERVIEWNONMEMBER";
+s_ea.prop10="CLUBS:VIEWSTANDINGS";
 s_ea.prop11="NA";
 s_ea.prop12="en_US";
 s_ea.prop15="CLUBS";
 s_ea.prop17="US";
 s_ea.prop18="US:EASW";
 s_ea.prop35="";
-s_ea.eVar1=s_ea.setUserState("2268165680");
+s_ea.eVar1=s_ea.setUserState("No ID");
 s_ea.eVar3="EASW";
 s_ea.eVar17="US";
 s_ea.eVar18="NA";
@@ -1109,6 +1400,8 @@ var s_code=s_ea.t();if(s_code)document.write(s_code);
 
 </body>
 </html>
+
+
 
 '''
 

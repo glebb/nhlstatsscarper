@@ -14,7 +14,7 @@ import eanhlstats.settings
 from peewee import SqliteDatabase
 from eanhlstats.model import *
 
-data = eanhlstats.html.team.parse_team_overview_data(fixtures_teamps3.murohoki_overview)
+data = eanhlstats.html.team.parse_team_overview_data(fixtures_teamps3.murohoki_standings)
 data2 = eanhlstats.html.team.parse_team_overview_data(fixtures_teamxbox.xbx_overview)
 
 test_db = SqliteDatabase(':memory:')
@@ -29,7 +29,7 @@ class ParseTeamOverviewSpec(unittest.TestCase):
 
     def it_should_find_club_record(self):
         record = data['club_record']
-        self.assertEqual("24-24-7", record)
+        self.assertEqual("2-0-1", record)
 
     def it_should_find_club_region(self):
         region = data['region']
@@ -37,7 +37,7 @@ class ParseTeamOverviewSpec(unittest.TestCase):
 
     def it_should_find_overall_ranking(self):
         ranking = data['ranking']
-        self.assertEqual("287", ranking)
+        self.assertEqual("284", ranking)
         
     def it_should_return_empty_string_without_good_data(self):
         data = eanhlstats.html.team.parse_team_overview_data("")

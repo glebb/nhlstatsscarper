@@ -26,9 +26,9 @@ class InterfaceSpec(unittest.TestCase):
         pass
 
     def it_should_print_stats_for_team(self):
-        eanhlstats.interface.get_team_overview_html = MagicMock(return_value=fixtures_teamps3.murohoki_overview)   
+        eanhlstats.interface.get_team_overview_html = MagicMock(return_value=fixtures_teamps3.murohoki_standings)   
         data = eanhlstats.interface.get_team_stats(self.team)
-        self.assertEquals("murohoki Europe 24-24-7 | OR: 287", eanhlstats.interface.stats_of_team(data))
+        self.assertEquals("murohoki Europe 2-0-1 | OR: 284", eanhlstats.interface.stats_of_team(data))
 
     def it_should_show_player_stats(self):
         with test_database(test_db, (Team, Player)):

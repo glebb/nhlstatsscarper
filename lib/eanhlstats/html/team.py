@@ -31,9 +31,8 @@ def create_search_url(team_name, use_abbreviation=False):
         '&find[teamId]=&find[active]=true&do-search=submit'
     return search_url
 
-def parse_team_overview_data(html):
-    '''Do the parsing of html. After this method is finished
-    individual data can be fetched e.g club_record()'''
+def parse_team_standings_data(html):
+    '''Do the parsing of html.'''
     html = BeautifulSoup(html)
     data = {}
     try:
@@ -44,6 +43,13 @@ def parse_team_overview_data(html):
         data['region'] = stat_cells[1].string.replace("Region: ", "")
         data['ranking'] = \
             stat_cells[2].string.replace("Overall Ranking: ", "")
+        team_row = html.find('tr', {'class' : 'own-club strong'})
+        data['games_played'] = team_row.find(attrs={'title' : 'Games Played'}).text
+        data['wins'] = team_row.find(attrs={'title' : 'Wins'}).text
+        data['losses'] = team_row.find(attrs={'title' : 'Losses'}).text
+        data['overtime_losses'] = team_row.find(attrs={'title' : 'Overtime Losses'}).text
+        data['average_goals_for'] = team_row.find(attrs={'title' : 'Average Goals For'}).text
+        data['average_goals_against'] = team_row.find(attrs={'title' : 'Average Goals Against'}).text
         return data
     except AttributeError:
         print "Parsing team stats failed"

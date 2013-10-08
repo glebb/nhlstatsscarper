@@ -14,8 +14,8 @@ import eanhlstats.settings
 from peewee import SqliteDatabase
 from eanhlstats.model import *
 
-data = eanhlstats.html.team.parse_team_overview_data(fixtures_teamps3.murohoki_standings)
-data2 = eanhlstats.html.team.parse_team_overview_data(fixtures_teamxbox.xbx_standings)
+data = eanhlstats.html.team.parse_team_standings_data(fixtures_teamps3.murohoki_standings)
+data2 = eanhlstats.html.team.parse_team_standings_data(fixtures_teamxbox.xbx_standings)
 
 test_db = SqliteDatabase(':memory:')
 
@@ -40,7 +40,7 @@ class ParseTeamOverviewSpec(unittest.TestCase):
         self.assertEqual("284", ranking)
         
     def it_should_return_empty_string_without_good_data(self):
-        data = eanhlstats.html.team.parse_team_overview_data("")
+        data = eanhlstats.html.team.parse_team_standings_data("")
         self.assertEquals(None, data)
 
     def it_should_find_xbox_team_name(self):
@@ -177,4 +177,19 @@ class FindTeamsSpec(unittest.TestCase):
     
 class TeamStandingsSpec(unittest.TestCase):
     def it_should_find_team_games_played(self):
-        self.assertEqual("71", data['games_played'])
+        self.assertEqual("153", data['games_played'])
+        
+    def it_should_find_wins(self):
+        self.assertEqual("81", data['wins'])
+
+    def it_should_find_losses(self):
+        self.assertEqual("58", data['losses'])        
+        
+    def it_should_find_average_goals_for(self):
+        self.assertEqual("2.37", data['average_goals_for'])                
+        
+    def it_should_find_average_goals_against(self):
+        self.assertEqual("2.33", data['average_goals_against'])                        
+
+    def it_should_find_overtime_losses(self):
+        self.assertEqual("14", data['overtime_losses'])                                

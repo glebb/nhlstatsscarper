@@ -2,7 +2,7 @@
 from eanhlstats.model import get_team_from_db, get_player_from_db, \
     get_players_from_db, Player
 from eanhlstats.html.team import get_team_overview_html, \
-    save_new_team_to_db, parse_team_overview_data, get_results_url, \
+    save_new_team_to_db, parse_team_standings_data, get_results_url, \
     parse_results_data, find_teams, TEAM_URL_PREFIX
 
 from eanhlstats.html.players import refresh_player_data
@@ -69,7 +69,7 @@ def get_team_stats(team):
     '''Gets team stats from EA servers.'''
     if team:
         html = get_team_overview_html(team.name)    
-        return parse_team_overview_data(html)
+        return parse_team_standings_data(html)
     return None
 
 def stats_of_team(teamdata):
@@ -77,10 +77,15 @@ def stats_of_team(teamdata):
     stats = ""
     if teamdata:
         stats = \
-            "%s %s %s | OR: %s" \
+            "%s %s GP: %s | %s-%s-%s | AGF: %s | AGA: %s | OR: %s" \
             % (teamdata['team_name'], \
             teamdata['region'], \
-            teamdata['club_record'], \
+            teamdata['games_played'], \
+            teamdata['wins'], \
+            teamdata['losses'], \
+            teamdata['overtime_losses'], \
+            teamdata['average_goals_for'], \
+            teamdata['average_goals_against'], \
             teamdata['ranking'])
     return stats
 

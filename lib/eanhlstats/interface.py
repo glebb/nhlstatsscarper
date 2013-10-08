@@ -100,14 +100,15 @@ def last_games(team, amount):
     return temp.strip()[:-1].strip()
 
 def find_teams_by_abbreviation(abbreviation, amount):
-    '''Find teams by abbreviaton and Pretty print'''
-    teams = find_teams(abbreviation)
+    '''Find teams by abbreviaton'''
+    return find_teams(abbreviation)
+    
+def pretty_print_teams(teams, amount):
     temp = ""
-    if teams:
-        for team in teams[0:amount]:
-            temp += team['name'] + ', '
-        return temp.strip()[:-1].strip()
-    return None
+    for team in teams[0:amount]:
+        temp += team.name + ', '
+    return temp.strip()[:-1].strip()
+    
 
 def results_url(team):
     return TEAM_URL_PREFIX + eanhlstats.settings.SYSTEM + '/' + team.eaid + '/match-results'

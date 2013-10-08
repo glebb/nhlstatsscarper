@@ -73,12 +73,19 @@ def command_top(bot, user, channel, args):
 #    else:
 #        bot.say(channel, 'Team not found: ' + str(args))
     
-def command_find(bot, user, channel, args):
+def command_find2(bot, user, channel, args):
     if args.strip() != "":
         teams = find_teams_by_abbreviation(args, 10)
         if teams:
-            bot.say(channel, str(teams))
-        else:
-            bot.say(channel, 'Teams not found with: ' + str(args))
-            return
+            if len(teams) > 1:
+                bot.say(channel, str(pretty_print_teams(teams, 10)))
+                return
+            elif len(teams) == 1:
+                data = get_team_stats(teams[0])
+                if not data:
+                    bot.say(channel, 'Error in fetching data for: ' + str(teams[0].name))
+                    return
+                bot.say(channel, str(stats_of_team(data)) + ' | ' + str(results_url(teams[0])))
+                return
+        bot.say(channel, 'Teams not found with: ' + str(args))
         

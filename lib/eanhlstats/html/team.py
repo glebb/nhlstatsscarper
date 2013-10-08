@@ -108,16 +108,23 @@ def find_teams(abbreviation):
     html = get_content(search_url)
     teams = get_teams_from_search_page(html)
     if teams:
-        save_teams_to_db(teams)
-    return teams
+        temp = save_teams_to_db(teams)
+        return temp
+    return None
 
 def save_teams_to_db(teams):
+    temp = []
     for data in teams:
         team_url = data['url']
         team_name = data['name']
         ea_id = _get_eaid_from_url(team_url)
-        if Team.select().where(Team.eaid == ea_id).count() == 0:
-            _save(team_url, team_name)
+        team = Team.select().where(Team.eaid == ea_id)
+        if team.count() == 0:
+            team = _save(team_url, team_name)
+        else:
+            team = team.get()
+        temp.append(team)
+    return temp
 
 def get_results_url(eaid):
     temp = PARTIAL_URL_PREFIX + eanhlstats.settings.SYSTEM + '/' + eaid + '/' + 'match-results?type=all'

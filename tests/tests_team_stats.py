@@ -67,7 +67,7 @@ class GetTeamUrlSpec(unittest.TestCase):
         
     def it_should_find_url_with_good_html(self):
         data = eanhlstats.html.team.get_teams_from_search_page(fixtures_teamps3.murohoki_search)
-        self.assertEqual(data[0]['url'], "http://www.easportsworld.com/en_US/clubs/NHL14PS3/26/standings")
+        self.assertEqual(data[0]['url'], "http://www.easportsworld.com/en_US/clubs/NHL14PS3/26/standings?type=overall")
 
     def it_should_find_team_name(self):
         data = eanhlstats.html.team.get_teams_from_search_page(fixtures_teamps3.murohoki_search)
@@ -83,7 +83,7 @@ class GetTeamUrlSpec(unittest.TestCase):
         
     def it_should_find_third_url_from_list_of_many_urls(self):
         data = eanhlstats.html.team.get_teams_from_search_page(fixtures_teamps3.many_search_results)
-        self.assertEqual(data[2]['url'], "http://www.easportsworld.com/en_US/clubs/NHL14PS3/1272/standings")
+        self.assertEqual(data[2]['url'], "http://www.easportsworld.com/en_US/clubs/NHL14PS3/1272/standings?type=overall")
 
     def it_should_find_team_name_from_list_of_many_urls(self):
         data = eanhlstats.html.team.get_teams_from_search_page(fixtures_teamps3.many_search_results)
@@ -175,3 +175,6 @@ class FindTeamsSpec(unittest.TestCase):
             teams = eanhlstats.html.team.find_teams("ice")
             self.assertEquals(10, Team.select().count())
     
+class TeamStandingsSpec(unittest.TestCase):
+    def it_should_find_team(self):
+        pass

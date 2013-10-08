@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-xbx_overview = '''
+xbx_standings = '''
+
+
 
 
 
@@ -17,16 +19,16 @@ xbx_overview = '''
 <meta http-equiv="X-UA-Compatible" content="IE=IE8" />
 <title>
       EA SPORTS World
-        - Club Overview  </title>
+        - Club Standings  </title>
 
   <meta name="verify-v1" content="vNmJLOrm4uWai9l/gmzeloU1pl2I0W7jWYQyr6RxBtA=" />
   
-<link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easportsworld.com/static/20130906.190605/css/sw/prod/sonet-cdn-1.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easportsworld.com/static/20130906.190605/css/sw/prod/sonet-cdn-2.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easportsworld.com/static/20130920.102812/css/sw/prod/sonet-cdn-1.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easportsworld.com/static/20130920.102812/css/sw/prod/sonet-cdn-2.css" />
 <!--[if lt IE 7]>
-<link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easportsworld.com/static/20130906.190605/css/sw/easw_ie6.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easportsworld.com/static/20130920.102812/css/sw/easw_ie6.css" />
 <![endif]-->
-<script type="text/javascript" src="http://cdn.www.easportsworld.com/static/20130906.190605/js/prod/sonet.js"></script>
+<script type="text/javascript" src="http://cdn.www.easportsworld.com/static/20130920.102812/js/prod/sonet.js"></script>
 
 
 
@@ -59,7 +61,7 @@ xbx_overview = '''
     <p class='welcome-message'>Track your progress in Stats Central</p>
   </div>
   <div class='right-area'>
-    <form method="post" name="header-login" class="login_form" action="https://www.easportsworld.com/en_US/login/login">      <input type="hidden" name="next" id="box_next" value="http://www.easportsworld.com/en_US/clubs/NHL14XBX/26572/overview" />      
+    <form method="post" name="header-login" class="login_form" action="https://www.easportsworld.com/en_US/login/login">      <input type="hidden" name="next" id="box_next" value="http://www.easportsworld.com/en_US/clubs/NHL14XBX/20996/standings" />      
       <label for="email">Email:</label>
       <div class="input-field"><input type="text" name="email" id="email" value="" class="input-text login-email pngfix" /></div>
       <div class="clear_box"></div> 
@@ -105,11 +107,11 @@ xbx_overview = '''
 
   </div>
 
-      <link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easports.com/static/20130910.104452/css/bundle/easportscom!media.default.css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easports.com/static/20131003.110915/css/bundle/easportscom!media.default.css" />
   
-      <link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easports.com/static/20130910.104452/css/../css/easports/feedback.css" />
-      <link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easports.com/static/20130910.104452/css/../css/navNavigationPlugin/EASHeader2/overlayLogin2.css" />
-      <link rel="stylesheet" type="text/css" media="screen" href="http://www.easports.com/assets/20130910.104452/plugin/navNavigationPlugin/widget/navEASHeader2.css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easports.com/static/20131003.110915/css/../css/easports/feedback.css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="http://cdn.www.easports.com/static/20131003.110915/css/../css/navNavigationPlugin/EASHeader2/overlayLogin2.css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="http://www.easports.com/assets/20131003.110915/plugin/navNavigationPlugin/widget/navEASHeader2.css" />
   
 
   <!-- style tag for css overrides needed to fix up the formatting -->
@@ -242,7 +244,7 @@ xbx_overview = '''
     <a id="overlay-login-anchor" tabindex="100" shape="rect">&nbsp;</a>
 
     <div class="login-form float-left full-height ">
-      <input type="hidden" name="failureUrl" value="http%3A%2F%2Fwww.easports.com%2Fwidgets%2Fplugin%2FnavNavigationPlugin%2FnavEASHeader2%2F1%2Finject%3Fx%3D5235a10205bc0"><input type="hidden" name="redirectUrl" value="http%3A%2F%2Fwww.easports.com%2Fwidgets%2Fplugin%2FnavNavigationPlugin%2FnavEASHeader2%2F1%2Finject%3Fx%3D5235a10205bc0"><input type="hidden" name="loginSource" value="overlay"><div class="login-error-msg hidden">
+      <input type="hidden" name="failureUrl" value="http%3A%2F%2Fwww.easports.com%2Fwidgets%2Fplugin%2FnavNavigationPlugin%2FnavEASHeader2%2F1%2Finject%3Fx%3D52543398708bf"><input type="hidden" name="redirectUrl" value="http%3A%2F%2Fwww.easports.com%2Fwidgets%2Fplugin%2FnavNavigationPlugin%2FnavEASHeader2%2F1%2Finject%3Fx%3D52543398708bf"><input type="hidden" name="loginSource" value="overlay"><div class="login-error-msg hidden">
         <p>Invalid Email or Password.</p>
       </div>
       
@@ -506,15 +508,15 @@ xbx_overview = '''
         class="bd main-club-body" 
         style="height: auto;">
     <div id="clubs-config-data" style="display: none;">
-  {"moduleImagePath":"http:\/\/cdn.www.easportsworld.com\/static\/20130906.190605\/images\/sw\/clubs\/","actionName":"viewOverviewNonMember","asyncErrorDialog":"Something went wrong. We're working on getting this fixed as soon as we can. You may be able to try again.","noDataDialog":"There is nothing to display.","dataMyInvitesUrl":"\/en_US\/clubs\/data\/my-invites","isAuthenticated":false,"culture":"en_US","videoPlayerConfig":{"videoPlayerPath":"http:\/\/cdn.www.easportsworld.com\/static\/20130906.190605\/flash\/sw\/videos\/mediaplayer.swf","skin":"http:\/\/cdn.www.easportsworld.com\/static\/20130906.190605\/flash\/sw\/videos\/skin.swf"},"overallClubLeaderboardUrl":"\/en_US\/clubs\/data\/overall-club-leaderboard","playerRankingsLeaderboardUrl":"\/en_US\/clubs\/data\/player-rankings-leaderboard","seasonalLeaderboardUrl":"\/en_US\/clubs\/data\/seasonal-leaderboard","gamePositionsUrl":"\/en_US\/clubs\/data\/game-positions","gameLeaguesUrl":"\/en_US\/clubs\/data\/game-leagues","platformsUrl":"\/en_US\/clubs\/data\/platforms","gameDivisionsUrl":"\/en_US\/clubs\/data\/game-divisions","gamePeriodsUrl":"\/en_US\/clubs\/data\/game-periods","defaultPlatformGuid":360,"overviewNewsAndEventsUrl":"\/en_US\/clubs\/partial\/NHL14XBX\/26572\/overview-news-and-events","overviewRecentMatchesUrl":"\/en_US\/clubs\/partial\/NHL14XBX\/26572\/overview-recent-matches","overviewTopPlayersUrl":"\/en_US\/clubs\/partial\/NHL14XBX\/26572\/overview-top-players"}</div>
-    <div class="top-banner-image"><img alt="Clubs" src="http://cdn.www.easportsworld.com/static/20130906.190605/images/prod/clubs/sw/en_US/banners/NHL14XBX.png" /></div>
+  {"moduleImagePath":"http:\/\/cdn.www.easportsworld.com\/static\/20130920.102812\/images\/sw\/clubs\/","actionName":"viewStandings","asyncErrorDialog":"Something went wrong. We're working on getting this fixed as soon as we can. You may be able to try again.","noDataDialog":"There is nothing to display.","dataMyInvitesUrl":"\/en_US\/clubs\/data\/my-invites","isAuthenticated":false,"culture":"en_US"}</div>
+    <div class="top-banner-image"><img alt="Clubs" src="http://cdn.www.easportsworld.com/static/20130920.102812/images/prod/clubs/sw/en_US/banners/NHL14XBX.png" /></div>
 
 <div id="club-menu-bar">
   <ul class="culture-en_US">
     <li class="">
       <a class="home" href="/en_US/clubs">Home</a>    </li>
     <li class="">
-            <a class="fifa13" href="http://www.eafootballworld.com/en_GB/clubs/fifa13">FIFA 13</a>    </li>
+            <a class="fifa14" href="http://www.eafootballworld.com/en_GB/clubs/fifa14">FIFA 14</a>    </li>
     <li class="">
       <a class="madden14" href="http://www.easports.com/madden-nfl/onlinefranchise/franchises">MADDEN 14</a>    </li>	    
     <li class="selected">
@@ -529,7 +531,7 @@ xbx_overview = '''
       </a>
     </li>
     <li class="">
-            <a class="fifa12" href="http://www.eafootballworld.com/en_GB/clubs/fifa12">FIFA 12</a>    </li>
+            <a class="fifa13" href="http://www.eafootballworld.com/en_GB/clubs/fifa13">FIFA 13</a>    </li>
     <li class="">
       <a class="madden13" href="http://www.easports.com/onlinefranchise11/franchises">MADDEN 13</a>    </li>
     <li class="">
@@ -539,11 +541,11 @@ xbx_overview = '''
 </div>
 <div class="main-club-header">
   <h1 class="float-left no-padding-h1">
-        <a href="/en_US/clubs/NHL14XBX/26572/overview">ICE BANDITS</a>  </h1>
+        <a href="/en_US/clubs/NHL14XBX/20996/overview">ice dogs</a>  </h1>
   <div class="float-left spinner">
   <span class="clubs-spinner-default hidden">
 
-  <img src="http://cdn.www.easportsworld.com/static/20130906.190605/images/prod/clubs/sw/common/spinner-dark.gif" alt="Spinner-dark" /></span></div>
+  <img src="http://cdn.www.easportsworld.com/static/20130920.102812/images/prod/clubs/sw/common/spinner-dark.gif" alt="Spinner-dark" /></span></div>
   <div class="float-right">
     <ul>
         	
@@ -554,9 +556,9 @@ xbx_overview = '''
 
 
 <div class="club-overview club-overview-top clearfix">
-  <p class="strong club-description"></p> 
+  <p class="strong club-description">kovalla tunteella</p> 
   <div class="float-left rounded-corner-10 team-logo-container team-logo-container-noskill">
-    <img class="logo" src="http://cdn.content.easports.com:80/easw_club11/images/NHL14XBX/team/big/t20001.png" />
+    <img class="logo" src="http://cdn.content.easports.com:80/easw_club11/images/NHL14XBX/team/big/t20011.png" />
   </div>
   
   <div class="float-right club-info-container club-info-container-noskill">
@@ -576,11 +578,11 @@ xbx_overview = '''
                  <div class="yui-u first current-season-club-stats-main-container">
                     <table class="plain full-width nowrap less-padding no-margin">
                       <tr class="strong">
-                                                                                                <td>Club Record: <span class="black">2 - 1 - 0</span></td>
-                                                  <td>Region: North America East</td>
+                                                                                                <td>Club Record: <span class="black">11 - 7 - 1</span></td>
+                                                  <td>Region: Europe</td>
                                               </tr>
                       <tr>
-                                                <td>Overall Ranking: 11149</td>
+                                                <td>Overall Ranking: 5354</td>
                         <td>Members: 2</td>
                                                 
                       </tr>
@@ -636,13 +638,13 @@ xbx_overview = '''
                  <div class="yui-u first">
                     <table class="plain full-width nowrap less-padding no-margin">
                       <tr class="strong">
-                                                                          <td>Division: <span class="black">-</span></td>                        
-                                                                        <td>Club Record: <span class="black">0 - 0 - 0</span></td>
-                                                  <td>Region: North America East</td>
+                                                                          <td>Division: <span class="black">Pro</span></td>                        
+                                                                        <td>Club Record: <span class="black">17 - 12 - 1</span></td>
+                                                  <td>Region: Europe</td>
                                               </tr>
                       <tr>
-                                                <td>Division Ranking: <span class="black">0</span></td>
-                                                <td>Overall Ranking: 11149</td>
+                                                <td>Division Ranking: <span class="black">1910</span></td>
+                                                <td>Overall Ranking: 5354</td>
                                                 
                         <td>&nbsp;</td>                        
                       </tr>
@@ -696,358 +698,1396 @@ xbx_overview = '''
 
 <div id="main-club-navigation" class="culture-en_US">
   <ul class="tabbed-menu">
-    <li class=selected><a href="/en_US/clubs/NHL14XBX/26572/overview">Overview<span></span></a></li>
-    <li ><a href="/en_US/clubs/NHL14XBX/26572/standings">Standings<span></span></a></li>
-    <li ><a href="/en_US/clubs/NHL14XBX/26572/match-results">Results<span></span></a></li>
-    <li ><a href="/en_US/clubs/NHL14XBX/26572/members">Members<span></span></a></li>
+    <li ><a href="/en_US/clubs/NHL14XBX/20996/overview">Overview<span></span></a></li>
+    <li class=selected><a href="/en_US/clubs/NHL14XBX/20996/standings">Standings<span></span></a></li>
+    <li ><a href="/en_US/clubs/NHL14XBX/20996/match-results">Results<span></span></a></li>
+    <li ><a href="/en_US/clubs/NHL14XBX/20996/members">Members<span></span></a></li>
     
-            <li ><a href="/en_US/clubs/NHL14XBX/26572/awards-and-records">Awards & Records<span></span></a></li>
+            <li ><a href="/en_US/clubs/NHL14XBX/20996/awards-and-records">Awards & Records<span></span></a></li>
         
-    <li ><a href="/en_US/clubs/NHL14XBX/26572/bookmarked-clubs">Bookmarks<span></span></a></li>
+    <li ><a href="/en_US/clubs/NHL14XBX/20996/bookmarked-clubs">Bookmarks<span></span></a></li>
     
         
       </ul>
 </div>
 
+<div class="club-main-content club-standings">
 
-<div class="club-main-content club-overview">
-  
-  <div class="yui-g">
-  	<div class="yui-g first">
-  		<div class="yui-u first">
-  		  
-    		<div class="widget-panel full-and-half-height">
-          <div class="widget-panel-head">
-            <div class="bg-sprite widget-header-left"></div>
-            <div class="bg-sprite widget-header-middle">
-              <h3>News and Events</h3>
-              <div class="spinner-container">
-  <span class="news-and-events-spinner hidden">
-
-  <img src="http://cdn.www.easportsworld.com/static/20130906.190605/images/prod/clubs/sw/common/spinner.gif" alt="Spinner" /></span></div>
-            </div>
-            <div class="bg-sprite widget-header-right"></div>
-          </div>  		  
-          <div class="widget-panel-body">
-            <div class="widget-panel-content scrolling news-and-events-content"></div>        
-          </div>
+    <div class="widget-panel">
+      <div class="widget-panel-head">
+        <div class="bg-sprite widget-header-left"></div>
+        <div class="bg-sprite widget-header-middle">
+          <h3>Standings</h3>
         </div>
-        
-  		</div>
-  		<div class="yui-u">
-        <div class="widget-panel half-height">
-          <div class="widget-panel-head">
-            <div class="bg-sprite widget-header-left"></div>
-            <div class="bg-sprite widget-header-middle">
-              <h3>Season Status</h3>
-            </div>
-            <div class="bg-sprite widget-header-right"></div>
-          </div>
-          <div class="widget-panel-body">
-             <div class="widget-panel-content strong season-info">
-               <p><span class="black">September: Regular Season</span></p>
-               <p> <span class="black"></span></p>
-               <p>Time Left In Regular Season: <span class="black">15 Days 18hours</span></p>
-             </div>   
-          </div>
+        <div class="bg-sprite widget-header-right"></div>
+      </div>
+      <div class="widget-panel-body">
+      
+        <div class="widget-panel-content">
+          <div class="float-left">
+                        <label for="standings-options">View</label>            
+            <select name="standings-options" id="standings-options" onChange="window.location = '/en_US/clubs/NHL14XBX/20996/standings?type=' + this.options[this.selectedIndex].value;"><option value="seasonal" selected="selected">Seasonal</option>
+<option value="overall">Overall</option>
+</select>            Standings            
+          </div>              
         </div>
-        <div class="widget-panel full-height">
-          <div class="widget-panel-head">
-            <div class="bg-sprite widget-header-left"></div>
-            <div class="bg-sprite widget-header-middle">
-              <h3><a class="secondary" href="/en_US/clubs/NHL14XBX/26572/members">Top Players</a></h3>
-              <div class="spinner-container">
-  <span class="top-players-spinner hidden">
-
-  <img src="http://cdn.www.easportsworld.com/static/20130906.190605/images/prod/clubs/sw/common/spinner.gif" alt="Spinner" /></span></div>							
-            </div>
-            <div class="bg-sprite widget-header-right"></div>
-          </div>
-          <div class="widget-panel-body">
-          	 <div class="widget-panel-content scrolling top-players-content"></div>           
-          </div>
-        </div>
-
-  		</div>  	
-  	</div>
-  	<div class="yui-g">
-  		<div class="yui-u first">
-  		          <div class="widget-panel full-and-half-height">
-          <div class="widget-panel-head">
-            <div class="bg-sprite widget-header-left"></div>
-            <div class="bg-sprite widget-header-middle">
-              <h3><a class="secondary" href="/en_US/clubs/NHL14XBX/26572/awards-and-records">Recent Trophies</a></h3>
-            </div>
-            <div class="bg-sprite widget-header-right"></div>
-          </div>
-          <div class="widget-panel-body">
-            <div class="widget-panel-content">
-              <ul class="no-list no-margin">
               
-                <li>
-                  <div class="medium">
-                    Overall Progress: 
-                    <span class="black">
-                      3 of 45 (7%)
-                    </span>
-                  </div>
-                  
-<div class="clubs-progress-bar rounded-corner-5"><div class="clubs-progress-bar-indicator rounded-corner-5" style="width: 7%"></div></div>                </li>
-                
-                                  								         
-                                    <li>
-                    <div class="clearfix">
-                      <table class="plain less-padding no-margin full-width">
-                        <tr>
-                          <td width="40" class="align-center"><img alt="Get a One-Timer Goal" width="35" height="35" src="http://cdn.content.easports.com:80/easw_club11/images/NHL14XBX/trophy/32_small_awarded.png" /></td>
-                          <td>
-                          <div class="strong small">
-
-                            Get a One-Timer Goal
-                            
-                          </div>
-
-                          <div class="small">
-
-                            September 14, 2013 5:52 PM
-                          </div>														
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </li>
-                                    <li>
-                    <div class="clearfix">
-                      <table class="plain less-padding no-margin full-width">
-                        <tr>
-                          <td width="40" class="align-center"><img alt="Win a Game" width="35" height="35" src="http://cdn.content.easports.com:80/easw_club11/images/NHL14XBX/trophy/11_small_awarded.png" /></td>
-                          <td>
-                          <div class="strong small">
-
-                            Win a Game
-                            
-                          </div>
-
-                          <div class="small">
-
-                            September 14, 2013 5:22 PM
-                          </div>														
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </li>
-                                    <li>
-                    <div class="clearfix">
-                      <table class="plain less-padding no-margin full-width">
-                        <tr>
-                          <td width="40" class="align-center"><img alt="Get a shutout" width="35" height="35" src="http://cdn.content.easports.com:80/easw_club11/images/NHL14XBX/trophy/28_small_awarded.png" /></td>
-                          <td>
-                          <div class="strong small">
-
-                            Get a shutout
-                            
-                          </div>
-
-                          <div class="small">
-
-                            September 14, 2013 5:22 PM
-                          </div>														
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </li>
-                                                
-              </ul>
-            </div>
-          </div>
-        </div>
-  		</div>  		<div class="yui-u">
-  		  
-  		  <div class="widget-panel half-height">
-          <div class="widget-panel-head">
-            <div class="bg-sprite widget-header-left"></div>
-            <div class="bg-sprite widget-header-middle">
-              <h3><a class="secondary" href="/en_US/clubs/NHL14XBX/26572/match-results">Last Game</a></h3>
-              <div class="spinner-container">
-  <span class="recent-matches-spinner hidden">
-
-  <img src="http://cdn.www.easportsworld.com/static/20130906.190605/images/prod/clubs/sw/common/spinner.gif" alt="Spinner" /></span></div>
-            </div>
-            <div class="bg-sprite widget-header-right"></div>
-          </div>
-          <div class="widget-panel-body">        
-            <div class="widget-panel-content no-padding recent-matches-content"></div>
-          </div>
-        </div>
-        
-        <div class="widget-panel half-height">
-          <div class="widget-panel-head">
-            <div class="bg-sprite widget-header-left"></div>
-            <div class="bg-sprite widget-header-middle">
-              <h3>Club Settings</h3>
-            </div>
-            <div class="bg-sprite widget-header-right"></div>
-          </div>
-          <div class="widget-panel-body">        
-            <div class="widget-panel-content">
-              <table class="plain no-margin less-padding">
+        <div class="widget-panel-content">
+                  <div class="scrolling">
+                      <table class="styled full-width">
+              <thead>
                 <tr>
-                  <td width="50%">Language:</td>
-                  <td class="black">English</td>
-                </tr>
-                <tr>
-                  <td width="50%">Join Requests:</td>
-                  <td class="black">Yes</td>
-                </tr>
-                <tr>
-                  <td width="50%">Public:</td>
-                  <td class="black">No</td>
-                </tr>              
-              </table>
-            </div>
-          </div>                     			
-        </div>
-          <div class="widget-panel half-height">
-          <div class="widget-panel-head">
-            <div class="bg-sprite widget-header-left"></div>
-            <div class="bg-sprite widget-header-middle">
-              <h3><a class="secondary" href="/en_US/clubs/NHL14XBX/26572/members">Club Contacts</a></h3>
-            </div>
-            <div class="bg-sprite widget-header-right"></div>
-          </div>
-          <div class="widget-panel-body">   
-            <div class="widget-panel-content">          
-                            <table class="plain no-margin full-width overview-table strong small">
-                                    <tr>
-                    <td width="70%"><a title="View XombieNutz's profile" href="http://www.easports.com/player-hub/360/XombieNutz">XombieNutz</a></td>
-                    <td class="info-column black">Owner</td>
-                  </tr>
+                                                    <th title="Leaderboard Ranking" class="nowrap">Rank</th>
+                                                    <th title="Club Name" class="nowrap">Club Name</th>
+                                                    <th title="Points" class="nowrap">PTS</th>
+                                                    <th title="Games Played" class="nowrap">GP</th>
+                                                    <th title="Wins" class="nowrap">W</th>
+                                                    <th title="Losses" class="nowrap">L</th>
+                                                    <th title="Overtime Losses" class="nowrap">OTL</th>
+                                                    <th title="Total Goals For" class="nowrap">GF</th>
+                                                    <th title="Total Goals Against" class="nowrap">GA</th>
+                                                    <th title="Average Goals For" class="nowrap">AGF</th>
+                                                    <th title="Average Goals Against" class="nowrap">AGA</th>
+                                                    <th title="Average Time On Attack" class="nowrap">ATOA</th>
+                                                    <th title="Total Number of Hits" class="nowrap">Hits</th>
+                                                    <th title="Penalty Minutes" class="nowrap">PIM</th>
+                                                    <th title="Power Play Goals" class="nowrap">PPG</th>
+                                                    <th title="Power Play Opportunities" class="nowrap">PPO</th>
+                                                    <th title="Power Play Percentage" class="nowrap">PP%</th>
+                                                    <th title="Short Handed Goals" class="nowrap">SHG</th>
+                                                    <th title="Short Handed Goals Against" class="nowrap">SHGA</th>
+                                                    <th title="Power Play Goals Against" class="nowrap">PPGA</th>
+                                                    <th title="Times Shorthanded" class="nowrap">TSH</th>
+                                                    <th title="Penalty Kill Percentage" class="nowrap">PK%</th>
+                                                    <th title="Faceoffs Won" class="nowrap">FOW</th>
+                                                    <th title="Faceoffs Lost" class="nowrap">FOL</th>
+                                                    <th title="Faceoff Percentage" class="nowrap">FO%</th>
+                                                    <th title="One-Timer Goals" class="nowrap">OTG</th>
+                                                    <th title="One-Timer Percentage" class="nowrap">OT%</th>
+                                                    <th title="Penalty Shot Goals" class="nowrap">PSG</th>
+                                                    <th title="Penalty Shot Attempts" class="nowrap">PSA</th>
+                                                    <th title="Blocked Shots" class="nowrap">BS</th>
+                                                    <th title="Shutouts" class="nowrap">SO</th>
+                                </tr>
+              </thead>
+              <tbody>
+                                                  <tr>
                                                   
-                </table>
-             
-            </div>            
-          </div>
-        </div>            
-  		</div>
-  	</div>
-  </div>
-  
-</div>
-
-<!-- end container and add footer -->
-</div>
-<div class="ft"> </div>
-
-<br />
-<div class="main-club-body">
-<div class="stats-widget-container">
-  <div class="widget-panel">
-    <div class="widget-panel-head">
-      <div class="bg-sprite widget-header-left"></div>
-      <div class="bg-sprite widget-header-middle">
-        <h3>Seasonal Leaderboard</h3>
+                    <td title="Leaderboard Ranking" class="nowrap">3175</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/57333/overview">GROWN MEN NEKAD</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1049</td>
+                                                  
+                    <td title="Games Played" class="nowrap">9</td>
+                                                  
+                    <td title="Wins" class="nowrap">8</td>
+                                                  
+                    <td title="Losses" class="nowrap">1</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">0</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">22</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">17</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.44</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.89</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">07:58</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">199</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">42</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">6</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">24</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">25.0</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">1</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">4</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">4</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">11</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">63.6</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">91</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">110</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">45.3</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">2</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">4.8</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">0</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">34</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">2</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3176</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/33131/overview">FACKERS</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1049</td>
+                                                  
+                    <td title="Games Played" class="nowrap">30</td>
+                                                  
+                    <td title="Wins" class="nowrap">13</td>
+                                                  
+                    <td title="Losses" class="nowrap">14</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">3</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">41</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">59</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">1.37</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.97</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">04:00</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">674</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">472</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">11</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">50</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">22.0</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">3</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">3</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">16</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">74</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">78.4</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">316</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">349</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">47.5</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">1</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">1.4</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">1</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">114</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">6</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3177</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/17655/overview">Old Boys Zueri</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1049</td>
+                                                  
+                    <td title="Games Played" class="nowrap">23</td>
+                                                  
+                    <td title="Wins" class="nowrap">11</td>
+                                                  
+                    <td title="Losses" class="nowrap">10</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">2</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">51</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">49</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.22</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.13</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">03:54</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">446</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">158</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">7</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">36</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">19.4</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">7</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">2</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">10</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">39</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">74.4</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">232</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">272</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">46.0</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">6</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">10.5</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">0</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">83</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">3</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3178</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/10986/overview">Tbags and ToeDrags</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1049</td>
+                                                  
+                    <td title="Games Played" class="nowrap">10</td>
+                                                  
+                    <td title="Wins" class="nowrap">8</td>
+                                                  
+                    <td title="Losses" class="nowrap">2</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">0</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">24</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">19</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.40</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.90</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">08:14</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">177</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">122</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">1</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">16</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">6.2</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">2</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">0</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">6</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">21</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">71.4</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">119</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">117</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">50.4</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">4</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">8.9</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">1</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">42</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">1</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3179</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/9980/overview">Lumpy Banana Pudding</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1049</td>
+                                                  
+                    <td title="Games Played" class="nowrap">19</td>
+                                                  
+                    <td title="Wins" class="nowrap">9</td>
+                                                  
+                    <td title="Losses" class="nowrap">8</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">2</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">57</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">53</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">3.00</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.79</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">06:03</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">342</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">169</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">12</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">36</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">33.3</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">4</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">2</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">12</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">35</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">65.7</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">230</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">239</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">49.0</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">7</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">10.1</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">0</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">60</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">2</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3180</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/19361/overview">Georgetown Bullets</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1049</td>
+                                                  
+                    <td title="Games Played" class="nowrap">18</td>
+                                                  
+                    <td title="Wins" class="nowrap">9</td>
+                                                  
+                    <td title="Losses" class="nowrap">8</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">1</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">33</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">35</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">1.83</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.94</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">06:43</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">355</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">134</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">8</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">30</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">26.7</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">2</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">1</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">7</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">38</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">81.6</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">168</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">229</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">42.3</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">2</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">3.4</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">0</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">74</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">3</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3181</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/2790/overview">Boston Eagles</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1049</td>
+                                                  
+                    <td title="Games Played" class="nowrap">8</td>
+                                                  
+                    <td title="Wins" class="nowrap">6</td>
+                                                  
+                    <td title="Losses" class="nowrap">2</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">0</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">28</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">17</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">3.50</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.12</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">06:48</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">149</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">88</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">9</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">25</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">36.0</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">1</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">0</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">3</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">21</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">85.7</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">139</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">72</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">65.9</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">2</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">6.9</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">1</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">2</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">30</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">2</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3182</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/50190/overview">DOGGIES</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1048</td>
+                                                  
+                    <td title="Games Played" class="nowrap">41</td>
+                                                  
+                    <td title="Wins" class="nowrap">16</td>
+                                                  
+                    <td title="Losses" class="nowrap">18</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">7</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">54</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">76</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">1.32</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.85</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">05:21</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">917</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">639</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">13</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">96</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">13.5</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">4</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">9</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">21</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">106</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">80.2</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">545</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">452</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">54.7</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">3</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">2.8</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">0</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">128</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">7</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3183</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/18369/overview">Korson Dynamo</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1048</td>
+                                                  
+                    <td title="Games Played" class="nowrap">25</td>
+                                                  
+                    <td title="Wins" class="nowrap">12</td>
+                                                  
+                    <td title="Losses" class="nowrap">10</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">3</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">48</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">66</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">1.92</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.64</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">04:49</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">929</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">647</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">9</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">43</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">20.9</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">3</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">1</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">25</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">115</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">78.3</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">307</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">357</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">46.2</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">7</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">5.9</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">0</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">98</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">2</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3184</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/56400/overview">l Secret x Glory l QC l</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1048</td>
+                                                  
+                    <td title="Games Played" class="nowrap">15</td>
+                                                  
+                    <td title="Wins" class="nowrap">9</td>
+                                                  
+                    <td title="Losses" class="nowrap">4</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">2</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">50</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">35</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">3.33</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.33</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">06:30</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">295</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">233</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">13</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">35</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">37.1</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">8</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">0</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">13</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">45</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">71.1</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">159</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">205</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">43.7</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">10</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">12.7</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">0</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">40</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">4</td>
+                    
+                  </tr>          
+                                                  <tr class="own-club strong" style="background-color: #eefbff;">
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3185</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/20996/overview">ice dogs</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1048</td>
+                                                  
+                    <td title="Games Played" class="nowrap">19</td>
+                                                  
+                    <td title="Wins" class="nowrap">11</td>
+                                                  
+                    <td title="Losses" class="nowrap">7</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">1</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">39</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">37</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.05</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.95</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">05:39</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">249</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">117</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">6</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">40</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">15.0</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">2</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">2</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">5</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">29</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">82.8</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">168</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">210</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">44.4</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">4</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">5.0</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">1</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">1</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">56</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">6</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3186</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/50750/overview">Supermiehet</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1048</td>
+                                                  
+                    <td title="Games Played" class="nowrap">14</td>
+                                                  
+                    <td title="Wins" class="nowrap">9</td>
+                                                  
+                    <td title="Losses" class="nowrap">4</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">1</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">40</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">28</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.86</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.00</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">05:35</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">224</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">108</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">5</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">23</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">21.7</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">4</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">3</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">6</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">26</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">76.9</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">155</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">155</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">50.0</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">1</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">2.0</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">0</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">43</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">3</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3187</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/12434/overview">PK Turtles</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1048</td>
+                                                  
+                    <td title="Games Played" class="nowrap">13</td>
+                                                  
+                    <td title="Wins" class="nowrap">9</td>
+                                                  
+                    <td title="Losses" class="nowrap">4</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">0</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">26</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">18</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.00</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.38</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">05:14</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">187</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">136</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">10</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">27</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">37.0</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">1</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">0</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">5</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">21</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">76.2</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">147</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">105</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">58.3</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">3</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">5.3</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">0</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">33</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">6</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3188</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/2972/overview">IGOTTAPEE</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1048</td>
+                                                  
+                    <td title="Games Played" class="nowrap">18</td>
+                                                  
+                    <td title="Wins" class="nowrap">10</td>
+                                                  
+                    <td title="Losses" class="nowrap">7</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">1</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">29</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">25</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">1.61</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.39</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">04:54</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">386</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">182</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">8</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">26</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">30.8</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">3</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">1</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">11</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">42</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">73.8</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">268</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">159</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">62.8</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">2</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">4.9</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">0</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">51</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">7</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3189</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/3325/overview">TheBenchwarmers</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1048</td>
+                                                  
+                    <td title="Games Played" class="nowrap">8</td>
+                                                  
+                    <td title="Wins" class="nowrap">7</td>
+                                                  
+                    <td title="Losses" class="nowrap">1</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">0</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">23</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">15</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.88</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.88</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">06:22</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">90</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">72</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">7</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">28</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">25.0</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">1</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">2</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">1</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">9</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">88.9</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">119</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">74</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">61.7</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">2</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">6.9</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">0</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">16</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">0</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3190</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/25552/overview">CT SMASHERS</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1048</td>
+                                                  
+                    <td title="Games Played" class="nowrap">14</td>
+                                                  
+                    <td title="Wins" class="nowrap">8</td>
+                                                  
+                    <td title="Losses" class="nowrap">6</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">0</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">36</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">32</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.57</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.29</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">06:02</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">177</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">156</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">8</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">26</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">30.8</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">4</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">0</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">5</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">31</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">83.9</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">212</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">166</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">56.1</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">1</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">2.1</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">1</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">44</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">2</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3191</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/5169/overview">les  Whalers de Magog</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1048</td>
+                                                  
+                    <td title="Games Played" class="nowrap">16</td>
+                                                  
+                    <td title="Wins" class="nowrap">8</td>
+                                                  
+                    <td title="Losses" class="nowrap">8</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">0</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">49</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">40</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">3.06</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.50</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">07:04</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">280</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">121</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">12</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">42</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">28.6</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">3</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">1</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">8</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">29</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">72.4</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">157</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">175</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">47.3</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">5</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">6.2</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">0</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">37</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">1</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3192</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/44108/overview">l Own The Moment l</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1047</td>
+                                                  
+                    <td title="Games Played" class="nowrap">13</td>
+                                                  
+                    <td title="Wins" class="nowrap">9</td>
+                                                  
+                    <td title="Losses" class="nowrap">3</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">1</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">55</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">35</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">4.23</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">2.69</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">06:02</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">130</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">126</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">5</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">15</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">33.3</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">1</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">0</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">8</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">18</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">55.6</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">121</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">111</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">52.2</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">7</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">14.0</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">1</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">3</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">36</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">3</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3193</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/30263/overview">Club Name</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1047</td>
+                                                  
+                    <td title="Games Played" class="nowrap">15</td>
+                                                  
+                    <td title="Wins" class="nowrap">9</td>
+                                                  
+                    <td title="Losses" class="nowrap">5</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">1</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">31</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">25</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.07</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.67</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">06:44</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">181</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">77</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">5</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">22</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">22.7</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">1</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">4</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">16</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">75.0</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">162</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">103</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">61.1</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">0</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">0.0</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">0</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">39</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">4</td>
+                    
+                  </tr>          
+                                                  <tr>
+                                                  
+                    <td title="Leaderboard Ranking" class="nowrap">3194</td>
+                                                  
+                    <td title="Club Name" class="nowrap"><a href="/en_US/clubs/NHL14XBX/11483/overview">Sauce My Fer Burger</a></td>
+                                                  
+                    <td title="Points" class="nowrap">1047</td>
+                                                  
+                    <td title="Games Played" class="nowrap">14</td>
+                                                  
+                    <td title="Wins" class="nowrap">9</td>
+                                                  
+                    <td title="Losses" class="nowrap">5</td>
+                                                  
+                    <td title="Overtime Losses" class="nowrap">0</td>
+                                                  
+                    <td title="Total Goals For" class="nowrap">34</td>
+                                                  
+                    <td title="Total Goals Against" class="nowrap">26</td>
+                                                  
+                    <td title="Average Goals For" class="nowrap">2.43</td>
+                                                  
+                    <td title="Average Goals Against" class="nowrap">1.86</td>
+                                                  
+                    <td title="Average Time On Attack" class="nowrap">05:37</td>
+                                                  
+                    <td title="Total Number of Hits" class="nowrap">244</td>
+                                                  
+                    <td title="Penalty Minutes" class="nowrap">169</td>
+                                                  
+                    <td title="Power Play Goals" class="nowrap">4</td>
+                                                  
+                    <td title="Power Play Opportunities" class="nowrap">16</td>
+                                                  
+                    <td title="Power Play Percentage" class="nowrap">25.0</td>
+                                                  
+                    <td title="Short Handed Goals" class="nowrap">1</td>
+                                                  
+                    <td title="Short Handed Goals Against" class="nowrap">1</td>
+                                                  
+                    <td title="Power Play Goals Against" class="nowrap">5</td>
+                                                  
+                    <td title="Times Shorthanded" class="nowrap">26</td>
+                                                  
+                    <td title="Penalty Kill Percentage" class="nowrap">80.8</td>
+                                                  
+                    <td title="Faceoffs Won" class="nowrap">133</td>
+                                                  
+                    <td title="Faceoffs Lost" class="nowrap">138</td>
+                                                  
+                    <td title="Faceoff Percentage" class="nowrap">49.1</td>
+                                                  
+                    <td title="One-Timer Goals" class="nowrap">2</td>
+                                                  
+                    <td title="One-Timer Percentage" class="nowrap">6.9</td>
+                                                  
+                    <td title="Penalty Shot Goals" class="nowrap">0</td>
+                                                  
+                    <td title="Penalty Shot Attempts" class="nowrap">0</td>
+                                                  
+                    <td title="Blocked Shots" class="nowrap">41</td>
+                                                  
+                    <td title="Shutouts" class="nowrap">3</td>
+                    
+                  </tr>          
+                              </tbody>
+            </table>   
+          </div>  
+                
+        </div>             
       </div>
-      <div class="bg-sprite widget-header-right"></div>
     </div>
-    <div class="widget-panel-body">
-      <div class="widget-panel-content stats-widget-platform-container">
-        <img src="http://cdn.www.easportsworld.com/static/20130906.190605/images/prod/clubs/xbox360.gif" alt="Xbox360" />                
-      </div>       
-      <div class="widget-panel-content">
-
-         
-      <div class="stats-widget-body">
-        <ol>
-                    <li><a href="/en_US/clubs/NHL14XBX/2926/overview">Notum</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/933/overview">x THE DREAM TEAM x</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/300/overview">Composure</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/3408/overview">The Bad Kids</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/1140/overview">Paper  D</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/549/overview">Reckless Abandon</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/67/overview">Kaukalon Sankarit</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/336/overview">Collateral Damage</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/494/overview">The Moose Knuckles</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/24176/overview">I The Vikings I</a></li>
-                  </ol>
-      </div>
-      <div class="stats-widget-action">  
-        <div class="float-right"><a class="club-button club-button-white plus-blue stats-popup-button" rel="seasonalLeaderboard" href="http://www.easportsworld.com/en_US/clubs/partial/NHL14XBX/seasonal-leaderboard"><span class="button-left"></span><span class="button-text">More</span><span class="club-sprite plus-blue club-button-extra"></span></a></div>
-      </div>
-              
-        
-      </div>
-    </div>    
-  </div>
-</div>
-<div class="stats-widget-container">
-  <div class="widget-panel">
-    <div class="widget-panel-head">
-      <div class="bg-sprite widget-header-left"></div>
-      <div class="bg-sprite widget-header-middle">
-        <h3>Club Leaderboard</h3>
-      </div>
-      <div class="bg-sprite widget-header-right"></div>
-    </div>
-    <div class="widget-panel-body">
-      <div class="widget-panel-content stats-widget-platform-container">
-        <img src="http://cdn.www.easportsworld.com/static/20130906.190605/images/prod/clubs/xbox360.gif" alt="Xbox360" />      </div>       
-      <div class="widget-panel-content">
-
-         
-      <div class="stats-widget-body">
-        <ol>
-                    <li><a href="/en_US/clubs/NHL14XBX/2926/overview">Notum</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/933/overview">x THE DREAM TEAM x</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/300/overview">Composure</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/3408/overview">The Bad Kids</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/1140/overview">Paper  D</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/549/overview">Reckless Abandon</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/67/overview">Kaukalon Sankarit</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/336/overview">Collateral Damage</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/494/overview">The Moose Knuckles</a></li>
-                    <li><a href="/en_US/clubs/NHL14XBX/24176/overview">I The Vikings I</a></li>
-                  </ol>
-      </div>
-      <div class="stats-widget-action">  
-        <div class="float-right"><a class="club-button club-button-white plus-blue stats-popup-button" rel="overallClubLeaderboard" href="http://www.easportsworld.com/en_US/clubs/partial/NHL14XBX/overall-club-leaderboard"><span class="button-left"></span><span class="button-text">More</span><span class="club-sprite plus-blue club-button-extra"></span></a></div>
-      </div>
-              
-        
-      </div>
-    </div>    
-  </div>
+      
 </div>
 
-<div class="stats-widget-container tall">
-  <div class="widget-panel">
-    <div class="widget-panel-head">
-      <div class="bg-sprite widget-header-left"></div>
-      <div class="bg-sprite widget-header-middle">
-        <h3>Club Videos</h3>
-      </div>
-      <div class="bg-sprite widget-header-right"></div>
-    </div>
-    <div class="widget-panel-body">
-      <div class="widget-panel-content">
-
-              <div class="stats-widget-no-data">
-          <div class="inner-box">
-            There are currently no member videos to display          </div>
-        </div>
-              
-        
-      </div>
-    </div>    
-  </div>
-</div></div>
-            </div>
+<!-- each page will end with this -->
+</div><div class="ft">&nbsp;</div> </div>            </div>
         </div>
       </div>
         
       <div class='eas-fix'>
-              <link rel="stylesheet" type="text/css" media="screen" href="http://www.easports.com/assets/20130910.104452/plugin/navNavigationPlugin/widget/navEASFooter2.css" />
+              <link rel="stylesheet" type="text/css" media="screen" href="http://www.easports.com/assets/20131003.110915/plugin/navNavigationPlugin/widget/navEASFooter2.css" />
     
   <!-- style tag for css overrides needed to fix up the formatting -->
   <style>
@@ -1107,7 +2147,7 @@ var s_imageDisableFlag=0;
 </script>
 <script type="text/javascript" src="http://resources.ea.com/omniture/s_code_remote_v02.js"></script>
 <script language="javascript">
-s_ea.pageName="NA:US:SPORTS:EAC:MKT:NONE:EASW:NONE:CLUBS:VIEWOVERVIEWNONMEMBER";
+s_ea.pageName="NA:US:SPORTS:EAC:MKT:NONE:EASW:NONE:CLUBS:VIEWSTANDINGS";
 s_ea.channel="NONE";
 s_ea.prop1=s_ea.setUserState("No ID");
 s_ea.prop2="NONE";
@@ -1117,7 +2157,7 @@ s_ea.prop5="EASW";
 s_ea.prop6="";
 s_ea.prop7="EAC";
 s_ea.prop9="MKT";
-s_ea.prop10="CLUBS:VIEWOVERVIEWNONMEMBER";
+s_ea.prop10="CLUBS:VIEWSTANDINGS";
 s_ea.prop11="NA";
 s_ea.prop12="en_US";
 s_ea.prop15="CLUBS";
@@ -1140,4 +2180,5 @@ var s_code=s_ea.t();if(s_code)document.write(s_code);
 
 </body>
 </html>
+
 '''

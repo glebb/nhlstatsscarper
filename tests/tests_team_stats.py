@@ -15,7 +15,7 @@ from peewee import SqliteDatabase
 from eanhlstats.model import *
 
 data = eanhlstats.html.team.parse_team_overview_data(fixtures_teamps3.murohoki_standings)
-data2 = eanhlstats.html.team.parse_team_overview_data(fixtures_teamxbox.xbx_overview)
+data2 = eanhlstats.html.team.parse_team_overview_data(fixtures_teamxbox.xbx_standings)
 
 test_db = SqliteDatabase(':memory:')
 
@@ -46,19 +46,19 @@ class ParseTeamOverviewSpec(unittest.TestCase):
     def it_should_find_xbox_team_name(self):
         team = data2['team_name']
         print data2
-        self.assertEqual("ICE BANDITS", team)
+        self.assertEqual("ice dogs", team)
 
     def it_should_find_xbox_club_record(self):
         record = data2['club_record']
-        self.assertEqual("2-1-0", record)
+        self.assertEqual("11-7-1", record)
 
     def it_should_find_xbox_club_region(self):
         region = data2['region']
-        self.assertEqual("North America East", region)
+        self.assertEqual("Europe", region)
 
     def it_should_find_xbox_overall_ranking(self):
         ranking = data2['ranking']
-        self.assertEqual("11149", ranking)
+        self.assertEqual("5354", ranking)
             
 
 class GetTeamUrlSpec(unittest.TestCase):
@@ -67,7 +67,7 @@ class GetTeamUrlSpec(unittest.TestCase):
         
     def it_should_find_url_with_good_html(self):
         data = eanhlstats.html.team.get_teams_from_search_page(fixtures_teamps3.murohoki_search)
-        self.assertEqual(data[0]['url'], "http://www.easportsworld.com/en_US/clubs/NHL14PS3/26/overview")
+        self.assertEqual(data[0]['url'], "http://www.easportsworld.com/en_US/clubs/NHL14PS3/26/standings")
 
     def it_should_find_team_name(self):
         data = eanhlstats.html.team.get_teams_from_search_page(fixtures_teamps3.murohoki_search)
@@ -83,7 +83,7 @@ class GetTeamUrlSpec(unittest.TestCase):
         
     def it_should_find_third_url_from_list_of_many_urls(self):
         data = eanhlstats.html.team.get_teams_from_search_page(fixtures_teamps3.many_search_results)
-        self.assertEqual(data[2]['url'], "http://www.easportsworld.com/en_US/clubs/NHL14PS3/1272/overview")
+        self.assertEqual(data[2]['url'], "http://www.easportsworld.com/en_US/clubs/NHL14PS3/1272/standings")
 
     def it_should_find_team_name_from_list_of_many_urls(self):
         data = eanhlstats.html.team.get_teams_from_search_page(fixtures_teamps3.many_search_results)
@@ -167,12 +167,6 @@ class FindTeamsSpec(unittest.TestCase):
             eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)
             results = eanhlstats.html.team.find_teams("ice")
             self.assertEqual(10, len(results))
-
-    def it_should_save_teams_to_db_when_finding_teams_by_abbreviation(self):
-        eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)
-        with test_database(test_db, (Team, Player)):
-            teams = eanhlstats.html.team.find_teams("ice")
-            self.assertEquals(10, Team.select().count())
 
     def it_should_note_save_teams_to_db_twice(self):
         eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)

@@ -60,7 +60,7 @@ def get_teams_from_search_page(html):
         links = containing_table.tbody.findAll('h4')
         for link in links:
             item = {}
-            item['url'] = postfix = prefix + link.a['href']
+            item['url'] = postfix = prefix + link.a['href'].replace('overview', 'standings')
             item['name'] = link.a.string
             items.append(item)
     except (AttributeError, IndexError):
@@ -71,7 +71,7 @@ def get_teams_from_search_page(html):
 def get_team_overview_html(team_name):
     '''Return team overview html from ea server. Stores team data to db, 
     if not already found from there'''
-    TEAM_URL_POSTFIX = "/overview"
+    TEAM_URL_POSTFIX = "/standings"
     
     content = None
     team = get_team_from_db(team_name)

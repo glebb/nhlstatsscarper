@@ -176,5 +176,5 @@ class FindTeamsSpec(unittest.TestCase):
             self.assertEquals(10, Team.select().count())
     
 class TeamStandingsSpec(unittest.TestCase):
-    def it_should_find_team(self):
-        pass
+    def it_should_find_team_games_played(self):
+        self.assertEqual("71", data['games_played'])

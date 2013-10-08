@@ -73,7 +73,7 @@ def command_top(bot, user, channel, args):
 #    else:
 #        bot.say(channel, 'Team not found: ' + str(args))
     
-def command_find2(bot, user, channel, args):
+def command_find(bot, user, channel, args):
     if args.strip() != "":
         teams = find_teams_by_abbreviation(args, 10)
         if teams:

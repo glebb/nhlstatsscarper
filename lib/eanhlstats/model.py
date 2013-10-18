@@ -27,6 +27,7 @@ class Player(Model):
     hits = IntegerField()
     blocked_shots = IntegerField()
     shots = IntegerField()
+    shooting_percentage = CharField()
     team_eaid = CharField()
     platform = CharField()
     modified = DateTimeField()

@@ -32,6 +32,8 @@ class PlayerStatsSpec(unittest.TestCase):
         self.assertEqual("62", self.player.hits)
         self.assertEqual("3", self.player.blocked_shots)
         self.assertEqual("74", self.player.shots)
+        self.assertEqual("12.2", self.player.shooting_percentage)
+        
                 
     def it_should_handle_bad_html(self):
         players = parse_player_data(self.team, "<html></html>")

@@ -4,8 +4,14 @@ from BeautifulSoup import BeautifulSoup
 from eanhlstats.model import Team, get_team_from_db
 import eanhlstats.settings
 from eanhlstats.html.common import get_content, PARTIAL_URL_PREFIX
+import datetime
+import time
+import pytz
+from dateutil import parser
 
 TEAM_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/NHL14"
+EET = pytz.timezone('Europe/Helsinki')
+TARGET_TZ =  pytz.timezone('US/Pacific')
 
 
 def create_search_url(team_name, use_abbreviation=False):
@@ -126,11 +132,14 @@ def save_teams_to_db(teams):
         temp.append(team)
     return temp
 
-def get_results_url(eaid):
-    temp = PARTIAL_URL_PREFIX + eanhlstats.settings.SYSTEM + '/' + eaid + '/' + 'match-results?type=all'
+def get_results_url(eaid, date):
+    d = _change_timezone(date)
+    temp = PARTIAL_URL_PREFIX + eanhlstats.settings.SYSTEM + '/' + eaid + '/' + \
+        'match-results?type=all' + '&timestamp=' + str(int(time.mktime(d.timetuple())))
     return temp
     
-def parse_results_data(html):
+def parse_results_data(html, date):
+    d = _change_timezone(date)
     data = []
     soup = BeautifulSoup(html)
     try:
@@ -142,10 +151,20 @@ def parse_results_data(html):
         try:
             result = row.findAll('td')[2].div.string.replace(' ','')
             team = row.findAll('td')[4].div.a.string
-            data.append(_won_or_lost(result) + ' ' + result + ' against ' +team)
-        except AttributeError:
+            temp_time = row.find('div', attrs={'class' : 'strong small'}).text.replace('Time: ', '')
+            temp_time = parser.parse(str(d.date()) + ' ' + temp_time)
+            temp_time = TARGET_TZ.localize(temp_time)    
+            temp_time = temp_time.astimezone(EET)
+            temp_time = temp_time.strftime("%d.%m. %H:%M")
+            data.append(temp_time + ' ' + _won_or_lost(result) + ' ' + result + ' against ' + team)
+        except AttributeError, e:
             pass
     return data
+    
+def _change_timezone(d):
+    d = EET.localize(d)
+    d = d.astimezone(TARGET_TZ)
+    return datetime.datetime.combine(d, datetime.time())
     
 def _won_or_lost(result):
     home, away = result.split('-')

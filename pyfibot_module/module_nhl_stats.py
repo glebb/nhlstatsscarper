@@ -60,18 +60,17 @@ def command_top(bot, user, channel, args):
         else:
             bot.say(channel, 'Team not found: ' + str(args))
 
-#def command_results(bot, user, channel, args):
-#    if args.strip() != "":
-
-#    team = get_team(args)
-#    if team:
-#        results = last_games(team, 3)
-#        if not results:
-#            bot.say(channel, 'No results found for team: ' + str(team.name))
-#            return
-#        bot.say(channel, str(results))
-#    else:
-#        bot.say(channel, 'Team not found: ' + str(args))
+def command_results(bot, user, channel, args):
+   if args.strip() != "":
+       team = get_team(args)
+       if team:
+           results = last_games(team, 3)
+           if not results:
+               bot.say(channel, 'No results found for team: ' + str(team.name))
+               return
+           bot.say(channel, str(results))
+       else:
+           bot.say(channel, 'Team not found: ' + str(args))
     
 def command_find(bot, user, channel, args):
     if args.strip() != "":

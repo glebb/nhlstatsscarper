@@ -2,6 +2,7 @@
 import sys, os
 sys.path.insert(0, os.path.realpath('../lib'))
 
+import datetime
 import unittest
 from mock import MagicMock
 from playhouse.test_utils import test_database
@@ -134,24 +135,35 @@ class GetTeamOverviewHtmlSpec(unittest.TestCase):
 class GetResultsSpec(unittest.TestCase):
     def it_should_form_correct_url_for_results(self):
         eanhlstats.settings.SYSTEM = "PS3"
-        url = eanhlstats.html.team.get_results_url("26")
-        self.assertEquals('http://www.easportsworld.com/en_US/clubs/partial/NHL14PS3/26/match-results?type=all', url)
+        d = datetime.datetime(2013,10,10, 22, 0)
+        url = eanhlstats.html.team.get_results_url("26", d)
+        self.assertEquals('http://www.easportsworld.com/en_US/clubs/partial/NHL14PS3/26/match-results?type=all&timestamp=1381352400', url)
 
     def it_should_form_correct_url_for_results_for_XBX(self):
         eanhlstats.settings.SYSTEM = "XBX"
-        url = eanhlstats.html.team.get_results_url("26")
-        self.assertEquals('http://www.easportsworld.com/en_US/clubs/partial/NHL14XBX/26/match-results?type=all', url)
-        
+        d = datetime.datetime(2013,10,10, 22, 0)
+        url = eanhlstats.html.team.get_results_url("26", d)
+        self.assertEquals('http://www.easportsworld.com/en_US/clubs/partial/NHL14XBX/26/match-results?type=all&timestamp=1381352400', url)
+
+    def it_should_form_correct_url_for_results_when_time_difference_changes_date(self):
+        eanhlstats.settings.SYSTEM = "XBX"
+        d = datetime.datetime(2013,10,10, 02, 0)
+        url = eanhlstats.html.team.get_results_url("26", d)
+        self.assertEquals('http://www.easportsworld.com/en_US/clubs/partial/NHL14XBX/26/match-results?type=all&timestamp=1381266000', url)
+     
     def it_should_parse_first_match(self):
-        data = eanhlstats.html.team.parse_results_data(fixtures_results.murohoki_results)
-        self.assertEquals("Lost 0-3 against Deadly Phantoms HC", data[0])
+        d = datetime.datetime(2013,10,10, 22, 0)
+        data = eanhlstats.html.team.parse_results_data(fixtures_results.murohoki_results, d)
+        self.assertEquals("10.10. 21:29 Lost 0-3 against Deadly Phantoms HC", data[0])
 
     def it_should_parse_third_match(self):
-        data = eanhlstats.html.team.parse_results_data(fixtures_results.murohoki_results)
-        self.assertEquals("Won 4-0 against Kiitos EA", data[2])
+        d = datetime.datetime(2013,10,10, 22, 0)
+        data = eanhlstats.html.team.parse_results_data(fixtures_results.murohoki_results, d)
+        self.assertEquals("10.10. 20:20 Won 4-0 against Kiitos EA", data[2])
 
     def it_should_handle_bad_html(self):
-        data = eanhlstats.html.team.parse_results_data("")
+        d = datetime.datetime(2013,10,10, 22, 0)
+        data = eanhlstats.html.team.parse_results_data("", d)
         self.assertEquals(0, len(data))
     
 class FindTeamsSpec(unittest.TestCase):

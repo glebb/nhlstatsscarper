@@ -92,9 +92,10 @@ def stats_of_team(teamdata):
 def last_games(team, amount):
     '''Pretty print results of last games for team'''
     temp = ""
-    url = get_results_url(team.eaid)
+    today = datetime.today()
+    url = get_results_url(team.eaid, today)
     html = get_content(url)
-    results = parse_results_data(html)
+    results = parse_results_data(html, today)
     for result in results[0:amount]:
         temp += result + ' | '
     return temp.strip()[:-1].strip()

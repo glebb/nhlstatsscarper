@@ -39,7 +39,7 @@ class InterfaceSpec(unittest.TestCase):
                 player.save()
         
             player = eanhlstats.interface.get_player("qolazor", self.team)
-            self.assertEquals("qolazor G:9 A:13 +/-:-23 PIM:72 Hits:62 BS:3 S:74", 
+            self.assertEquals("qolazor G:9 A:13 +/-:-23 PIM:72 Hits:62 BS:3 S:74 S%:12.2", 
                 eanhlstats.interface.stats_of_player(player))
 
     def it_should_return_None_for_unknonwn_team_name(self):

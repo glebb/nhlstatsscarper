@@ -26,11 +26,12 @@ def stats_of_player(player):
     stats = ""
     if player:
         stats = \
-            "%s G:%s A:%s +/-:%s PIM:%s Hits:%s BS:%s S:%s" \
+            "%s G:%s A:%s +/-:%s PIM:%s Hits:%s BS:%s S:%s S%%:%s" \
             % (player.name, \
             player.goals, \
             player.assists, player.plusminus, player.penalties, \
-            player.hits, player.blocked_shots, player.shots)
+            player.hits, player.blocked_shots, player.shots, \
+            player.shooting_percentage)
     return stats
      
 def get_players(team):

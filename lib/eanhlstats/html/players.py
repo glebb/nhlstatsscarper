@@ -51,6 +51,7 @@ def _create_player(tdcells, team):
         player.hits = str(tdcells[10].string)
         player.blocked_shots = str(tdcells[11].string)
         player.shots = str(tdcells[12].string)
+        player.shooting_percentage = str(tdcells[13].string)
         player.team_eaid = team.eaid
         player.platform = eanhlstats.settings.SYSTEM
         player.modified = datetime.now()

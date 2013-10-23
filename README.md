@@ -41,6 +41,8 @@
 ### Requirements ###
  *  Peewee
  *  BeautifulSoup
+ *  pytz
+ *  python-dateutil
  *  Specloud (dev)
  *  Mock (dev)
  *  coverage (dev)

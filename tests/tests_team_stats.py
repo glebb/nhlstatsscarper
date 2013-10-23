@@ -154,12 +154,18 @@ class GetResultsSpec(unittest.TestCase):
     def it_should_parse_first_match(self):
         d = datetime.datetime(2013,10,10, 22, 0)
         data = eanhlstats.html.team.parse_results_data(fixtures_results.murohoki_results, d)
-        self.assertEquals("10.10. 21:29 Lost 0-3 against Deadly Phantoms HC", data[0])
+        self.assertEquals("21:29 Lost 0-3 against Deadly Phantoms HC", data[0])
+
+    def it_should_parse_first_match_with_day_change(self):
+        d = datetime.datetime(2013,10,10, 02, 0)
+        data = eanhlstats.html.team.parse_results_data(fixtures_results.murohoki_results, d)
+        self.assertEquals("21:29 Lost 0-3 against Deadly Phantoms HC", data[0])
+
 
     def it_should_parse_third_match(self):
         d = datetime.datetime(2013,10,10, 22, 0)
         data = eanhlstats.html.team.parse_results_data(fixtures_results.murohoki_results, d)
-        self.assertEquals("10.10. 20:20 Won 4-0 against Kiitos EA", data[2])
+        self.assertEquals("20:20 Won 4-0 against Kiitos EA", data[2])
 
     def it_should_handle_bad_html(self):
         d = datetime.datetime(2013,10,10, 22, 0)

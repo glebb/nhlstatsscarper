@@ -155,7 +155,7 @@ def parse_results_data(html, date):
             temp_time = parser.parse(str(d.date()) + ' ' + temp_time)
             temp_time = TARGET_TZ.localize(temp_time)    
             temp_time = temp_time.astimezone(EET)
-            temp_time = temp_time.strftime("%d.%m. %H:%M")
+            temp_time = temp_time.strftime("%H:%M")
             data.append(temp_time + ' ' + _won_or_lost(result) + ' ' + result + ' against ' + team)
         except AttributeError, e:
             pass

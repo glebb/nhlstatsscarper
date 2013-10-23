@@ -66,7 +66,7 @@ def command_results(bot, user, channel, args):
        if team:
            results = last_games(team, 3)
            if not results:
-               bot.say(channel, 'No results found for team: ' + str(team.name))
+               bot.say(channel, 'No results found for team ' + str(team.name) + ' for today.')
                return
            bot.say(channel, str(results))
        else:

@@ -29,7 +29,7 @@ class InterfaceSpec(unittest.TestCase):
     def it_should_print_stats_for_team(self):
         eanhlstats.interface.get_team_overview_html = MagicMock(return_value=fixtures_teamps3.murohoki_standings)   
         data = eanhlstats.interface.get_team_stats(self.team)
-        self.assertEquals("murohoki Europe GP: 153 | 81-58-14 | AGF: 2.37 | AGA: 2.33 | OR: 284", eanhlstats.interface.stats_of_team(data))
+        self.assertEquals("murohoki Europe GP: 153 | 52.9% | 81-58-14 | AGF: 2.37 | AGA: 2.33 | OR: 284", eanhlstats.interface.stats_of_team(data))
 
     def it_should_show_player_stats(self):
         with test_database(test_db, (Team, Player)):

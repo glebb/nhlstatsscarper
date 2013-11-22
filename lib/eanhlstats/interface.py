@@ -78,10 +78,11 @@ def stats_of_team(teamdata):
     stats = ""
     if teamdata:
         stats = \
-            "%s %s GP: %s | %s-%s-%s | AGF: %s | AGA: %s | OR: %s" \
+            "%s %s GP: %s | %.1f%% | %s-%s-%s | AGF: %s | AGA: %s | OR: %s" \
             % (teamdata['team_name'], \
             teamdata['region'], \
             teamdata['games_played'], \
+            (float(teamdata['wins']) / float(teamdata['games_played'])) * 100, \
             teamdata['wins'], \
             teamdata['losses'], \
             teamdata['overtime_losses'], \

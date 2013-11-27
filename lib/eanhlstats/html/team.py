@@ -170,7 +170,6 @@ def parse_last_game(json_data, eaid):
                         players += data[game]['players'][teamid][player]['details']['personaName']
                         players += ' ' + data[game]['players'][teamid][player]['skgoals'] + '+'
                         players += data[game]['players'][teamid][player]['skassists'] + ', '
-                        print players
                     continue
                 team = data[game]['clubs'][teamid]['details']['name']
                 players = players.strip()[:-1] + ')'

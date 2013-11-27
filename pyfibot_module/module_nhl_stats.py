@@ -8,6 +8,43 @@ Team.create_table(True)
 Player.create_table(True)
 eanhlstats.settings.REGION = 3
 
+import logging
+from twisted.internet import reactor
+
+log = logging.getLogger("motionmachine")
+result = None
+trackchannel = None
+trackbot = None
+
+
+def init(bot):
+    """Called when the bot is loaded and on rehash"""
+    trackbot = None
+    trackchannel = None
+    result = None
+    pp_motion_machine(30)
+
+def pp_motion_machine(delay):
+    """
+    This will execute itself every <delay> seconds
+    """
+    global result
+    global trackchannel
+    global trackbot
+    
+    results = last_game("26")
+    if results and (results != result) and trackchannel and trackbot:
+        result = results
+        trackbot.say(trackchannel, str(result))
+        
+    reactor.callLater(delay, pp_motion_machine, delay)
+    
+def command_trackresults(bot, user, channel, args):
+    global trackbot
+    global trackchannel
+    trackbot = bot
+    trackchannel = channel
+
 def command_ts(bot, user, channel, args):
     if args.strip() != "":
         team = get_team(args)
@@ -64,7 +101,7 @@ def command_results(bot, user, channel, args):
    if args.strip() != "":
        team = get_team(args)
        if team:
-           results = last_games(team, 5)
+           results = last_games(5, team)
            if not results:
                bot.say(channel, 'No results found for team ' + str(team.name) + ' for today.')
                return

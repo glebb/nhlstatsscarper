@@ -1,9 +1,9 @@
 '''Common functions for html parsing'''
 # -*- coding: utf-8 -*-
 import urllib2
+import eanhlstats.settings
 
 PARTIAL_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/partial/NHL14"
-
 
 def get_content(url):
     '''Get html content of given url.
@@ -24,3 +24,7 @@ def get_content(url):
                 print "This usually means the server doesn't exist,",
                 print "is down, or we don't have an internet connection."
     return content
+    
+def get_api_url(eaid, action):
+    return "http://www.easports.com/iframe/nhl14proclubs/api/platforms/" + eanhlstats.settings.SYSTEM + '/clubs/' + eaid + '/' + action
+

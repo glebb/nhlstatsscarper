@@ -9,6 +9,7 @@ from playhouse.test_utils import test_database
 import fixtures_teamps3
 import fixtures_members
 import fixtures_results
+import fixtures_json
 import eanhlstats.html.players
 import eanhlstats.html.team
 import eanhlstats.interface
@@ -59,9 +60,14 @@ class InterfaceSpec(unittest.TestCase):
                 eanhlstats.interface.top_players(players, 3))
         
     def it_should_get_last_n_games_from_team(self):
-        eanhlstats.interface.get_content = MagicMock(return_value=fixtures_results.murohoki_results)
-        results = eanhlstats.interface.last_games(self.team, 3)
+        eanhlstats.interface.get_content = MagicMock(return_value=fixtures_json.results)
+        results = eanhlstats.interface.last_games(3, self.team)
         self.assertTrue(len(results) > 0)
+        
+    def it_should_get_last_game_from_team(self):
+        eanhlstats.interface.get_content = MagicMock(return_value=fixtures_json.results)
+        results = eanhlstats.interface.last_game(self.team.eaid)
+        self.assertEquals("Lost 4 - 5 against Mister Sisters", results)
 
     def it_should_find_teams_by_abbreviation(self):
         eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)

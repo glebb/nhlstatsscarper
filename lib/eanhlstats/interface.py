@@ -3,10 +3,10 @@ from eanhlstats.model import get_team_from_db, get_player_from_db, \
     get_players_from_db, Player
 from eanhlstats.html.team import get_team_overview_html, \
     save_new_team_to_db, parse_team_standings_data, get_results_url, \
-    parse_results_data, find_teams, TEAM_URL_PREFIX
+    parse_results_data, parse_last_game, find_teams, TEAM_URL_PREFIX
 
 from eanhlstats.html.players import refresh_player_data
-from eanhlstats.html.common import get_content
+from eanhlstats.html.common import get_content, get_api_url
 import eanhlstats.settings
 from datetime import datetime
 from peewee import DoesNotExist
@@ -91,16 +91,30 @@ def stats_of_team(teamdata):
             teamdata['ranking'])
     return stats
 
-def last_games(team, amount):
+def last_games(amount, team=None, eaid=None):
     '''Pretty print results of last games for team'''
     temp = ""
     today = datetime.today()
-    url = get_results_url(team.eaid, today)
+    if team:
+        teamid = team.eaid
+    elif eaid:
+        teamid = eaid
+    else:
+        return None
+    url = get_results_url(teamid)
     html = get_content(url)
-    results = parse_results_data(html, today)
+    results = parse_results_data(html, teamid)
     for result in results[0:amount]:
         temp += result + ' | '
     return temp.strip()[:-1].strip()
+
+def last_game(eaid):
+    '''Pretty print results of last games for team'''
+    temp = ""
+    url = get_api_url(eaid, 'matches?matches_returned=1')
+    json = get_content(url)
+    return parse_last_game(json, eaid)
+
 
 def find_teams_by_abbreviation(abbreviation, amount):
     '''Find teams by abbreviaton'''

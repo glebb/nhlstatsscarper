@@ -3,11 +3,12 @@
 from BeautifulSoup import BeautifulSoup
 from eanhlstats.model import Team, get_team_from_db
 import eanhlstats.settings
-from eanhlstats.html.common import get_content, PARTIAL_URL_PREFIX
+from eanhlstats.html.common import get_content, get_api_url
 import datetime
 import time
 import pytz
 from dateutil import parser
+import json
 
 TEAM_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/NHL14"
 EET = pytz.timezone('Europe/Helsinki')
@@ -132,39 +133,48 @@ def save_teams_to_db(teams):
         temp.append(team)
     return temp
 
-def get_results_url(eaid, date):
-    d = _change_timezone(date)
-    temp = PARTIAL_URL_PREFIX + eanhlstats.settings.SYSTEM + '/' + eaid + '/' + \
-        'match-results?type=all' + '&timestamp=' + str(int(time.mktime(d.timetuple())))
-    return temp
+def get_results_url(eaid):
+    return get_api_url(eaid, 'matches')
     
-def parse_results_data(html, date):
-    d = _change_timezone(date)
-    data = []
-    soup = BeautifulSoup(html)
-    try:
-        table = soup.find('table', {'class' : 'styled full-width'})
-        rows = table.findAll('tr', {'class' : 'black'})
-    except AttributeError:
-        return data
-    for row in rows:
-        try:
-            result = row.findAll('td')[2].div.string.replace(' ','')
-            team = row.findAll('td')[4].div.a.string
-            temp_time = row.find('div', attrs={'class' : 'strong small'}).text.replace('Time: ', '')
-            temp_time = parser.parse(str(d.date()) + ' ' + temp_time)
-            temp_time = TARGET_TZ.localize(temp_time)    
-            temp_time = temp_time.astimezone(EET)
-            temp_time = temp_time.strftime("%H:%M")
-            data.append(temp_time + ' ' + _won_or_lost(result) + ' ' + result + ' against ' + team)
-        except AttributeError, e:
-            pass
-    return data
-    
-def _change_timezone(d):
-    d = EET.localize(d)
-    d = d.astimezone(TARGET_TZ)
-    return datetime.datetime.combine(d, datetime.time())
+def parse_results_data(json_data, eaid):
+    data = json.loads(json_data)
+    temp = {}
+    if len(data) > 0:
+        data = data['raw']
+        for game in data.keys():
+            timestamp = data[game]['timestamp']
+            for teamid in data[game].values()[4].keys():
+                if teamid == eaid:
+                    result = data[game]['clubs'][teamid]['scorestring']
+                    continue
+                team = data[game]['clubs'][teamid]['details']['name']
+            temp[timestamp] = _won_or_lost(result) + ' ' + result + ' against ' + team + ' (' + data[game]['timeAgo'] + ')' 
+
+    results = []
+    for result in sorted(temp.keys()):
+        results.insert(0, temp[result])
+    return results
+
+def parse_last_game(json_data, eaid):
+    data = json.loads(json_data)
+    temp = {}
+    if len(data) > 0:
+        data = data['raw']
+        players = "("
+        
+        for game in data.keys():
+            for teamid in data[game]['clubs'].keys():
+                if teamid == eaid:
+                    result = data[game]['clubs'][teamid]['scorestring']
+                    for player in data[game]['players'][teamid].keys():
+                        players += data[game]['players'][teamid][player]['details']['personaName']
+                        players += ' ' + data[game]['players'][teamid][player]['skgoals'] + '+'
+                        players += data[game]['players'][teamid][player]['skassists'] + ', '
+                        print players
+                    continue
+                team = data[game]['clubs'][teamid]['details']['name']
+                players = players.strip()[:-1] + ')'
+                return _won_or_lost(result) + ' ' + result + ' against ' + team + ' ' + players
     
 def _won_or_lost(result):
     home, away = result.split('-')

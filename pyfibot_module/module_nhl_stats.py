@@ -22,7 +22,7 @@ def init(bot):
     trackbot = None
     trackchannel = None
     result = None
-    pp_motion_machine(30)
+    pp_motion_machine(60*5)
 
 def pp_motion_machine(delay):
     """

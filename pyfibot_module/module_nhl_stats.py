@@ -116,7 +116,8 @@ def command_find(bot, user, channel, args):
                 bot.say(channel, str(pretty_print_teams(teams, 10)))
                 return
             elif len(teams) == 1:
-                data = get_team_stats(teams[0])
+                data = find_team_with_stats(teams[0].name)
+                #data = get_team_stats(teams[0])
                 if not data:
                     bot.say(channel, 'Error in fetching data for: ' + str(teams[0].name))
                     return

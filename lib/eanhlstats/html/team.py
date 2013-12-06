@@ -156,20 +156,21 @@ def parse_last_game(json_data, eaid):
         data = data['raw']
         players = "("
         result = None
-        
+        team = None
         for game in data.keys():
             for teamid in data[game]['clubs'].keys():
                 if teamid == eaid:
                     result = data[game]['clubs'][teamid]['scorestring']
+                    print result
                     for player in data[game]['players'][teamid].keys():
                         players += data[game]['players'][teamid][player]['details']['personaName']
                         players += ' ' + data[game]['players'][teamid][player]['skgoals'] + '+'
                         players += data[game]['players'][teamid][player]['skassists'] + ', '
-                    continue
-                team = data[game]['clubs'][teamid]['details']['name']
-                players = players.strip()[:-1] + ')'
-                if result:
-                    return _won_or_lost(result) + ' ' + result + ' against ' + team + ' ' + players
+                else:
+                    team = data[game]['clubs'][teamid]['details']['name']
+                    players = players.strip()[:-1] + ')'
+            if result:
+                return _won_or_lost(result) + ' ' + result + ' against ' + team + ' ' + players
     
 def _won_or_lost(result):
     home, away = result.split('-')

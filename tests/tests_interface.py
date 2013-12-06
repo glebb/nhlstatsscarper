@@ -28,9 +28,9 @@ class InterfaceSpec(unittest.TestCase):
         pass
 
     def it_should_print_stats_for_team(self):
-        eanhlstats.interface.get_team_overview_html = MagicMock(return_value=fixtures_teamps3.murohoki_standings)   
-        data = eanhlstats.interface.get_team_stats(self.team)
-        self.assertEquals("murohoki Europe GP: 153 | 52.9% | 81-58-14 | AGF: 2.37 | AGA: 2.33 | OR: 284", eanhlstats.interface.stats_of_team(data))
+        eanhlstats.interface.get_team_overview_json = MagicMock(return_value=fixtures_json.stats)   
+        data = eanhlstats.interface.find_team_with_stats(self.team.name)
+        self.assertEquals("murohoki GP: 386 | 57.0% | 220-132-34 | AGF: 2.65 | AGA: 2.26 | Points: 1647", eanhlstats.interface.stats_of_team(data))
 
     def it_should_show_player_stats(self):
         with test_database(test_db, (Team, Player)):
@@ -44,8 +44,10 @@ class InterfaceSpec(unittest.TestCase):
                 eanhlstats.interface.stats_of_player(player))
 
     def it_should_return_None_for_unknonwn_team_name(self):
+        eanhlstats.interface.get_team_overview_json = MagicMock(return_value='[]')   
+        
         with test_database(test_db, (Team, Player)):
-            sentence = eanhlstats.interface.get_team_stats(eanhlstats.interface.get_team("dsfdasfa23423qed"))
+            sentence = eanhlstats.interface.find_team_with_stats("dsfdasfa23423qed")
         self.assertEqual(None, sentence)
         
     def it_should_get_top_n_players_from_team(self):
@@ -67,7 +69,7 @@ class InterfaceSpec(unittest.TestCase):
     def it_should_get_last_game_from_team(self):
         eanhlstats.interface.get_content = MagicMock(return_value=fixtures_json.results)
         results = eanhlstats.interface.last_game(self.team.eaid)
-        self.assertEquals("Lost 4 - 5 against Mister Sisters", results)
+        self.assertEquals("Lost 4 - 5 against Mister Sisters (Lionite 2+1, Noddactius 0+2, Mr_Fagstrom 1+2, HOLYDIVERS 1+1)", results)
 
     def it_should_find_teams_by_abbreviation(self):
         eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)

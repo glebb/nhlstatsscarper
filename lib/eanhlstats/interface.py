@@ -1,8 +1,8 @@
 '''Main interface for eanhlstats functionality'''
 from eanhlstats.model import get_team_from_db, get_player_from_db, \
     get_players_from_db, Player
-from eanhlstats.html.team import get_team_overview_html, \
-    save_new_team_to_db, parse_team_standings_data, get_results_url, \
+from eanhlstats.html.team import get_team_overview_json, \
+    save_new_team_to_db, find_team, get_results_url, \
     parse_results_data, parse_last_game, find_teams, TEAM_URL_PREFIX
 
 from eanhlstats.html.players import refresh_player_data
@@ -56,21 +56,12 @@ def top_players(players, max_amount):
         temp += "%s.%s (%s), " % (i, player.name, player.points)
         i += 1
     return temp.strip()[:-1]
-     
-def get_team(team_name):
-    '''Get Team object from db. If team does not exist in local db
-    does a query to EA servers and creates a new entry. Returns None
-    in case of team does not exist or other error'''
-    team = get_team_from_db(team_name)
-    if not team:
-        team = save_new_team_to_db(team_name)
-    return team
-              
-def get_team_stats(team):
+                   
+def find_team_with_stats(team_name):
     '''Gets team stats from EA servers.'''
-    if team:
-        html = get_team_overview_html(team.name)    
-        return parse_team_standings_data(html)
+    json = get_team_overview_json(team_name)
+    if json and json != '[]' and json != '{"raw":[]}':    
+        return find_team(json)
     return None
 
 def stats_of_team(teamdata):
@@ -78,9 +69,8 @@ def stats_of_team(teamdata):
     stats = ""
     if teamdata:
         stats = \
-            "%s %s GP: %s | %.1f%% | %s-%s-%s | AGF: %s | AGA: %s | OR: %s" \
+            "%s GP: %s | %.1f%% | %s-%s-%s | AGF: %s | AGA: %s | Points: %s" \
             % (teamdata['team_name'], \
-            teamdata['region'], \
             teamdata['games_played'], \
             (float(teamdata['wins']) / float(teamdata['games_played'])) * 100, \
             teamdata['wins'], \

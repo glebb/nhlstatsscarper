@@ -15,20 +15,15 @@ EET = pytz.timezone('Europe/Helsinki')
 TARGET_TZ =  pytz.timezone('US/Pacific')
 
 
-def create_search_url(team_name, use_abbreviation=False):
-    '''Append team_name to Ea Sport Nhl search_url'''
-    temp = _replace_space_with_plus(team_name)
-    search_url = 'http://www.easportsworld.com/en_US/clubs/nhl14/search' + \
-        '?find[name]='
-    if not use_abbreviation:
-        search_url += temp
-    search_url += '&find[abbreviation]='
-    if use_abbreviation:
-        search_url += temp
+def create_search_url(team_abbreviation):
+    '''Use old easports page for finding teams by abbreviation'''
+    temp = _replace_space_with_plus(team_abbreviation)
+    search_url = 'http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]='
+    search_url += '&find[abbreviation]=' + temp
     search_url += '&find[size]=' + \
         '&find[acceptJoinRequest]=&find[public]=&find[lang]=' + \
         '&find[platform]='
-    platform = "360" if eanhlstats.settings.SYSTEM == "XBX" \
+    platform = "360" if eanhlstats.settings.SYSTEM == "XBOX" \
         else eanhlstats.settings.SYSTEM
     search_url += platform
     search_url += '&find[region]='
@@ -40,27 +35,30 @@ def create_search_url(team_name, use_abbreviation=False):
 
 def parse_team_standings_data(html):
     '''Do the parsing of html.'''
-    html = BeautifulSoup(html)
+    return None
+
+def find_team(json_data):
+    '''Convert Json to simpler dict'''
     data = {}
-    try:
-        team_header = html.find('div', {'class' : 'main-club-header'})
-        data['team_name'] = team_header.h1.a.string
-        stat_cells = _find_stat_table_cells(html)
-        data['club_record'] = stat_cells[0].span.string.replace(' ', '')
-        data['region'] = stat_cells[1].string.replace("Region: ", "")
-        data['ranking'] = \
-            stat_cells[2].string.replace("Overall Ranking: ", "")
-        team_row = html.find('tr', {'class' : 'own-club strong'})
-        data['games_played'] = team_row.find(attrs={'title' : 'Games Played'}).text
-        data['wins'] = team_row.find(attrs={'title' : 'Wins'}).text
-        data['losses'] = team_row.find(attrs={'title' : 'Losses'}).text
-        data['overtime_losses'] = team_row.find(attrs={'title' : 'Overtime Losses'}).text
-        data['average_goals_for'] = team_row.find(attrs={'title' : 'Average Goals For'}).text
-        data['average_goals_against'] = team_row.find(attrs={'title' : 'Average Goals Against'}).text
-        return data
-    except AttributeError:
-        print "Parsing team stats failed"
-        return None
+
+    temp = json.loads(json_data)
+    
+    data['eaid'] = temp['raw'].keys()[0]
+    
+    temp = temp['raw'].values()[0]
+    
+    data['team_name'] = temp['name']
+    data['club_record'] = temp['wins'] + '-' + temp['losses'] + '-' + temp['otl']
+    data['ranking'] = temp['currentPoints']
+    data['games_played'] = str(int(temp['wins']) + int(temp['losses']) + int(temp['otl']))
+    data['wins'] = temp['wins']
+    data['losses'] = temp['losses']
+    data['overtime_losses'] = temp['otl']
+    data['average_goals_for'] = "%.2f" % (float(temp['goals']) / float(data['games_played']))
+    data['average_goals_against'] = "%.2f" % (float(temp['goalsAgainst']) / float(data['games_played']))
+
+    return data
+
     
 def get_teams_from_search_page(html):
     '''Get the url for team overview.'''
@@ -81,21 +79,12 @@ def get_teams_from_search_page(html):
 
     return items
 
-def get_team_overview_html(team_name):
-    '''Return team overview html from ea server. Stores team data to db, 
+def get_team_overview_json(team_name):
+    '''Return team overview from ea server. Stores team data to db, 
     if not already found from there'''
-    TEAM_URL_POSTFIX = "/standings?type=overall"
-    
     content = None
-    team = get_team_from_db(team_name)
-    if team:
-        content = get_content(TEAM_URL_PREFIX + eanhlstats.settings.SYSTEM + 
-            "/" + team.eaid + TEAM_URL_POSTFIX)
-    else:
-        team = save_new_team_to_db(team_name)
-        if team:
-            content = get_content(TEAM_URL_PREFIX + 
-            eanhlstats.settings.SYSTEM + "/" + team.eaid + TEAM_URL_POSTFIX)
+    content = get_content('http://www.easports.com/iframe/nhl14proclubs/api/platforms/'+ \
+        eanhlstats.settings.SYSTEM + '/clubsComplete/' + _replace_space_with_url_encode(team_name))
     return content
 
 def save_new_team_to_db(team_name):
@@ -111,7 +100,9 @@ def save_new_team_to_db(team_name):
     return None
 
 def find_teams(abbreviation):
-    search_url = create_search_url(abbreviation, True)
+    search_url = create_search_url(abbreviation)
+    temp = {}
+    
     html = get_content(search_url)
     teams = get_teams_from_search_page(html)
     if teams:
@@ -137,18 +128,21 @@ def get_results_url(eaid):
     return get_api_url(eaid, 'matches')
     
 def parse_results_data(json_data, eaid):
+    '''Get results data from json'''
     data = json.loads(json_data)
     temp = {}
     if len(data) > 0:
         data = data['raw']
         for game in data.keys():
             timestamp = data[game]['timestamp']
-            for teamid in data[game].values()[4].keys():
+            result = None
+            for teamid in data[game]['clubs'].keys():
                 if teamid == eaid:
                     result = data[game]['clubs'][teamid]['scorestring']
                     continue
                 team = data[game]['clubs'][teamid]['details']['name']
-            temp[timestamp] = _won_or_lost(result) + ' ' + result + ' against ' + team + ' (' + data[game]['timeAgo'] + ')' 
+            if result:
+                temp[timestamp] = _won_or_lost(result) + ' ' + result + ' against ' + team + ' (' + data[game]['timeAgo'] + ')' 
 
     results = []
     for result in sorted(temp.keys()):
@@ -161,6 +155,7 @@ def parse_last_game(json_data, eaid):
     if len(data) > 0:
         data = data['raw']
         players = "("
+        result = None
         
         for game in data.keys():
             for teamid in data[game]['clubs'].keys():
@@ -173,7 +168,8 @@ def parse_last_game(json_data, eaid):
                     continue
                 team = data[game]['clubs'][teamid]['details']['name']
                 players = players.strip()[:-1] + ')'
-                return _won_or_lost(result) + ' ' + result + ' against ' + team + ' ' + players
+                if result:
+                    return _won_or_lost(result) + ' ' + result + ' against ' + team + ' ' + players
     
 def _won_or_lost(result):
     home, away = result.split('-')
@@ -185,6 +181,14 @@ def _replace_space_with_plus(text):
     temp = text.strip()
     temp = temp.replace(' ', '+')
     return temp
+
+def _replace_space_with_url_encode(text):
+    '''Fix arguments provided by pyfibot, to be used
+    with TeamStatsParser'''
+    temp = text.strip()
+    temp = temp.replace(' ', '%20')
+    return temp
+
     
 def _find_stat_table_cells(html):
     stats_table = html.find('table', 

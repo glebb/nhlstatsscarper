@@ -11,7 +11,9 @@ def get_content(url):
     content = None
     if url:
         try:
-            url_handle = urllib2.urlopen(url, timeout=60)
+            headers = { 'User-Agent' : 'Mozilla/5.0' }
+            req = urllib2.Request(url, None, headers)
+            url_handle = urllib2.urlopen(req, timeout=60)
             content = url_handle.read()
             url_handle.close()
         except IOError, error:

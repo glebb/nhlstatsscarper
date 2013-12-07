@@ -30,6 +30,7 @@ def get_ids(eaid):
 def get_players(eaid, ids):
     postfix = 'members/' + ','.join(map(str, ids)) + '/stats'
     url = get_api_url(eaid, postfix)
+    url = url.replace('clubs/'+eaid, '')
     players_json = get_content(url)
     return parse_player_data(players_json)
 
@@ -40,9 +41,9 @@ def sort_top_players(players, sort_by, limit=None):
     for sub in players:
         for key in sub:
             if key != 'playername' and key != 'firstname' and key != 'lastname':
-                if not isinstance(sub[key], int) and "." in sub[key]:
+                if isinstance(sub[key], float):
                     sub[key] = float(sub[key])    
-                else:
+                elif isinstance(sub[key], int):
                     sub[key] = int(sub[key])    
     try:
         temp = sorted(players, key=itemgetter(sort_by), reverse=True)

@@ -77,7 +77,7 @@ def command_top(bot, user, channel, args):
         if temp:
             bot.say(channel, temp)
         else:
-            bot.say(channel, 'Error, try "totalgp glso glsaves glga skpoints glgp glwins skshotpct skshots glgaa skgoals skhits skassists glsavepct skplusmin skppg skbs glsoperiods skshg skpim"')
+            bot.say(channel, 'Error, try "totalgp glso glsaves glga skpoints glgp glwins skshotpct skshots glgaa skgoals skhits skassists glsavepct skplusmin skppg skbs glsoperiods skshg skpim skgiveaways skdekes skdekesmade skfights skfightswon skgiveaways skhitspgpct skoffsides skscrnchances sktakeawaypg sktakeaways sktkgvpct"')
 
 def command_results(bot, user, channel, args):
    if args.strip() != "":

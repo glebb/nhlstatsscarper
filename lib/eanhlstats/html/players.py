@@ -1,7 +1,6 @@
 '''Player data parsing'''
 # -*- coding: utf-8 -*-
 
-from BeautifulSoup import BeautifulSoup
 from datetime import datetime
 import eanhlstats.settings
 from eanhlstats.html.common import get_content

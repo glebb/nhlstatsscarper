@@ -3,12 +3,9 @@ import sys, os
 sys.path.insert(0, os.path.realpath('../lib'))
 
 import unittest
-from peewee import *
 from mock import MagicMock
 from playhouse.test_utils import test_database
 import fixtures_teamps3
-import fixtures_members
-import fixtures_results
 import fixtures_json
 import eanhlstats.html.players
 import eanhlstats.html.team

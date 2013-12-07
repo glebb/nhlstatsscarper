@@ -9,8 +9,6 @@ import pytz
 from dateutil import parser
 import json
 
-TEAM_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/NHL14"
-
 def create_search_url(team_abbreviation):
     '''Use old easports page for finding teams by abbreviation'''
     temp = _replace_space_with_plus(team_abbreviation)
@@ -145,14 +143,6 @@ def _replace_space_with_url_encode(text):
     temp = text.strip()
     temp = temp.replace(' ', '%20')
     return temp
-
-
-def _save(team_url, team_name):
-    ea_id = _get_eaid_from_url(team_url)
-    team = Team(name=team_name, platform=eanhlstats.settings.SYSTEM, 
-        eaid=ea_id)
-    team.save()
-    return team
 
 def _get_eaid_from_url(url):
     return url.split('/')[-2]

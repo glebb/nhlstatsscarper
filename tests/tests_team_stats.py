@@ -8,11 +8,9 @@ from mock import MagicMock
 from playhouse.test_utils import test_database
 import fixtures_teamps3
 import fixtures_teamxbox
-import fixtures_results
 import fixtures_json
 import eanhlstats.html.team
 import eanhlstats.settings
-from peewee import SqliteDatabase
 from eanhlstats.model import *
 
 data = eanhlstats.html.team.find_team(fixtures_json.stats)

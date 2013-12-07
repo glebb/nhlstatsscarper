@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from peewee import SqliteDatabase
 from eanhlstats.interface import *
 import eanhlstats.settings
 

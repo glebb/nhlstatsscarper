@@ -1,7 +1,7 @@
 '''Main interface for eanhlstats functionality'''
 from eanhlstats.html.team import get_team_overview_json, \
     find_team, get_results_url, \
-    parse_results_data, find_teams, TEAM_URL_PREFIX
+    parse_results_data, find_teams
     
 from operator import itemgetter
 
@@ -9,7 +9,6 @@ from eanhlstats.html.players import parse_player_data, get_player_ids
 from eanhlstats.html.common import get_content, get_api_url
 import eanhlstats.settings
 from datetime import datetime
-from peewee import DoesNotExist
 
 def stats_of_player(players, player):
     '''Pretty print for player stats'''

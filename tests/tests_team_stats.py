@@ -81,17 +81,26 @@ class GetResultsSpec(unittest.TestCase):
         url = eanhlstats.html.team.get_results_url("26")
         self.assertEquals('http://www.easports.com/iframe/nhl14proclubs/api/platforms/XBOX/clubs/26/matches', url)
      
-    def it_should_find_first_match(self):
+    def it_should_find_first_match_summary(self):
         data = eanhlstats.html.team.parse_results_data(fixtures_json.results, "26")
-        self.assertEquals("Lost 0 - 2 against Shamefull Knights (2 days ago)", data[0])
+        self.assertEquals("Lost 2 - 3 against Backbreaker Project", data[0]['summary'])
 
-    def it_should_find_third_match(self):
+    def it_should_find_first_match_time(self):
         data = eanhlstats.html.team.parse_results_data(fixtures_json.results, "26")
-        self.assertEquals("Lost 4 - 5 against Mister Sisters (2 days ago)", data[2])
+        self.assertEquals("2 minutes ago", data[0]['when'])
 
-    def it_should_find_fourth_match(self):
+    def it_should_find_first_match_player(self):
         data = eanhlstats.html.team.parse_results_data(fixtures_json.results, "26")
-        self.assertEquals("Won 3 - 0 against Evoluution Umpikujat vol2 (3 days ago)", data[3])
+        self.assertEquals("arielii 1+0, bodhi-FIN 0+0, Noddactius 0+0, Mr_Fagstrom 1+1, HOLYDIVERS 0+2", data[0]['players'])
+
+
+    def it_should_find_third_match_summary(self):
+        data = eanhlstats.html.team.parse_results_data(fixtures_json.results, "26")
+        self.assertEquals("Won 2 - 1 against MGM Hockey", data[2]['summary'])
+
+    def it_should_find_fourth_match_summary(self):
+        data = eanhlstats.html.team.parse_results_data(fixtures_json.results, "26")
+        self.assertEquals("Won 9 - 1 against Inarin PalloSeura", data[3]['summary'])
 
     def it_should_handle_bad_data(self):
         data = eanhlstats.html.team.parse_results_data('[]', "26")

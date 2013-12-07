@@ -32,7 +32,7 @@ def pp_motion_machine(delay):
     global trackchannel
     global trackbot
     
-    results = last_game("26")
+    results = last_game(eanhlstats.settings.DEFAULT_TEAM)
     log.info(results)
     if results and (results != result) and trackchannel and trackbot:
         result = results
@@ -107,6 +107,19 @@ def command_results(bot, user, channel, args):
            bot.say(channel, str(results))
        else:
            bot.say(channel, 'Team not found: ' + str(args))
+
+def command_game(bot, user, channel, args):
+   if not args or args.strip() != "":
+       if not args.isdigit() or (int(args.strip()) <= 0 or int(args.strip()) >= 6):
+           bot.say(channel, 'You should provide game number (1-5)')
+           return
+       results = game_details(int(args.strip()), eanhlstats.settings.DEFAULT_TEAM)
+       if not results:
+           bot.say(channel, 'Error')
+           return
+       bot.say(channel, results['summary'] + ' (' + results['when'] + ') | ' + results['players'])
+
+
     
 def command_find(bot, user, channel, args):
     if args.strip() != "":

@@ -69,7 +69,7 @@ class InterfaceSpec(unittest.TestCase):
     def it_should_get_last_game_from_team(self):
         eanhlstats.interface.get_content = MagicMock(return_value=fixtures_json.results)
         results = eanhlstats.interface.last_game(self.team.eaid)
-        self.assertEquals("Lost 4 - 5 against Mister Sisters (Lionite 2+1, Noddactius 0+2, Mr_Fagstrom 1+2, HOLYDIVERS 1+1)", results)
+        self.assertEquals("Lost 2 - 3 against Backbreaker Project (arielii 1+0, bodhi-FIN 0+0, Noddactius 0+0, Mr_Fagstrom 1+1, HOLYDIVERS 0+2)", results)
 
     def it_should_find_teams_by_abbreviation(self):
         eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)

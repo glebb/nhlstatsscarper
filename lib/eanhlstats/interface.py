@@ -3,7 +3,7 @@ from eanhlstats.model import get_team_from_db, get_player_from_db, \
     get_players_from_db, Player
 from eanhlstats.html.team import get_team_overview_json, \
     save_new_team_to_db, find_team, get_results_url, \
-    parse_results_data, parse_last_game, find_teams, TEAM_URL_PREFIX
+    parse_results_data, find_teams, TEAM_URL_PREFIX
 
 from eanhlstats.html.players import refresh_player_data
 from eanhlstats.html.common import get_content, get_api_url
@@ -95,16 +95,25 @@ def last_games(amount, team=None, eaid=None):
     html = get_content(url)
     results = parse_results_data(html, teamid)
     for result in results[0:amount]:
-        temp += result + ' | '
+        temp += result['summary'] + ' (' + result['when'] + ')' + ' | '
     return temp.strip()[:-1].strip()
 
 def last_game(eaid):
     '''Pretty print results of last games for team'''
-    temp = ""
     url = get_api_url(eaid, 'matches?matches_returned=1')
     json = get_content(url)
-    return parse_last_game(json, eaid)
+    temp = parse_results_data(json, eaid)[0]
+    return temp['summary'] + ' (' + temp['players'] + ')'
 
+def game_details(game_number, eaid):
+    '''Pretty print results of last games for team'''
+    url = get_api_url(eaid, 'matches')
+    json = get_content(url)
+    index = game_number - 1
+    games = parse_results_data(json, eaid)
+    if index < len(games):
+        return games[index]
+    return None
 
 def find_teams_by_abbreviation(abbreviation, amount):
     '''Find teams by abbreviaton'''

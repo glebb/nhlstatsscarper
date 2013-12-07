@@ -33,15 +33,12 @@ class InterfaceSpec(unittest.TestCase):
         self.assertEquals("murohoki GP: 386 | 57.0% | 220-132-34 | AGF: 2.65 | AGA: 2.26 | Points: 1647", eanhlstats.interface.stats_of_team(data))
 
     def it_should_show_player_stats(self):
-        with test_database(test_db, (Team, Player)):
-            self.team.save()
-            players = eanhlstats.html.players.parse_player_data(self.team, fixtures_members.murohoki_members)
-            for player in players:
-                player.save()
-        
-            player = eanhlstats.interface.get_player("qolazor", self.team)
-            self.assertEquals("qolazor G:9 A:13 +/-:-23 PIM:72 Hits:62 BS:3 S:74 S%:12.2", 
-                eanhlstats.interface.stats_of_player(player))
+        eanhlstats.interface.get_content = MagicMock(return_value=fixtures_json.team_members)
+        ids = eanhlstats.interface.get_ids("26")
+        eanhlstats.interface.get_content = MagicMock(return_value=fixtures_json.members_stats)   
+        players = eanhlstats.interface.get_players("26", ids)
+        temp = eanhlstats.interface.stats_of_player(players, "TEPPO WINNIPEG")
+        self.assertEquals("TEPPO WINNIPEG GP:171 G:36 A:82 +/-:66 PIM:212 Hits:595 BS:54 S:336 S%:10.7", temp)
 
     def it_should_return_None_for_unknonwn_team_name(self):
         eanhlstats.interface.get_team_overview_json = MagicMock(return_value='[]')   
@@ -50,16 +47,22 @@ class InterfaceSpec(unittest.TestCase):
             sentence = eanhlstats.interface.find_team_with_stats("dsfdasfa23423qed")
         self.assertEqual(None, sentence)
         
-    def it_should_get_top_n_players_from_team(self):
-        with test_database(test_db, (Team, Player)):
-            self.team.save()
-            players = eanhlstats.html.players.parse_player_data(self.team, fixtures_members.murohoki_members)
-            for player in players:
-                player.save()
+    def it_should_get_top_players_sorted_by_key(self):
+        eanhlstats.interface.get_content = MagicMock(return_value=fixtures_json.team_members)
+        ids = eanhlstats.interface.get_ids("26")
+        eanhlstats.interface.get_content = MagicMock(return_value=fixtures_json.members_stats)   
+        players = eanhlstats.interface.get_players("26", ids)
+        temp = eanhlstats.interface.sort_top_players(players, "skpoints", 2)
+        self.assertEquals("1. ALIISA PRO (600), 2. SKIGE KAAKELI (543)", temp)
 
-            players = eanhlstats.interface.get_players(self.team)
-            self.assertEquals("1.arielii (82), 2.HOLYDIVERS (63), 3.Mr_Fagstrom (48)", 
-                eanhlstats.interface.top_players(players, 3))
+    def it_should_return_None_with_invalid_key(self):
+        eanhlstats.interface.get_content = MagicMock(return_value=fixtures_json.team_members)
+        ids = eanhlstats.interface.get_ids("26")
+        eanhlstats.interface.get_content = MagicMock(return_value=fixtures_json.members_stats)   
+        players = eanhlstats.interface.get_players("26", ids)
+        temp = eanhlstats.interface.sort_top_players(players, "blah", 2)
+        self.assertEquals(None, temp)
+
         
     def it_should_get_last_n_games_from_team(self):
         eanhlstats.interface.get_content = MagicMock(return_value=fixtures_json.results)

@@ -6,26 +6,24 @@ from eanhlstats.model import Player, get_player_from_db
 from datetime import datetime
 import eanhlstats.settings
 from eanhlstats.html.common import get_content, PARTIAL_URL_PREFIX
+import json
 
 MEMBERS_URL_POSTFIX = "/members-list"
 
-def parse_player_data(team, html):
-    '''actual parsing, gets all the players in html
-    as tr rows'''
-    html = BeautifulSoup(html)
-    members = []
-    players = []
-    try:
-        member_table = html.find('table', 
-            {'class' : 'styled full-width no-margin'}).tbody
-        members = member_table.findAll('tr')
-        for member in members:
-            tdcells = member.findAll('td')
-            player = _create_player(tdcells, team)
-            players.append(player)
-    except AttributeError:
-        print "Parsing player stats failed"
-    return players
+
+def get_player_ids(json_data):
+    data = json.loads(json_data)
+    temp = []
+    data = data['raw'][0]
+    for player in data.values():
+        temp.append(player['blazeId'])
+    return temp
+        
+def parse_player_data(json_data):
+    data = json.loads(json_data)
+    if 'raw' in data:
+        return data['raw']
+    return None
 
 def _create_player(tdcells, team):
     player = None

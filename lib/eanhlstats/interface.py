@@ -4,48 +4,64 @@ from eanhlstats.model import get_team_from_db, get_player_from_db, \
 from eanhlstats.html.team import get_team_overview_json, \
     save_new_team_to_db, find_team, get_results_url, \
     parse_results_data, find_teams, TEAM_URL_PREFIX
+    
+from operator import itemgetter
 
-from eanhlstats.html.players import refresh_player_data
+from eanhlstats.html.players import parse_player_data, get_player_ids
 from eanhlstats.html.common import get_content, get_api_url
 import eanhlstats.settings
 from datetime import datetime
 from peewee import DoesNotExist
 
-def get_player(player_name, team):
-    '''Get single Player data from db. Refresh if needed from EA server. 
-    Returns None if not found'''
-    player = None
-    player = get_player_from_db(player_name, team)
-    if not player or _needs_refresh(player):
-        refresh_player_data(team)
-        player = get_player_from_db(player_name, team)
-    return player
-        
-def stats_of_player(player):
+def stats_of_player(players, player):
     '''Pretty print for player stats'''
+    temp = next((item for item in players if item['playername'] == player), None)
     stats = ""
-    if player:
+    if temp:
         stats = \
-            "%s G:%s A:%s +/-:%s PIM:%s Hits:%s BS:%s S:%s S%%:%s" \
-            % (player.name, \
-            player.goals, \
-            player.assists, player.plusminus, player.penalties, \
-            player.hits, player.blocked_shots, player.shots, \
-            player.shooting_percentage)
+            "%s GP:%s G:%s A:%s +/-:%s PIM:%s Hits:%s BS:%s S:%s S%%:%s" \
+            % (temp['playername'], temp['totalgp'], \
+            temp['skgoals'], \
+            temp['skassists'], temp['skplusmin'], temp['skpim'], \
+            temp['skhits'], temp['skbs'], temp['skshots'], \
+            temp['skshotpct'])
     return stats
      
-def get_players(team):
+def get_ids(eaid):
+    url = get_api_url(eaid, 'members')
+    team_members_json = get_content(url)
+    return get_player_ids(team_members_json)
+    
+def get_players(eaid, ids):
+    postfix = 'members/' + ','.join(map(str, ids)) + '/stats'
+    url = get_api_url(eaid, postfix)
+    players_json = get_content(url)
+    return parse_player_data(players_json)
+
+    
+def sort_top_players(players, sort_by, limit=None):
     '''Get all players for team. Refresh if needed from EA server. 
     Returns None if not found'''
-    players = get_players_from_db(team)
+    for sub in players:
+        for key in sub:
+            if key != 'playername' and key != 'firstname' and key != 'lastname':
+                if not isinstance(sub[key], int) and "." in sub[key]:
+                    sub[key] = float(sub[key])    
+                else:
+                    sub[key] = int(sub[key])    
     try:
-        first = players.get()
-    except DoesNotExist:
-        first = None
-    if not first or _needs_refresh(first):
-        refresh_player_data(team)
-        players = get_players_from_db(team)
-    return players
+        temp = sorted(players, key=itemgetter(sort_by), reverse=True)
+    except KeyError:
+        return None
+    string = ""
+    i = 1
+    if limit:
+        temp = temp[0:limit]
+
+    for player in temp:
+        string += "%s. %s (%s), " % (i, player['playername'], player[sort_by])
+        i += 1
+    return string.strip()[:-1]
 
 def top_players(players, max_amount):
     '''Order a SelectQuery of players by score and return pretty print string. 
@@ -53,7 +69,7 @@ def top_players(players, max_amount):
     temp = ""
     i = 1
     for player in players.order_by(Player.points.desc()).limit(max_amount):
-        temp += "%s.%s (%s), " % (i, player.name, player.points)
+        temp += "%s. %s (%s), " % (i, player.name, player.points)
         i += 1
     return temp.strip()[:-1]
                    

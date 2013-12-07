@@ -1,7 +1,6 @@
 '''Team data parsing'''
 # -*- coding: utf-8 -*-
 from BeautifulSoup import BeautifulSoup
-from eanhlstats.model import Team, get_team_from_db
 import eanhlstats.settings
 from eanhlstats.html.common import get_content, get_api_url
 import datetime
@@ -82,28 +81,18 @@ def get_team_overview_json(team_name):
 
 def find_teams(abbreviation):
     search_url = create_search_url(abbreviation)
-    temp = {}
-    
+    temp = []
     html = get_content(search_url)
     teams = get_teams_from_search_page(html)
-    if teams:
-        temp = save_teams_to_db(teams)
-        return temp
-    return None
-
-def save_teams_to_db(teams):
-    temp = []
+    if not teams:
+        return None
     for data in teams:
-        team_url = data['url']
-        team_name = data['name']
-        ea_id = _get_eaid_from_url(team_url)
-        team = Team.select().where(Team.eaid == ea_id)
-        if team.count() == 0:
-            team = _save(team_url, team_name)
-        else:
-            team = team.get()
+        team = {}
+        team['url']= data['url']
+        team['name'] = data['name']
+        team['ea_id'] = _get_eaid_from_url(data['url'])
         temp.append(team)
-    return temp
+    return temp        
 
 def get_results_url(eaid):
     return get_api_url(eaid, 'matches')

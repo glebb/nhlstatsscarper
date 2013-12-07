@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 from peewee import SqliteDatabase
-from eanhlstats.model import *
 from eanhlstats.interface import *
 import eanhlstats.settings
 
-Team.create_table(True)
-Player.create_table(True)
 eanhlstats.settings.REGION = 3
 
 import logging

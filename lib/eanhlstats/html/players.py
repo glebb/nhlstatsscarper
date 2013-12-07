@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from BeautifulSoup import BeautifulSoup
-from eanhlstats.model import Player, get_player_from_db
 from datetime import datetime
 import eanhlstats.settings
 from eanhlstats.html.common import get_content

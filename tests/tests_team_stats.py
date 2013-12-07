@@ -11,14 +11,11 @@ import fixtures_teamxbox
 import fixtures_results
 import fixtures_json
 import eanhlstats.html.team
-from eanhlstats.model import Team
 import eanhlstats.settings
 from peewee import SqliteDatabase
 from eanhlstats.model import *
 
 data = eanhlstats.html.team.find_team(fixtures_json.stats)
-
-test_db = SqliteDatabase(':memory:')
 
 class TeamOverviewSpec(unittest.TestCase):
     def setUp(self):
@@ -55,15 +52,7 @@ class TeamStandingsSpec(unittest.TestCase):
 
     def it_should_find_overtime_losses(self):
         self.assertEqual("34", data['overtime_losses'])            
-        
-class TeamDatabaseSpec(unittest.TestCase):        
-    def it_should_save_teams_to_db_when_finding_teams_by_abbreviation(self):
-        eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)
-        with test_database(test_db, (Team, Player)):
-            teams = eanhlstats.html.team.find_teams("ice")
-            self.assertEqual(10, len(teams))
-            self.assertEquals(10, Team.select().count())
-            
+                    
             
 class GetResultsSpec(unittest.TestCase):
     def it_should_form_correct_url_for_results(self):
@@ -105,7 +94,6 @@ class GetResultsSpec(unittest.TestCase):
     
 class FindTeamsSpec(unittest.TestCase):
     def it_should_find_teams_by_abbreviation(self):
-        with test_database(test_db, (Team, Player)):
-            eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)
-            results = eanhlstats.html.team.find_teams("ice")
-            self.assertEqual(10, len(results))                    
+        eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)
+        results = eanhlstats.html.team.find_teams("ice")
+        self.assertEqual(10, len(results))                    

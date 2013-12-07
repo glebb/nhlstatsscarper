@@ -5,17 +5,12 @@ sys.path.insert(0, os.path.realpath('../lib'))
 import unittest
 import fixtures_json
 from eanhlstats.html.players import *
-from eanhlstats.model import *
 from playhouse.test_utils import test_database
-test_db = SqliteDatabase(':memory:')
 
 
 class PlayerStatsSpec(unittest.TestCase):
     
     
-    def setUp(self):
-        self.team = Team(name="murohoki", platform="PS3", eaid="26")
-
     def it_should_create_a_list_of_member_ids(self):
         players = get_player_ids(fixtures_json.team_members)
         self.assertEqual(9, len(players))

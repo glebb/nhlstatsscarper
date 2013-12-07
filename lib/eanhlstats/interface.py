@@ -1,6 +1,4 @@
 '''Main interface for eanhlstats functionality'''
-from eanhlstats.model import get_team_from_db, get_player_from_db, \
-    get_players_from_db, Player
 from eanhlstats.html.team import get_team_overview_json, \
     find_team, get_results_url, \
     parse_results_data, find_teams, TEAM_URL_PREFIX
@@ -138,6 +136,6 @@ def find_teams_by_abbreviation(abbreviation, amount):
 def pretty_print_teams(teams, amount):
     temp = ""
     for team in teams[0:amount]:
-        temp += team.name + ', '
+        temp += team['name'] + ', '
     return temp.strip()[:-1].strip()
 

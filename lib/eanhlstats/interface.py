@@ -43,7 +43,7 @@ def sort_top_players(players, sort_by, limit=None):
             if key != 'playername' and key != 'firstname' and key != 'lastname':
                 if type(sub[key]) is not int and _safe_cast(sub[key], float) and "." in sub[key]:
                     sub[key] = float(sub[key])    
-                elif type(sub[key]) is int or _safe_cast(sub[key], int):
+                elif type(sub[key]) is int or _safe_cast(sub[key], int) or sub[key] == '0':
                     sub[key] = int(sub[key])    
     try:
         temp = sorted(players, key=itemgetter(sort_by), reverse=True)

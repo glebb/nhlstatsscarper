@@ -41,9 +41,9 @@ def sort_top_players(players, sort_by, limit=None):
     for sub in players:
         for key in sub:
             if key != 'playername' and key != 'firstname' and key != 'lastname':
-                if isinstance(sub[key], float):
+                if type(sub[key]) is not int and _safe_cast(sub[key], float) and "." in sub[key]:
                     sub[key] = float(sub[key])    
-                elif isinstance(sub[key], int):
+                elif type(sub[key]) is int or _safe_cast(sub[key], int):
                     sub[key] = int(sub[key])    
     try:
         temp = sorted(players, key=itemgetter(sort_by), reverse=True)
@@ -126,3 +126,8 @@ def pretty_print_teams(teams, amount):
         temp += team['name'] + ', '
     return temp.strip()[:-1].strip()
 
+def _safe_cast(val, to_type, default=None):
+    try:
+        return to_type(val)
+    except ValueError:
+        return default

@@ -10,7 +10,6 @@ import fixtures_teamxbox
 import fixtures_json
 import eanhlstats.html.team
 import eanhlstats.settings
-from eanhlstats.model import *
 
 data = eanhlstats.html.team.find_team(fixtures_json.stats)
 

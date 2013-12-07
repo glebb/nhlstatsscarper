@@ -3,10 +3,6 @@
 from BeautifulSoup import BeautifulSoup
 import eanhlstats.settings
 from eanhlstats.html.common import get_content, get_api_url
-import datetime
-import time
-import pytz
-from dateutil import parser
 import json
 
 def create_search_url(team_abbreviation):
@@ -30,7 +26,7 @@ def create_search_url(team_abbreviation):
 def find_team(json_data):
     '''Convert Json to simpler dict'''
     data = {}
-
+    
     temp = json.loads(json_data)
     
     data['eaid'] = temp['raw'].keys()[0]
@@ -46,31 +42,31 @@ def find_team(json_data):
     data['overtime_losses'] = temp['otl']
     data['average_goals_for'] = "%.2f" % (float(temp['goals']) / float(data['games_played']))
     data['average_goals_against'] = "%.2f" % (float(temp['goalsAgainst']) / float(data['games_played']))
-
-    return data
-
     
+    return data
+    
+
 def get_teams_from_search_page(html):
     '''Get the url for team overview.'''
     html = BeautifulSoup(html)
     prefix = 'http://www.easportsworld.com'
     items = []
     try:
-        containing_table = html.find('table', 
+        containing_table = html.find('table',
             {'class' : 'styled full-width'})
         links = containing_table.tbody.findAll('h4')
         for link in links:
             item = {}
-            item['url'] = postfix = prefix + link.a['href'].replace('overview', 'standings?type=overall')
+            item['url'] = prefix + link.a['href'].replace('overview', 'standings?type=overall')
             item['name'] = link.a.string
             items.append(item)
     except (AttributeError, IndexError):
         return None
-
+    
     return items
 
 def get_team_overview_json(team_name):
-    '''Return team overview from ea server. Stores team data to db, 
+    '''Return team overview from ea server. Stores team data to db,
     if not already found from there'''
     content = None
     content = get_content('http://www.easports.com/iframe/nhl14proclubs/api/platforms/'+ \
@@ -86,15 +82,15 @@ def find_teams(abbreviation):
         return None
     for data in teams:
         team = {}
-        team['url']= data['url']
+        team['url'] = data['url']
         team['name'] = data['name']
         team['ea_id'] = _get_eaid_from_url(data['url'])
         temp.append(team)
-    return temp        
+    return temp
 
 def get_results_url(eaid):
     return get_api_url(eaid, 'matches')
-    
+
 def parse_results_data(json_data, eaid):
     '''Get results data from json'''
     data = json.loads(json_data)
@@ -115,12 +111,12 @@ def parse_results_data(json_data, eaid):
                     continue
                 team = data[game]['clubs'][teamid]['details']['name']
             if result:
-                foo = {}
-                foo['summary'] = _won_or_lost(result) + ' ' + result + ' against ' + team
-                foo['when'] = data[game]['timeAgo']
+                temp_game = {}
+                temp_game['summary'] = _won_or_lost(result) + ' ' + result + ' against ' + team
+                temp_game['when'] = data[game]['timeAgo']
                 players = players.strip()[:-1]
-                foo['players'] = players
-                temp[timestamp] = foo
+                temp_game['players'] = players
+                temp[timestamp] = temp_game
     results = []
     for result in sorted(temp.keys()):
         results.insert(0, temp[result])

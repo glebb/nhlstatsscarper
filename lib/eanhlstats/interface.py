@@ -7,8 +7,6 @@ from operator import itemgetter
 
 from eanhlstats.html.players import parse_player_data, get_player_ids
 from eanhlstats.html.common import get_content, get_api_url
-import eanhlstats.settings
-from datetime import datetime
 
 def stats_of_player(players, player):
     '''Pretty print for player stats'''
@@ -60,16 +58,6 @@ def sort_top_players(players, sort_by, limit=None):
         i += 1
     return string.strip()[:-1]
 
-def top_players(players, max_amount):
-    '''Order a SelectQuery of players by score and return pretty print string. 
-    max_amount specifies how many players there should be.'''
-    temp = ""
-    i = 1
-    for player in players.order_by(Player.points.desc()).limit(max_amount):
-        temp += "%s. %s (%s), " % (i, player.name, player.points)
-        i += 1
-    return temp.strip()[:-1]
-                   
 def find_team_with_stats(team_name):
     '''Gets team stats from EA servers.'''
     json = get_team_overview_json(team_name)
@@ -97,7 +85,6 @@ def stats_of_team(teamdata):
 def last_games(amount, team=None, eaid=None):
     '''Pretty print results of last games for team'''
     temp = ""
-    today = datetime.today()
     if team:
         teamid = team.eaid
     elif eaid:
@@ -128,7 +115,7 @@ def game_details(game_number, eaid):
         return games[index]
     return None
 
-def find_teams_by_abbreviation(abbreviation, amount):
+def find_teams_by_abbreviation(abbreviation):
     '''Find teams by abbreviaton'''
     return find_teams(abbreviation)
     

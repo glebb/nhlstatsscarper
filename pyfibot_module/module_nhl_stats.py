@@ -106,7 +106,7 @@ def command_game(bot, user, channel, args):
     
 def command_find(bot, user, channel, args):
     if args.strip() != "":
-        teams = find_teams_by_abbreviation(args, 10)
+        teams = find_teams_by_abbreviation(args)
         if teams:
             if len(teams) > 1:
                 bot.say(channel, str(pretty_print_teams(teams, 10)))

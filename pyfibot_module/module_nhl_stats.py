@@ -61,13 +61,13 @@ def command_ps(bot, user, channel, args):
         else:
             bot.say(channel, 'Error, spell name as it is in game')
     
-# def command_switch(bot, user, channel, args):
-#     if eanhlstats.settings.SYSTEM == "PS3":
-#         eanhlstats.settings.SYSTEM = "XBX"
-#         bot.say(channel, 'Switched nhl stats to XBX')
-#     else:
-#         eanhlstats.settings.SYSTEM = "PS3"
-#         bot.say(channel, 'Switched nhl stats to PS3')
+def command_switch(bot, user, channel, args):
+    if eanhlstats.settings.SYSTEM == "PS3":
+        eanhlstats.settings.SYSTEM = "XBOX"
+        bot.say(channel, 'Switched nhl stats to XBOX')
+    else:
+        eanhlstats.settings.SYSTEM = "PS3"
+        bot.say(channel, 'Switched nhl stats to PS3')
         
 def command_top(bot, user, channel, args):
     if args.strip() != "":
@@ -112,12 +112,12 @@ def command_find(bot, user, channel, args):
                 bot.say(channel, str(pretty_print_teams(teams, 10)))
                 return
             elif len(teams) == 1:
-                data = find_team_with_stats(teams[0].name)
+                data = find_team_with_stats(teams[0]['name'])
                 #data = get_team_stats(teams[0])
                 if not data:
-                    bot.say(channel, 'Error in fetching data for: ' + str(teams[0].name))
+                    bot.say(channel, 'Error in fetching data for: ' + str(teams[0]['name']))
                     return
-                bot.say(channel, str(stats_of_team(data)) + ' | ' + str(results_url(teams[0])))
+                bot.say(channel, str(stats_of_team(data)))
                 return
         bot.say(channel, 'Teams not found with: ' + str(args))
         

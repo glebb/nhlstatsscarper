@@ -5,7 +5,6 @@ sys.path.insert(0, os.path.realpath('../lib'))
 import datetime
 import unittest
 from mock import MagicMock
-from playhouse.test_utils import test_database
 import fixtures_teamps3
 import fixtures_teamxbox
 import fixtures_json
@@ -94,4 +93,10 @@ class FindTeamsSpec(unittest.TestCase):
     def it_should_find_teams_by_abbreviation(self):
         eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)
         results = eanhlstats.html.team.find_teams("ice")
-        self.assertEqual(10, len(results))                    
+        self.assertEqual(10, len(results))   
+        
+    def it_shoould_form_correct_search_url_for_xbox(self):
+        eanhlstats.settings.SYSTEM = "XBOX"
+        url = eanhlstats.html.team.create_search_url("ice")
+        self.assertEquals("http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]=&find[abbreviation]=ice&find[size]=&find[acceptJoinRequest]=&find[public]=&find[lang]=&find[platform]=360&find[region]=3&find[team_leagueId]=&find[teamId]=&find[active]=true&do-search=submit", url)
+                         

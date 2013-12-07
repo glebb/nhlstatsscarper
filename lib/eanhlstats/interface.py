@@ -2,7 +2,7 @@
 from eanhlstats.model import get_team_from_db, get_player_from_db, \
     get_players_from_db, Player
 from eanhlstats.html.team import get_team_overview_json, \
-    save_new_team_to_db, find_team, get_results_url, \
+    find_team, get_results_url, \
     parse_results_data, find_teams, TEAM_URL_PREFIX
     
 from operator import itemgetter
@@ -140,13 +140,4 @@ def pretty_print_teams(teams, amount):
     for team in teams[0:amount]:
         temp += team.name + ', '
     return temp.strip()[:-1].strip()
-    
-
-def results_url(team):
-    return TEAM_URL_PREFIX + eanhlstats.settings.SYSTEM + '/' + team.eaid + '/match-results'
-
-    
-def _needs_refresh(player):
-    return ((datetime.now() - player.modified).seconds / 60 > 
-        eanhlstats.settings.CACHE_TIME)
 

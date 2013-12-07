@@ -11,9 +11,6 @@ from dateutil import parser
 import json
 
 TEAM_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/NHL14"
-EET = pytz.timezone('Europe/Helsinki')
-TARGET_TZ =  pytz.timezone('US/Pacific')
-
 
 def create_search_url(team_abbreviation):
     '''Use old easports page for finding teams by abbreviation'''
@@ -32,10 +29,6 @@ def create_search_url(team_abbreviation):
     search_url += '&find[team_leagueId]=' + \
         '&find[teamId]=&find[active]=true&do-search=submit'
     return search_url
-
-def parse_team_standings_data(html):
-    '''Do the parsing of html.'''
-    return None
 
 def find_team(json_data):
     '''Convert Json to simpler dict'''
@@ -86,18 +79,6 @@ def get_team_overview_json(team_name):
     content = get_content('http://www.easports.com/iframe/nhl14proclubs/api/platforms/'+ \
         eanhlstats.settings.SYSTEM + '/clubsComplete/' + _replace_space_with_url_encode(team_name))
     return content
-
-def save_new_team_to_db(team_name):
-    '''Does a search query on Ea servers and stores team data (eaid)
-    to db. Returns None if team is not found.'''
-    search_url = create_search_url(team_name)
-    html = get_content(search_url)
-    data = get_teams_from_search_page(html)
-    if data:
-        team_url = data[0]['url']
-        team = _save(team_url, team_name)
-        return team
-    return None
 
 def find_teams(abbreviation):
     search_url = create_search_url(abbreviation)
@@ -176,11 +157,6 @@ def _replace_space_with_url_encode(text):
     temp = temp.replace(' ', '%20')
     return temp
 
-    
-def _find_stat_table_cells(html):
-    stats_table = html.find('table', 
-        {'class' : 'plain full-width nowrap less-padding no-margin'})
-    return stats_table.findAll('td')
 
 def _save(team_url, team_name):
     ea_id = _get_eaid_from_url(team_url)

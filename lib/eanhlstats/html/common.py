@@ -3,8 +3,6 @@
 import urllib2
 import eanhlstats.settings
 
-PARTIAL_URL_PREFIX = "http://www.easportsworld.com/en_US/clubs/partial/NHL14"
-
 def get_content(url):
     '''Get html content of given url.
     untested copy/paste code'''

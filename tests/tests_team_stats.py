@@ -36,9 +36,6 @@ class TeamOverviewSpec(unittest.TestCase):
         ranking = data['ranking']
         self.assertEqual("1647", ranking)
         
-    def it_should_return_empty_string_without_good_data(self):
-        data = eanhlstats.html.team.parse_team_standings_data("[]")
-        self.assertEquals(None, data)
 
 class TeamStandingsSpec(unittest.TestCase):
     def it_should_find_team_games_played(self):

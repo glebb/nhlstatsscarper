@@ -73,7 +73,7 @@ def command_top(bot, user, channel, args):
     if args.strip() != "":
         ids = eanhlstats.interface.get_ids(eanhlstats.settings.DEFAULT_TEAM)
         players = eanhlstats.interface.get_players(eanhlstats.settings.DEFAULT_TEAM, ids)
-        temp = eanhlstats.interface.sort_top_players(players, args, 5)
+        temp = eanhlstats.interface.sort_top_players(players, args, 10)
         if temp:
             bot.say(channel, temp)
         else:

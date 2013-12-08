@@ -75,7 +75,7 @@ def command_top(bot, user, channel, args):
         if temp:
             bot.say(channel, temp)
         else:
-            bot.say(channel, 'Error, try "totalgp glso glsaves glga skpoints glgp glwins skshotpct skshots glgaa skgoals skhits skassists glsavepct skplusmin skppg skbs glsoperiods skshg skpim skgiveaways skdekes skdekesmade skfights skfightswon skgiveaways skhitspgpct skoffsides skscrnchances sktakeawaypg sktakeaways sktkgvpct"')
+            bot.say(channel, 'Usage: .top skpoints. Check alternatives for skpoints from https://raw.github.com/glebb/nhlstatsscarper/master/top_example.txt')
 
 def command_results(bot, user, channel, args):
    if args.strip() != "":

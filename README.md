@@ -22,14 +22,14 @@
 
 ### Bot commands ###
 <pre>
- .ts <team name>: Show Team Stats for team (always fetched from server)
- .ps <player_name>: show player stats from a default team. 
+ .ts [team name]: Show Team Stats for team
+ .ps [player_name]: Show player stats from a default team. 
  .switch: Switch between PS3 and Xbox 360 mode (can only fetch data from one at a time)
- .top <value>: Show top 10 players from team, sorted by value (e.g. skpoints)
- .find <team abbreviation>: Show max 10 team names using provided abbreviation.
- .trackresults: Enable tracking results for default time. Polls the servers and when finding updated results broadcasts on channel
- .results: show last 5 games for deafult team
- .game <nr>: Display summary and default team points for selected game (as list by .results) 
+ .top [value]: Show top 10 players from team, sorted by value (e.g. skpoints)
+ .find [team abbreviation]: Show max 10 team names using provided abbreviation. If only one is found, automatically shows Team Stats
+ .trackresults: Enable Polling match results from server. Will check the data every 2 minutes and broadcast the latest result to channel (if different from previous)
+ .results: Show last 5 game results for deafult team
+ .game [nr]: Display summary and default team points for selected game (as list by .results) 
 </pre>
 
 ### Install ###
@@ -43,8 +43,7 @@
 
 ### Requirements ###
  *  BeautifulSoup
- *  pytz
- *  python-dateutil
+ *  Twisted (for bot)
  *  Specloud (dev)
  *  Mock (dev)
  *  coverage (dev)

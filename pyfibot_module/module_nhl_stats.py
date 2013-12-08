@@ -2,8 +2,6 @@
 from eanhlstats.interface import *
 import eanhlstats.settings
 
-eanhlstats.settings.REGION = 3
-
 import logging
 from twisted.internet import reactor
 
@@ -113,7 +111,6 @@ def command_find(bot, user, channel, args):
                 return
             elif len(teams) == 1:
                 data = find_team_with_stats(teams[0]['name'])
-                #data = get_team_stats(teams[0])
                 if not data:
                     bot.say(channel, 'Error in fetching data for: ' + str(teams[0]['name']))
                     return

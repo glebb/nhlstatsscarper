@@ -10,12 +10,12 @@ from eanhlstats.html.common import get_content, get_api_url
 
 def stats_of_player(players, player):
     '''Pretty print for player stats'''
-    temp = next((item for item in players if item['playername'] == player), None)
+    temp = next((item for item in players if item['playername'] == player.upper()), None)
     stats = ""
     if temp:
         stats = \
             "%s GP:%s G:%s A:%s +/-:%s PIM:%s Hits:%s BS:%s S:%s S%%:%s" \
-            % (temp['playername'], temp['totalgp'], \
+            % (temp['playername'], temp['gamesplayed'], \
             temp['skgoals'], \
             temp['skassists'], temp['skplusmin'], temp['skpim'], \
             temp['skhits'], temp['skbs'], temp['skshots'], \

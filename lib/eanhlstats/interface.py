@@ -35,16 +35,22 @@ def get_players(eaid, ids):
     return parse_player_data(players_json)
 
     
-def sort_top_players(players, sort_by, limit=None):
+def sort_top_players(players, sort_by, limit=None, per_game=False):
     '''Get all players for team. Refresh if needed from EA server. 
     Returns None if not found'''
     for sub in players:
         for key in sub:
             if key != 'playername' and key != 'firstname' and key != 'lastname':
+                is_numeric = False
                 if type(sub[key]) is not int and _safe_cast(sub[key], float) and "." in sub[key]:
-                    sub[key] = float(sub[key])    
+                    sub[key] = float(sub[key])
                 elif type(sub[key]) is int or _safe_cast(sub[key], int) or sub[key] == '0':
-                    sub[key] = int(sub[key])    
+                    sub[key] = int(sub[key])   
+                    if not key.endswith('pct'): 
+                        is_numeric = True
+            if per_game and key == sort_by and is_numeric:
+                sub[key] = float("%.2f" % (float(sub[key]) / float(sub['gamesplayed'])))
+                     
     try:
         temp = sorted(players, key=itemgetter(sort_by), reverse=True)
     except KeyError:

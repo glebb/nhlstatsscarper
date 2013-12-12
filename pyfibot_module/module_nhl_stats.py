@@ -77,6 +77,17 @@ def command_top(bot, user, channel, args):
         else:
             bot.say(channel, 'Usage: .top skpoints. Check alternatives for skpoints from https://raw.github.com/glebb/nhlstatsscarper/master/top_example.txt')
 
+def command_top_pg(bot, user, channel, args):
+    if args.strip() != "":
+        ids = eanhlstats.interface.get_ids(eanhlstats.settings.DEFAULT_TEAM)
+        players = eanhlstats.interface.get_players(eanhlstats.settings.DEFAULT_TEAM, ids)
+        temp = eanhlstats.interface.sort_top_players(players, args, 10, per_game = True)
+        if temp:
+            bot.say(channel, temp)
+        else:
+            bot.say(channel, 'Usage: .top_pg skpoints. Check alternatives for skpoints from https://raw.github.com/glebb/nhlstatsscarper/master/top_example.txt')
+
+
 def command_results(bot, user, channel, args):
    if args.strip() != "":
        team = find_team_with_stats(args)

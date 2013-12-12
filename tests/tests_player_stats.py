@@ -16,7 +16,7 @@ class PlayerStatsSpec(unittest.TestCase):
         players = parse_player_data(fixtures_json.members_stats)
         self.player = next(player for player in players if player['playername'] == 'TEPPO WINNIPEG')
         self.assertEqual("TEPPO WINNIPEG", self.player['playername'])
-        self.assertEqual("118", self.player['skpoints'])        
+        self.assertEqual("123", self.player['skpoints'])        
                 
     def it_should_handle_bad_html(self):
         players = parse_player_data("[]")

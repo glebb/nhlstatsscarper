@@ -10,13 +10,11 @@ result = None
 trackchannel = None
 trackbot = None
 
-
 def init(bot):
     """Called when the bot is loaded and on rehash"""
     trackbot = None
     trackchannel = None
     result = None
-    pp_motion_machine(60*2)
 
 def pp_motion_machine(delay):
     """
@@ -47,6 +45,9 @@ def command_ts(bot, user, channel, args):
             bot.say(channel, 'Error in fetching data for: ' + str(args))
             return
         bot.say(channel, str(stats_of_team(data)))
+        command_game(bot, user, channel, "1 " + data['eaid'])
+        
+        
     
 
 def command_ps(bot, user, channel, args):
@@ -66,26 +67,36 @@ def command_switch(bot, user, channel, args):
     else:
         eanhlstats.settings.SYSTEM = "PS3"
         bot.say(channel, 'Switched nhl stats to PS3')
+
+def _split_team_id(args):
+    if len(args.split(' ')) == 2:
+        return args.split(' ')[0], args.split(' ')[1]
+    else: 
+        return args, eanhlstats.settings.DEFAULT_TEAM
+        
+    
         
 def command_top(bot, user, channel, args):
     if args.strip() != "":
-        ids = eanhlstats.interface.get_ids(eanhlstats.settings.DEFAULT_TEAM)
-        players = eanhlstats.interface.get_players(eanhlstats.settings.DEFAULT_TEAM, ids)
+        args, team = _split_team_id(args)
+        ids = eanhlstats.interface.get_ids(team)
+        players = eanhlstats.interface.get_players(team, ids)
         temp = eanhlstats.interface.sort_top_players(players, args, 10)
         if temp:
             bot.say(channel, temp)
         else:
-            bot.say(channel, 'Usage: .top skpoints. Check alternatives for skpoints from https://raw.github.com/glebb/nhlstatsscarper/master/top_example.txt')
+            bot.say(channel, 'Usage: .top skpoints <teamid>. Check alternatives for skpoints from https://raw.github.com/glebb/nhlstatsscarper/master/top_example.txt')
 
 def command_top_pg(bot, user, channel, args):
     if args.strip() != "":
-        ids = eanhlstats.interface.get_ids(eanhlstats.settings.DEFAULT_TEAM)
-        players = eanhlstats.interface.get_players(eanhlstats.settings.DEFAULT_TEAM, ids)
+        args, team = _split_team_id(args)
+        ids = eanhlstats.interface.get_ids(team)
+        players = eanhlstats.interface.get_players(team, ids)
         temp = eanhlstats.interface.sort_top_players(players, args, 10, per_game = True)
         if temp:
             bot.say(channel, temp)
         else:
-            bot.say(channel, 'Usage: .top_pg skpoints. Check alternatives for skpoints from https://raw.github.com/glebb/nhlstatsscarper/master/top_example.txt')
+            bot.say(channel, 'Usage: .top_pg skpoints <teamid>. Check alternatives for skpoints from https://raw.github.com/glebb/nhlstatsscarper/master/top_example.txt')
 
 
 def command_results(bot, user, channel, args):
@@ -102,10 +113,11 @@ def command_results(bot, user, channel, args):
 
 def command_game(bot, user, channel, args):
    if not args or args.strip() != "":
+       args, team = _split_team_id(args)
        if not args.isdigit() or (int(args.strip()) <= 0 or int(args.strip()) >= 6):
-           bot.say(channel, 'You should provide game number (1-5)')
+           bot.say(channel, 'Usage: .game 1 <teamid>. Game number goes up to 5.')
            return
-       results = game_details(int(args.strip()), eanhlstats.settings.DEFAULT_TEAM)
+       results = game_details(int(args.strip()), team)
        if not results:
            bot.say(channel, 'Error')
            return
@@ -121,11 +133,8 @@ def command_find(bot, user, channel, args):
                 bot.say(channel, str(pretty_print_teams(teams, 10)))
                 return
             elif len(teams) == 1:
-                data = find_team_with_stats(teams[0]['name'])
-                if not data:
-                    bot.say(channel, 'Error in fetching data for: ' + str(teams[0]['name']))
-                    return
-                bot.say(channel, str(stats_of_team(data)))
+                command_ts(bot, user, channel, teams[0]['name'])
                 return
         bot.say(channel, 'Teams not found with: ' + str(args))
         
+pp_motion_machine(60*2)

@@ -24,6 +24,9 @@ class TeamOverviewSpec(unittest.TestCase):
     def it_should_find_overall_ranking(self):
         ranking = self.data['ranking']
         self.assertEqual("1647", ranking)
+
+    def it_should_find_team_id(self):
+        self.assertEqual("26", self.data['eaid'])
         
 
 class TeamStandingsSpec(unittest.TestCase):

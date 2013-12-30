@@ -20,7 +20,7 @@ class InterfaceSpec(unittest.TestCase):
     def it_should_print_stats_for_team(self):
         eanhlstats.interface.get_team_overview_json = MagicMock(return_value=fixtures_json.stats)   
         data = eanhlstats.interface.find_team_with_stats("murohoki")
-        self.assertEquals("murohoki GP: 386 | 57.0% | 220-132-34 | AGF: 2.65 | AGA: 2.26 | Points: 1647", eanhlstats.interface.stats_of_team(data))
+        self.assertEquals("murohoki ID: 26 GP: 386 | 57.0% | 220-132-34 | AGF: 2.65 | AGA: 2.26 | Points: 1647", eanhlstats.interface.stats_of_team(data))
 
     def it_should_print_player_stats(self):
         players = self._set_up_player_data()

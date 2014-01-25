@@ -1,9 +1,12 @@
 """Team data parsing"""
 # -*- coding: utf-8 -*-
+import json
+
 from BeautifulSoup import BeautifulSoup
+
 import eanhlstats.settings
 from eanhlstats.html.common import get_content, get_api_url
-import json
+
 
 def create_search_url(team_abbreviation):
     """Use old easports page for finding teams by abbreviation"""

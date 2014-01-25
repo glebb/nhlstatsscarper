@@ -60,7 +60,7 @@ class InterfaceSpec(unittest.TestCase):
     def it_should_display_goalis_stats_for_game(self):
         eanhlstats.interface.get_content = MagicMock(return_value=fixtures_json.results_including_6_players)
         results = eanhlstats.interface.game_details(3, eaid="26")['players']
-        self.assertEquals("D bodhi-FIN 0+1, D Noddactius 0+0, G Lionite 0+0 20/19, RW JohnAbruzzzi_ 2+2, C HOLYDIVERS 0+3, LW arielii 3+0", results)
+        self.assertEquals("D bodhi-FIN 0+1, D Noddactius 0+0, G Lionite 0+0 20/19 0.95, RW JohnAbruzzzi_ 2+2, C HOLYDIVERS 0+3, LW arielii 3+0", results)
 
 
     def it_should_find_teams_by_abbreviation(self):

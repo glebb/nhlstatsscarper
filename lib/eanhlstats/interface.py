@@ -14,12 +14,12 @@ def stats_of_player(players, player):
     stats = ""
     if temp:
         stats = \
-            "%s %s GP:%s G:%s A:%s +/-:%s PIM:%s Hits:%s BS:%s S:%s S%%:%s" \
+            "%s %s GP:%s G:%s A:%s +/-:%s PIM:%s Hits:%s BS:%s S:%s S%%:%s GAA:%s SVP:%s" \
             % (positions[temp['position']], temp['playername'], temp['gamesplayed'],
                temp['skgoals'],
                temp['skassists'], temp['skplusmin'], temp['skpim'],
                temp['skhits'], temp['skbs'], temp['skshots'],
-               temp['skshotpct'])
+               temp['skshotpct'], temp['glgaa'], temp['glsavepct'])
     return stats
 
 

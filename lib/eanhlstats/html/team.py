@@ -113,7 +113,11 @@ def parse_results_data(json_data, eaid):
                         players += positions[data[game]['players'][teamid][player]['position']] + ' '
                         players += data[game]['players'][teamid][player]['details']['personaName']
                         players += ' ' + data[game]['players'][teamid][player]['skgoals'] + '+'
-                        players += data[game]['players'][teamid][player]['skassists'] + ', '
+                        players += data[game]['players'][teamid][player]['skassists']
+                        if positions[data[game]['players'][teamid][player]['position']] == "G":
+                            players += ' ' + data[game]['players'][teamid][player]['glshots'] + '/'
+                            players += data[game]['players'][teamid][player]['glsaves']
+                        players += ', '
                     continue
                 team = data[game]['clubs'][teamid]['details']['name']
             if result and team:

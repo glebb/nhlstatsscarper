@@ -14,8 +14,8 @@ def create_search_url(team_abbreviation):
     search_url = 'http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]='
     search_url += '&find[abbreviation]=' + temp
     search_url += '&find[size]=' + \
-        '&find[acceptJoinRequest]=&find[public]=&find[lang]=' + \
-        '&find[platform]='
+                  '&find[acceptJoinRequest]=&find[public]=&find[lang]=' + \
+                  '&find[platform]='
     platform = "360" if eanhlstats.settings.SYSTEM == "XBOX" \
         else eanhlstats.settings.SYSTEM
     search_url += platform
@@ -23,19 +23,20 @@ def create_search_url(team_abbreviation):
     if eanhlstats.settings.REGION:
         search_url += str(eanhlstats.settings.REGION)
     search_url += '&find[team_leagueId]=' + \
-        '&find[teamId]=&find[active]=true&do-search=submit'
+                  '&find[teamId]=&find[active]=true&do-search=submit'
     return search_url
+
 
 def find_team(json_data):
     """Convert Json to simpler dict"""
     data = {}
-    
+
     temp = json.loads(json_data)
-    
+
     data['eaid'] = temp['raw'].keys()[0]
-    
+
     temp = temp['raw'].values()[0]
-    
+
     data['team_name'] = temp['name']
     data['club_record'] = temp['wins'] + '-' + temp['losses'] + '-' + temp['otl']
     data['ranking'] = temp['currentPoints']
@@ -45,9 +46,9 @@ def find_team(json_data):
     data['overtime_losses'] = temp['otl']
     data['average_goals_for'] = "%.2f" % (float(temp['goals']) / float(data['games_played']))
     data['average_goals_against'] = "%.2f" % (float(temp['goalsAgainst']) / float(data['games_played']))
-    
+
     return data
-    
+
 
 def get_teams_from_search_page(html):
     """Get the url for team overview.
@@ -58,22 +59,24 @@ def get_teams_from_search_page(html):
     items = []
     try:
         containing_table = html.find('table',
-            {'class' : 'styled full-width'})
+                                     {'class': 'styled full-width'})
         links = containing_table.tbody.findAll('h4')
         for link in links:
             item = {'url': prefix + link.a['href'].replace('overview', 'standings?type=overall'), 'name': link.a.string}
             items.append(item)
     except (AttributeError, IndexError):
         pass
-    
+
     return items
+
 
 def get_team_overview_json(team_name):
     """Return team overview from ea server. Stores team data to db,
     if not already found from there"""
-    content = get_content('http://www.easports.com/iframe/nhl14proclubs/api/platforms/'+ \
-        eanhlstats.settings.SYSTEM + '/clubsComplete/' + _replace_space_with_url_encode(team_name))
+    content = get_content('http://www.easports.com/iframe/nhl14proclubs/api/platforms/' + \
+                          eanhlstats.settings.SYSTEM + '/clubsComplete/' + _replace_space_with_url_encode(team_name))
     return content
+
 
 def find_teams(abbreviation):
     search_url = create_search_url(abbreviation)
@@ -87,8 +90,10 @@ def find_teams(abbreviation):
         temp.append(team)
     return temp
 
+
 def get_results_url(eaid):
     return get_api_url(eaid, 'matches')
+
 
 def parse_results_data(json_data, eaid):
     """Get results data from json"""
@@ -121,9 +126,11 @@ def parse_results_data(json_data, eaid):
         results.insert(0, temp[result])
     return results
 
+
 def _won_or_lost(result):
     home, away = result.split('-')
     return "Won" if int(home) > int(away) else "Lost"
+
 
 def _replace_space_with_plus(text):
     """Fix arguments provided by pyfibot, to be used
@@ -132,12 +139,14 @@ def _replace_space_with_plus(text):
     temp = temp.replace(' ', '+')
     return temp
 
+
 def _replace_space_with_url_encode(text):
     """Fix arguments provided by pyfibot, to be used
     with TeamStatsParser"""
     temp = text.strip()
     temp = temp.replace(' ', '%20')
     return temp
+
 
 def _get_eaid_from_url(url):
     return url.split('/')[-2]

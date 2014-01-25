@@ -1,20 +1,26 @@
 # -*- coding: utf-8 -*-
+import logging
+
 from eanhlstats.interface import *
 import eanhlstats.settings
-
-import logging
 from twisted.internet import reactor
+
 
 log = logging.getLogger("motionmachine")
 result = None
 trackchannel = None
 trackbot = None
 
+
 def init(bot):
     """Called when the bot is loaded and on rehash"""
+    global trackbot
+    global trackchannel
+    global result
     trackbot = None
     trackchannel = None
     result = None
+
 
 def pp_motion_machine(delay):
     """
@@ -23,20 +29,22 @@ def pp_motion_machine(delay):
     global result
     global trackchannel
     global trackbot
-    
+
     results = last_game(eanhlstats.settings.DEFAULT_TEAM)
     log.info(results)
     if results and (results != result) and trackchannel and trackbot:
         result = results
         trackbot.say(trackchannel, str(result))
-        
+
     reactor.callLater(delay, pp_motion_machine, delay)
-    
+
+
 def command_trackresults(bot, user, channel, args):
     global trackbot
     global trackchannel
     trackbot = bot
     trackchannel = channel
+
 
 def command_ts(bot, user, channel, args):
     if args.strip() != "":
@@ -46,9 +54,7 @@ def command_ts(bot, user, channel, args):
             return
         bot.say(channel, str(stats_of_team(data)))
         command_game(bot, user, channel, "1 " + data['eaid'])
-        
-        
-    
+
 
 def command_ps(bot, user, channel, args):
     if args.strip() != "":
@@ -59,7 +65,8 @@ def command_ps(bot, user, channel, args):
             bot.say(channel, temp)
         else:
             bot.say(channel, 'Error, spell name as it is in game')
-    
+
+
 def command_switch(bot, user, channel, args):
     if eanhlstats.settings.SYSTEM == "PS3":
         eanhlstats.settings.SYSTEM = "XBOX"
@@ -68,14 +75,14 @@ def command_switch(bot, user, channel, args):
         eanhlstats.settings.SYSTEM = "PS3"
         bot.say(channel, 'Switched nhl stats to PS3')
 
+
 def _split_team_id(args):
     if len(args.split(' ')) == 2:
         return args.split(' ')[0], args.split(' ')[1]
-    else: 
+    else:
         return args, eanhlstats.settings.DEFAULT_TEAM
-        
-    
-        
+
+
 def command_top(bot, user, channel, args):
     if args.strip() != "":
         args, team = _split_team_id(args)
@@ -85,46 +92,49 @@ def command_top(bot, user, channel, args):
         if temp:
             bot.say(channel, temp)
         else:
-            bot.say(channel, 'Usage: .top skpoints <teamid>. Check alternatives for skpoints from https://raw.github.com/glebb/nhlstatsscarper/master/top_example.txt')
+            bot.say(channel,
+                    'Usage: .top skpoints <teamid>. Check alternatives for skpoints from https://raw.github.com/glebb/nhlstatsscarper/master/top_example.txt')
+
 
 def command_top_pg(bot, user, channel, args):
     if args.strip() != "":
         args, team = _split_team_id(args)
         ids = eanhlstats.interface.get_ids(team)
         players = eanhlstats.interface.get_players(team, ids)
-        temp = eanhlstats.interface.sort_top_players(players, args, 10, per_game = True)
+        temp = eanhlstats.interface.sort_top_players(players, args, 10, per_game=True)
         if temp:
             bot.say(channel, temp)
         else:
-            bot.say(channel, 'Usage: .top_pg skpoints <teamid>. Check alternatives for skpoints from https://raw.github.com/glebb/nhlstatsscarper/master/top_example.txt')
+            bot.say(channel,
+                    'Usage: .top_pg skpoints <teamid>. Check alternatives for skpoints from https://raw.github.com/glebb/nhlstatsscarper/master/top_example.txt')
 
 
 def command_results(bot, user, channel, args):
-   if args.strip() != "":
-       team = find_team_with_stats(args)
-       if team:
-           results = last_games(5, eaid=team['eaid'])
-           if not results:
-               bot.say(channel, 'No results found for team ' + str(team.name) + ' for today.')
-               return
-           bot.say(channel, str(results))
-       else:
-           bot.say(channel, 'Team not found: ' + str(args))
+    if args.strip() != "":
+        team = find_team_with_stats(args)
+        if team:
+            results = last_games(5, eaid=team['eaid'])
+            if not results:
+                bot.say(channel, 'No results found for team ' + str(team.name) + ' for today.')
+                return
+            bot.say(channel, str(results))
+        else:
+            bot.say(channel, 'Team not found: ' + str(args))
+
 
 def command_game(bot, user, channel, args):
-   if not args or args.strip() != "":
-       args, team = _split_team_id(args)
-       if not args.isdigit() or (int(args.strip()) <= 0 or int(args.strip()) >= 6):
-           bot.say(channel, 'Usage: .game 1 <teamid>. Game number goes up to 5.')
-           return
-       results = game_details(int(args.strip()), team)
-       if not results:
-           bot.say(channel, 'Error')
-           return
-       bot.say(channel, results['summary'] + ' (' + results['when'] + ') | ' + results['players'])
+    if not args or args.strip() != "":
+        args, team = _split_team_id(args)
+        if not args.isdigit() or (int(args.strip()) <= 0 or int(args.strip()) >= 6):
+            bot.say(channel, 'Usage: .game 1 <teamid>. Game number goes up to 5.')
+            return
+        results = game_details(int(args.strip()), team)
+        if not results:
+            bot.say(channel, 'Error')
+            return
+        bot.say(channel, results['summary'] + ' (' + results['when'] + ') | ' + results['players'])
 
 
-    
 def command_find(bot, user, channel, args):
     if args.strip() != "":
         teams = find_teams_by_abbreviation(args)
@@ -136,5 +146,6 @@ def command_find(bot, user, channel, args):
                 command_ts(bot, user, channel, teams[0]['name'])
                 return
         bot.say(channel, 'Teams not found with: ' + str(args))
-        
-pp_motion_machine(60*2)
+
+
+pp_motion_machine(60 * 2)

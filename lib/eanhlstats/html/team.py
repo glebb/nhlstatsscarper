@@ -5,7 +5,7 @@ import json
 from BeautifulSoup import BeautifulSoup
 
 import eanhlstats.settings
-from eanhlstats.html.common import get_content, get_api_url
+from eanhlstats.html.common import get_content, get_api_url, positions
 
 
 def create_search_url(team_abbreviation):
@@ -110,6 +110,7 @@ def parse_results_data(json_data, eaid):
                 if teamid == eaid:
                     result = data[game]['clubs'][teamid]['scorestring']
                     for player in data[game]['players'][teamid].keys():
+                        players += positions[data[game]['players'][teamid][player]['position']] + ' '
                         players += data[game]['players'][teamid][player]['details']['personaName']
                         players += ' ' + data[game]['players'][teamid][player]['skgoals'] + '+'
                         players += data[game]['players'][teamid][player]['skassists'] + ', '

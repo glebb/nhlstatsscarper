@@ -73,7 +73,7 @@ class GetResultsSpec(unittest.TestCase):
 
     def it_should_find_first_match_players(self):
         self.data = eanhlstats.html.team.parse_results_data(fixtures_json.results, "26")
-        self.assertEquals("arielii 1+0, bodhi-FIN 0+0, Noddactius 0+0, Mr_Fagstrom 1+1, HOLYDIVERS 0+2", self.data[0]['players'])
+        self.assertEquals("LW arielii 1+0, D bodhi-FIN 0+0, D Noddactius 0+0, C Mr_Fagstrom 1+1, RW HOLYDIVERS 0+2", self.data[0]['players'])
 
     def it_should_find_third_match_summary(self):
         self.data = eanhlstats.html.team.parse_results_data(fixtures_json.results, "26")

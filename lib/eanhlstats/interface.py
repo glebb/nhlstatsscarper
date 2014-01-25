@@ -5,7 +5,7 @@ from eanhlstats.html.team import get_team_overview_json, \
     find_team, get_results_url, \
     parse_results_data, find_teams
 from eanhlstats.html.players import parse_player_data, get_player_ids
-from eanhlstats.html.common import get_content, get_api_url
+from eanhlstats.html.common import get_content, get_api_url, positions
 
 
 def stats_of_player(players, player):
@@ -14,8 +14,8 @@ def stats_of_player(players, player):
     stats = ""
     if temp:
         stats = \
-            "%s GP:%s G:%s A:%s +/-:%s PIM:%s Hits:%s BS:%s S:%s S%%:%s" \
-            % (temp['playername'], temp['gamesplayed'],
+            "%s %s GP:%s G:%s A:%s +/-:%s PIM:%s Hits:%s BS:%s S:%s S%%:%s" \
+            % (positions[temp['position']], temp['playername'], temp['gamesplayed'],
                temp['skgoals'],
                temp['skassists'], temp['skplusmin'], temp['skpim'],
                temp['skhits'], temp['skbs'], temp['skshots'],

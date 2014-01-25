@@ -25,7 +25,7 @@ class InterfaceSpec(unittest.TestCase):
     def it_should_print_player_stats(self):
         players = self._set_up_player_data()
         temp = eanhlstats.interface.stats_of_player(players, "TEPPO WINNIPEG")
-        self.assertEquals("TEPPO WINNIPEG GP:176 G:38 A:85 +/-:68 PIM:214 Hits:615 BS:54 S:345 S%:11.0", temp)
+        self.assertEquals("D TEPPO WINNIPEG GP:176 G:38 A:85 +/-:68 PIM:214 Hits:615 BS:54 S:345 S%:11.0", temp)
 
     def it_should_return_None_for_unknonwn_team_name(self):
         eanhlstats.interface.get_team_overview_json = MagicMock(return_value='[]')   
@@ -55,7 +55,7 @@ class InterfaceSpec(unittest.TestCase):
     def it_should_print_last_game_for_team(self):
         eanhlstats.interface.get_content = MagicMock(return_value=fixtures_json.results)
         results = eanhlstats.interface.last_game("26")
-        self.assertEquals("Lost 2 - 3 against Backbreaker Project (arielii 1+0, bodhi-FIN 0+0, Noddactius 0+0, Mr_Fagstrom 1+1, HOLYDIVERS 0+2)", results)
+        self.assertEquals("Lost 2 - 3 against Backbreaker Project (LW arielii 1+0, D bodhi-FIN 0+0, D Noddactius 0+0, C Mr_Fagstrom 1+1, RW HOLYDIVERS 0+2)", results)
 
     def it_should_find_teams_by_abbreviation(self):
         eanhlstats.html.team.get_content = MagicMock(return_value = fixtures_teamps3.many_search_results)

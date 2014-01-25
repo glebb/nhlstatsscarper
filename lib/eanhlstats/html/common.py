@@ -1,11 +1,11 @@
-'''Common functions for html parsing'''
+"""Common functions for html parsing"""
 # -*- coding: utf-8 -*-
 import urllib2
 import eanhlstats.settings
 
 def get_content(url):
-    '''Get html content of given url.
-    untested copy/paste code'''
+    """Get html content of given url.
+    untested copy/paste code"""
     content = None
     if url:
         try:

@@ -1,4 +1,4 @@
-'''Team data parsing'''
+"""Team data parsing"""
 # -*- coding: utf-8 -*-
 from BeautifulSoup import BeautifulSoup
 import eanhlstats.settings
@@ -6,7 +6,7 @@ from eanhlstats.html.common import get_content, get_api_url
 import json
 
 def create_search_url(team_abbreviation):
-    '''Use old easports page for finding teams by abbreviation'''
+    """Use old easports page for finding teams by abbreviation"""
     temp = _replace_space_with_plus(team_abbreviation)
     search_url = 'http://www.easportsworld.com/en_US/clubs/nhl14/search?find[name]='
     search_url += '&find[abbreviation]=' + temp
@@ -24,7 +24,7 @@ def create_search_url(team_abbreviation):
     return search_url
 
 def find_team(json_data):
-    '''Convert Json to simpler dict'''
+    """Convert Json to simpler dict"""
     data = {}
     
     temp = json.loads(json_data)
@@ -47,7 +47,9 @@ def find_team(json_data):
     
 
 def get_teams_from_search_page(html):
-    '''Get the url for team overview.'''
+    """Get the url for team overview.
+    @rtype : list
+    """
     html = BeautifulSoup(html)
     prefix = 'http://www.easportsworld.com'
     items = []
@@ -56,19 +58,16 @@ def get_teams_from_search_page(html):
             {'class' : 'styled full-width'})
         links = containing_table.tbody.findAll('h4')
         for link in links:
-            item = {}
-            item['url'] = prefix + link.a['href'].replace('overview', 'standings?type=overall')
-            item['name'] = link.a.string
+            item = {'url': prefix + link.a['href'].replace('overview', 'standings?type=overall'), 'name': link.a.string}
             items.append(item)
     except (AttributeError, IndexError):
-        return None
+        pass
     
     return items
 
 def get_team_overview_json(team_name):
-    '''Return team overview from ea server. Stores team data to db,
-    if not already found from there'''
-    content = None
+    """Return team overview from ea server. Stores team data to db,
+    if not already found from there"""
     content = get_content('http://www.easports.com/iframe/nhl14proclubs/api/platforms/'+ \
         eanhlstats.settings.SYSTEM + '/clubsComplete/' + _replace_space_with_url_encode(team_name))
     return content
@@ -81,10 +80,7 @@ def find_teams(abbreviation):
     if not teams:
         return None
     for data in teams:
-        team = {}
-        team['url'] = data['url']
-        team['name'] = data['name']
-        team['ea_id'] = _get_eaid_from_url(data['url'])
+        team = {'url': data['url'], 'name': data['name'], 'ea_id': _get_eaid_from_url(data['url'])}
         temp.append(team)
     return temp
 
@@ -92,7 +88,7 @@ def get_results_url(eaid):
     return get_api_url(eaid, 'matches')
 
 def parse_results_data(json_data, eaid):
-    '''Get results data from json'''
+    """Get results data from json"""
     data = json.loads(json_data)
     temp = {}
     if len(data) > 0:
@@ -100,6 +96,7 @@ def parse_results_data(json_data, eaid):
         for game in data.keys():
             timestamp = data[game]['timestamp']
             result = None
+            team = None
             players = ""
             for teamid in data[game]['clubs'].keys():
                 if teamid == eaid:
@@ -110,10 +107,9 @@ def parse_results_data(json_data, eaid):
                         players += data[game]['players'][teamid][player]['skassists'] + ', '
                     continue
                 team = data[game]['clubs'][teamid]['details']['name']
-            if result:
-                temp_game = {}
-                temp_game['summary'] = _won_or_lost(result) + ' ' + result + ' against ' + team
-                temp_game['when'] = data[game]['timeAgo']
+            if result and team:
+                temp_game = {'summary': _won_or_lost(result) + ' ' + result + ' against ' + team,
+                             'when': data[game]['timeAgo']}
                 players = players.strip()[:-1]
                 temp_game['players'] = players
                 temp[timestamp] = temp_game
@@ -127,15 +123,15 @@ def _won_or_lost(result):
     return "Won" if int(home) > int(away) else "Lost"
 
 def _replace_space_with_plus(text):
-    '''Fix arguments provided by pyfibot, to be used
-    with TeamStatsParser'''
+    """Fix arguments provided by pyfibot, to be used
+    with TeamStatsParser"""
     temp = text.strip()
     temp = temp.replace(' ', '+')
     return temp
 
 def _replace_space_with_url_encode(text):
-    '''Fix arguments provided by pyfibot, to be used
-    with TeamStatsParser'''
+    """Fix arguments provided by pyfibot, to be used
+    with TeamStatsParser"""
     temp = text.strip()
     temp = temp.replace(' ', '%20')
     return temp

@@ -62,18 +62,18 @@ def command_ps(bot, user, channel, args):
         players = get_players(eanhlstats.settings.DEFAULT_TEAM, ids)
         temp = stats_of_player(players, args)
         if temp:
-            bot.say(channel, temp)
+            bot.say(user, temp)
         else:
-            bot.say(channel, 'Error, spell full name as it is in game')
+            bot.say(user, 'Error, spell full name as it is in game')
 
 
-def command_switch(bot, user, channel, args):
-    if eanhlstats.settings.SYSTEM == "PS3":
-        eanhlstats.settings.SYSTEM = "XBOX"
-        bot.say(channel, 'Switched nhl stats to XBOX')
-    else:
-        eanhlstats.settings.SYSTEM = "PS3"
-        bot.say(channel, 'Switched nhl stats to PS3')
+#def command_switch(bot, user, channel, args):
+#    if eanhlstats.settings.SYSTEM == "PS3":
+#        eanhlstats.settings.SYSTEM = "XBOX"
+#        bot.say(channel, 'Switched nhl stats to XBOX')
+#    else:
+#        eanhlstats.settings.SYSTEM = "PS3"
+#        bot.say(channel, 'Switched nhl stats to PS3')
 
 
 def _split_team_id(args):
@@ -90,9 +90,9 @@ def command_top(bot, user, channel, args):
         players = eanhlstats.interface.get_players(team, ids)
         temp = eanhlstats.interface.sort_top_players(players, args, 10)
         if temp:
-            bot.say(channel, temp)
+            bot.say(user, temp)
         else:
-            bot.say(channel,
+            bot.say(user,
                     'Usage: .top skpoints <teamid>. Check alternatives for skpoints from https://raw.github.com/glebb/nhlstatsscarper/master/top_example.txt')
 
 
@@ -103,9 +103,9 @@ def command_top_pg(bot, user, channel, args):
         players = eanhlstats.interface.get_players(team, ids)
         temp = eanhlstats.interface.sort_top_players(players, args, 10, per_game=True)
         if temp:
-            bot.say(channel, temp)
+            bot.say(user, temp)
         else:
-            bot.say(channel,
+            bot.say(user,
                     'Usage: .top_pg skpoints <teamid>. Check alternatives for skpoints from https://raw.github.com/glebb/nhlstatsscarper/master/top_example.txt')
 
 

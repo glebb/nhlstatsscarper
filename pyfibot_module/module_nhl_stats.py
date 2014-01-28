@@ -30,11 +30,11 @@ def pp_motion_machine(delay):
     global trackchannel
     global trackbot
 
-    results = last_game(eanhlstats.settings.DEFAULT_TEAM)
-    log.info(results)
-    if results and (results != result) and trackchannel and trackbot:
+    results = game_details(1, eanhlstats.settings.DEFAULT_TEAM)
+    if trackchannel and trackbot and results and (not result or (results['match_id'] != result['match_id'])):
         result = results
-        trackbot.say(trackchannel, str(result))
+        temp = result['when'] + ' ' + result['home_team'] + ' ' + result['summary'] + ' (' + result['players'] + ')'
+        trackbot.say(trackchannel, temp)
 
     reactor.callLater(delay, pp_motion_machine, delay)
 
@@ -64,7 +64,7 @@ def command_ps(bot, user, channel, args):
         if temp:
             bot.say(channel, temp)
         else:
-            bot.say(channel, 'Error, spell name as it is in game')
+            bot.say(channel, 'Error, spell full name as it is in game')
 
 
 def command_switch(bot, user, channel, args):

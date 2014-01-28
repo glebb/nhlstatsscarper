@@ -106,8 +106,10 @@ def parse_results_data(json_data, eaid):
             result = None
             team = None
             players = ""
+            home_team = None
             for teamid in data[game]['clubs'].keys():
                 if teamid == eaid:
+                    home_team = data[game]['clubs'][teamid]['details']['name']
                     result = data[game]['clubs'][teamid]['scorestring']
                     for player in data[game]['players'][teamid].keys():
                         players += positions[data[game]['players'][teamid][player]['position']] + ' '
@@ -126,7 +128,10 @@ def parse_results_data(json_data, eaid):
                              'when': data[game]['timeAgo']}
                 players = players.strip()[:-1]
                 temp_game['players'] = players
+                temp_game['match_id'] = data[game]['matchId']
+                temp_game['home_team'] = home_team
                 temp[timestamp] = temp_game
+
     results = []
     for result in sorted(temp.keys()):
         results.insert(0, temp[result])

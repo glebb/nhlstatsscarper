@@ -54,8 +54,9 @@ class InterfaceSpec(unittest.TestCase):
         
     def it_should_print_last_game_for_team(self):
         eanhlstats.interface.get_content = MagicMock(return_value=fixtures_json.results)
-        results = eanhlstats.interface.last_game("26")
-        self.assertEquals("Lost 2 - 3 against Backbreaker Project (LW arielii 1+0, D bodhi-FIN 0+0, D Noddactius 0+0, C Mr_Fagstrom 1+1, RW HOLYDIVERS 0+2)", results)
+        results = eanhlstats.interface.game_details(1, "26")
+        self.assertEquals("Lost 2 - 3 against Backbreaker Project", results['summary'])
+        self.assertEquals("LW arielii 1+0, D bodhi-FIN 0+0, D Noddactius 0+0, C Mr_Fagstrom 1+1, RW HOLYDIVERS 0+2", results['players'])
 
     def it_should_display_goalis_stats_for_game(self):
         eanhlstats.interface.get_content = MagicMock(return_value=fixtures_json.results_including_6_players)

@@ -112,16 +112,8 @@ def last_games(amount, team=None, eaid=None):
     return temp.strip()[:-1].strip()
 
 
-def last_game(eaid):
-    """Pretty print results of last games for team"""
-    url = get_api_url(eaid, 'matches?matches_returned=1')
-    json = get_content(url)
-    temp = parse_results_data(json, eaid)[0]
-    return temp['summary'] + ' (' + temp['players'] + ')'
-
-
 def game_details(game_number, eaid):
-    """Pretty print results of last games for team"""
+    """last results for last games for team"""
     url = get_api_url(eaid, 'matches')
     json = get_content(url)
     index = game_number - 1

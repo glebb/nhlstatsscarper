@@ -88,7 +88,7 @@ def command_top(bot, user, channel, args):
         args, team = _split_team_id(args)
         ids = eanhlstats.interface.get_ids(team)
         players = eanhlstats.interface.get_players(team, ids)
-        temp = eanhlstats.interface.sort_top_players(players, args, 10)
+        temp = eanhlstats.interface.sort_top_players(players, args)
         if temp:
             bot.say(user, temp)
         else:
@@ -101,7 +101,7 @@ def command_top_pg(bot, user, channel, args):
         args, team = _split_team_id(args)
         ids = eanhlstats.interface.get_ids(team)
         players = eanhlstats.interface.get_players(team, ids)
-        temp = eanhlstats.interface.sort_top_players(players, args, 10, per_game=True)
+        temp = eanhlstats.interface.sort_top_players(players, args, per_game=True)
         if temp:
             bot.say(user, temp)
         else:

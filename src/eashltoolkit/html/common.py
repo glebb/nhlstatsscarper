@@ -1,7 +1,7 @@
 """Common functions for html parsing"""
 # -*- coding: utf-8 -*-
 import urllib2
-import eanhlstats.settings
+import eashltoolkit.settings
 
 
 def get_content(url):
@@ -28,6 +28,6 @@ def get_content(url):
 
 
 def get_api_url(eaid, action):
-    return "http://www.easports.com/iframe/nhl14proclubs/api/platforms/" + eanhlstats.settings.SYSTEM + '/clubs/' + eaid + '/' + action
+    return "http://www.easports.com/iframe/nhl14proclubs/api/platforms/" + eashltoolkit.settings.SYSTEM + '/clubs/' + eaid + '/' + action
 
 positions = {"0": "G", "1": "D", "3": "LW", "4": "C", "5": "RW"}

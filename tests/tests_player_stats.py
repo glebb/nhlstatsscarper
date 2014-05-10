@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import sys, os
-sys.path.insert(0, os.path.realpath('../lib'))
+sys.path.insert(0, os.path.realpath('../src'))
 
 import unittest
 import fixtures_json
-from eanhlstats.html.players import *
+from eashltoolkit.html.players import *
 
 class PlayerStatsSpec(unittest.TestCase):
     def it_should_create_a_list_of_member_ids(self):

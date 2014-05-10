@@ -4,8 +4,8 @@ import json
 
 from BeautifulSoup import BeautifulSoup
 
-import eanhlstats.settings
-from eanhlstats.html.common import get_content, get_api_url, positions
+import eashltoolkit.settings
+from eashltoolkit.html.common import get_content, get_api_url, positions
 
 
 def create_search_url(team_abbreviation):
@@ -16,12 +16,12 @@ def create_search_url(team_abbreviation):
     search_url += '&find[size]=' + \
                   '&find[acceptJoinRequest]=&find[public]=&find[lang]=' + \
                   '&find[platform]='
-    platform = "360" if eanhlstats.settings.SYSTEM == "XBOX" \
-        else eanhlstats.settings.SYSTEM
+    platform = "360" if eashltoolkit.settings.SYSTEM == "XBOX" \
+        else eashltoolkit.settings.SYSTEM
     search_url += platform
     search_url += '&find[region]='
-    if eanhlstats.settings.REGION:
-        search_url += str(eanhlstats.settings.REGION)
+    if eashltoolkit.settings.REGION:
+        search_url += str(eashltoolkit.settings.REGION)
     search_url += '&find[team_leagueId]=' + \
                   '&find[teamId]=&find[active]=true&do-search=submit'
     return search_url
@@ -74,7 +74,7 @@ def get_team_overview_json(team_name):
     """Return team overview from ea server. Stores team data to db,
     if not already found from there"""
     content = get_content('http://www.easports.com/iframe/nhl14proclubs/api/platforms/' + \
-                          eanhlstats.settings.SYSTEM + '/clubsComplete/' + _replace_space_with_url_encode(team_name))
+                          eashltoolkit.settings.SYSTEM + '/clubsComplete/' + _replace_space_with_url_encode(team_name))
     return content
 
 

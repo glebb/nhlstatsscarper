@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import logging
 
-from eanhlstats.interface import *
-import eanhlstats.settings
+from eashltoolkit.interface import *
+import eashltoolkit.settings
 from twisted.internet import reactor
 
 
@@ -30,7 +30,7 @@ def pp_motion_machine(delay):
     global trackchannel
     global trackbot
 
-    results = game_details(1, eanhlstats.settings.DEFAULT_TEAM)
+    results = game_details(1, eashltoolkit.settings.DEFAULT_TEAM)
     if trackchannel and trackbot and results and (not result or (results['match_id'] != result['match_id'])):
         result = results
         temp = result['when'] + ' ' + result['home_team'] + ' ' + result['summary'] + ' (' + result['players'] + ')'
@@ -58,8 +58,8 @@ def command_ts(bot, user, channel, args):
 
 def command_ps(bot, user, channel, args):
     if args.strip() != "":
-        ids = get_ids(eanhlstats.settings.DEFAULT_TEAM)
-        players = get_players(eanhlstats.settings.DEFAULT_TEAM, ids)
+        ids = get_ids(eashltoolkit.settings.DEFAULT_TEAM)
+        players = get_players(eashltoolkit.settings.DEFAULT_TEAM, ids)
         temp = stats_of_player(players, args)
         if temp:
             bot.say(user, temp)
@@ -68,11 +68,11 @@ def command_ps(bot, user, channel, args):
 
 
 #def command_switch(bot, user, channel, args):
-#    if eanhlstats.settings.SYSTEM == "PS3":
-#        eanhlstats.settings.SYSTEM = "XBOX"
+#    if eashltoolkit.settings.SYSTEM == "PS3":
+#        eashltoolkit.settings.SYSTEM = "XBOX"
 #        bot.say(channel, 'Switched nhl stats to XBOX')
 #    else:
-#        eanhlstats.settings.SYSTEM = "PS3"
+#        eashltoolkit.settings.SYSTEM = "PS3"
 #        bot.say(channel, 'Switched nhl stats to PS3')
 
 
@@ -80,15 +80,15 @@ def _split_team_id(args):
     if len(args.split(' ')) == 2:
         return args.split(' ')[0], args.split(' ')[1]
     else:
-        return args, eanhlstats.settings.DEFAULT_TEAM
+        return args, eashltoolkit.settings.DEFAULT_TEAM
 
 
 def command_top(bot, user, channel, args):
     if args.strip() != "":
         args, team = _split_team_id(args)
-        ids = eanhlstats.interface.get_ids(team)
-        players = eanhlstats.interface.get_players(team, ids)
-        temp = eanhlstats.interface.sort_top_players(players, args)
+        ids = eashltoolkit.interface.get_ids(team)
+        players = eashltoolkit.interface.get_players(team, ids)
+        temp = eashltoolkit.interface.sort_top_players(players, args)
         if temp:
             bot.say(user, temp)
         else:
@@ -99,9 +99,9 @@ def command_top(bot, user, channel, args):
 def command_top_pg(bot, user, channel, args):
     if args.strip() != "":
         args, team = _split_team_id(args)
-        ids = eanhlstats.interface.get_ids(team)
-        players = eanhlstats.interface.get_players(team, ids)
-        temp = eanhlstats.interface.sort_top_players(players, args, per_game=True)
+        ids = eashltoolkit.interface.get_ids(team)
+        players = eashltoolkit.interface.get_players(team, ids)
+        temp = eashltoolkit.interface.sort_top_players(players, args, per_game=True)
         if temp:
             bot.say(user, temp)
         else:
